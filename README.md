@@ -6,7 +6,7 @@ I currently work as an Engineering Manager at EmpRes Healthcare supporting Skill
 
 I'm sure I'll have more to add here soon, but figured I ought as well start with something.
 
-- 🔭 I’m currently working on a budgeting utility called [Kakeibo](https://github.com/dchroninger/kakeibo)
+- 🔭 I’m currently working on a budgeting utility called [Kakeibo](https://github.com/dchroninger/kakeibo-turbo)
 - 🌱 I’m currently learning Golang and Rust
 - 👯 I’m looking to collaborate on interesting projects in TypeScript, Golang, or Rust.
 <!-- - 💬 Ask me about system design
