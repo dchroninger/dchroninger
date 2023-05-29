@@ -1,6 +1,7 @@
 ### Hi Everyone 👋
 
 Welcome to my GitHub. I've been writing software for about 6 years now in a variety of languages from TypeScript to CFML (unfortunately. lol).
+  
 I currently work as an Engineering Manager at EmpRes Healthcare supporting Skilled Nursing and Assisted Living facilities throughout the western United States.
 
 I'm sure I'll have more to add here soon, but figured I ought as well start with something.
