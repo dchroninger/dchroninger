@@ -2,7 +2,7 @@
 
 Welcome to my GitHub. I've been writing software for about 6 years now in a variety of languages, but I have a soft spot for TypeScript and Golang.
 
-- 🔭 I’m currently working on a budgeting utility called [Kakeibo](https://github.com/dchroninger/kakeibo-turbo)
+- 🔭 I’m currently working on a budgeting utility called Kakeibo.
 - 🌱 I’m currently learning more about WebSockets and Algorithm Design
 - 👯 I’m looking to collaborate on interesting projects in TypeScript or Golang.
 
