@@ -1,33 +1,68 @@
-### Hi Everyone 👋
+# Hey there, I’m Dave! 👋
 
-Welcome to my GitHub. I've been writing software for about 6 years now in a variety of languages, but I have a soft spot for TypeScript and Golang.
+_"From console logs to concept cars—turning passion into new creations."_
 
-- 🔭 I’m currently working on a budgeting utility called Kakeibo.
-- 🌱 I’m currently learning more about WebSockets and Algorithm Design
-- 👯 I’m looking to collaborate on interesting projects in TypeScript or Golang.
+## Introduction
 
-I currently work as an Engineering Manager at EmpRes Operated by Evergreen, where we support the company's IT infrastructure, and build internal tooling for our users.
+I’m a self-taught software engineer with **6+ years of experience** who loves blending tech with my personal passions—be it **working on cars**, **learning Japanese**, or tinkering with **new programming languages**. Currently, I’m diving deeper into **Golang** while dabbling in **Elixir**, and I’m excited about the fresh perspectives both bring to building efficient, user-centric applications.
 
-### Editor: ![Neovim](https://img.shields.io/badge/NeoVim-%2357A143.svg?&style=flat&logo=neovim&logoColor=white)
+By day, I’m an **IT Engineering Manager** who mentors a small but mighty team, designs IT infrastructure, and codes internal tools. My role gives me a unique blend of technical, operational, and leadership responsibilities—which I enjoy just as much as rolling up my sleeves to build something from scratch.
 
-### Proficiencies:
+## Skills & Tech
 
-#### Languages:
+- **Primary Languages**:
 
-![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=flat&logo=typescript&logoColor=white)![C#](https://img.shields.io/badge/c%23-%23239120.svg?style=flat&logo=c-sharp&logoColor=white)![Go](https://img.shields.io/badge/go-%2300ADD8.svg?style=flat&logo=go&logoColor=white)
+  - **TypeScript** for modern web frontends and quick scripts
+  - **Golang** for backend APIs (currently deepening my expertise)
+  - **PowerShell** for system scripting
+  - **SQL** for database design and querying (most experienced in Microsoft SQL Server)
 
-#### Frameworks/Libraries:
+- **Secondary Languages**:
 
-![React](https://img.shields.io/badge/react-%2320232a.svg?style=flat&logo=react&logoColor=%2361DAFB)![Express.js](https://img.shields.io/badge/express.js-%23404d59.svg?style=flat&logo=express&logoColor=%2361DAFB)![Next JS](https://img.shields.io/badge/Next-black?style=flat&logo=next.js&logoColor=white)![.Net](https://img.shields.io/badge/.NET-5C2D91?style=flat&logo=.net&logoColor=white)![Storybook](https://img.shields.io/badge/-Storybook-FF4785?style=flat&logo=storybook&logoColor=white)![MUI](https://img.shields.io/badge/MUI-%230081CB.svg?style=flat&logo=mui&logoColor=white)![NodeJS](https://img.shields.io/badge/node.js-6DA55F?style=flat&logo=node.js&logoColor=white)![TailwindCSS](https://img.shields.io/badge/tailwindcss-%2338B2AC.svg?style=flat&logo=tailwind-css&logoColor=white)
+  - **Rust** because shouldn't we all rewrite everything in Rust?
+  - **C#** for ease of integration with on-premises Active Directory
+  - **CFML** for a legacy codebase I inherited
 
-#### Data:
+- **Frameworks, Libraries & Tools**:
 
-![MicrosoftSQLServer](https://img.shields.io/badge/Microsoft%20SQL%20Server-CC2927?style=flat&logo=microsoft%20sql%20server&logoColor=white)![MongoDB](https://img.shields.io/badge/MongoDB-%234ea94b.svg?style=flat&logo=mongodb&logoColor=white)
+  - Regularly working with **React**, **GoFiber**, and **TailwindCSS**
+  - Formerly used **Express.js**,**Next.js**, **MUI**, **Redux**, and **Prisma** but now leaning towards Context-based state management and direct SQL
+  - Experimenting with **TanStack** libraries and expanding my **GoFiber** skills
 
-#### Familiar:
+- **Databases & ETL**:
+  - Deep experience with **Microsoft SQL Server** (including **SSIS** ETL pipelines)
+  - Some past experience with **MongoDB**
 
-![Redux](https://img.shields.io/badge/redux-%23593d88.svg?style=flat&logo=redux&logoColor=white)![Electron.js](https://img.shields.io/badge/Electron-191970?style=flat&logo=Electron&logoColor=white)
+## Projects & Focus
 
-#### Learning:
+- **CAN-bus Exploration** – Tapping into automotive systems and eventually building a custom **infotainment system** for my cars
+- **Printer Management App** – A practical solution for a daily workflow challenge
+- **[Dotfiles](https://github.com/dchroninger/.dotfiles)** – Because I’m a big fan of refining workflows and sharing tips for a better dev environment
 
-![Rust](https://img.shields.io/badge/rust-%23000000.svg?style=flat&logo=rust&logoColor=white)![Lua](https://img.shields.io/badge/lua-%232C2D72.svg?style=flat&logo=lua&logoColor=white)![Redis](https://img.shields.io/badge/redis-%23DD0031.svg?style=flat&logo=redis&logoColor=white)
+> _I’m always open to new ideas—if you’ve got something interesting to collaborate on, let’s chat!_
+
+## Workflow & Tools
+
+- **Editor & Terminal**: [NeoVim](https://neovim.io/) + tmux
+- **CLI for Git**: Because sometimes, simplicity reigns supreme
+- **Productivity Setup**:
+  - **yabai**, **skhd** for window management
+  - **Alfred**, **Focus**, **kitty**, **Karabiner Elements** to streamline my daily tasks
+- **Hardware**:
+  - M1 Max MacBook Pro
+  - [Zsa Voyager](https://shop.zsa.io/) keyboard (Kaihl brown switches)
+  - Logitech MX Master 3 mouse
+
+I’m most comfortable in POSIX-compliant environments, but can adapt to just about any setup if needed.
+
+## Hobbies & Life Outside Code
+
+Outside of coding, you’ll likely find me:
+
+- **Under the hood** of my **widebody Genesis Coupe** or my **1993 Y32 Nissan Gloria**
+- **Studying Japanese**—pursuing a language degree while also working on my Computer Science transfer
+- Brainstorming how to merge these interests (coding + cars = custom infotainment system, right?)
+
+---
+
+> _“Always learning, always building. Let’s create something awesome together!”_
