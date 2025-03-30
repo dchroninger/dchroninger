@@ -85,7 +85,16 @@ export default function Uses() {
             to Neovim a few years ago. A lot of people brag about the speed, or
             the endless customizations, but for me, it's more about the
             ergonomics. I can make the right changes to make my use of the
-            computer feel more like thinking than typing.
+            computer feel more like thinking than typing. You can find my
+            dotfiles &nbsp;
+            <a
+              href="https://github.com/dchroninger/.dotfiles"
+              target="_blank"
+              className="text-teal-600 dark:text-teal-300"
+            >
+              here
+            </a>
+            .
           </Tool>
           <Tool title="Ghostty">
             I moved to Ghostty this year after it finally was released to the
