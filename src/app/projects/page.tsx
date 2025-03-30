@@ -4,6 +4,8 @@ import Image from 'next/image'
 import { Card } from '@/components/Card'
 import { SimpleLayout } from '@/components/SimpleLayout'
 import empresLogo from '@/images/logos/empres.png'
+import pokeballLogo from '@/images/logos/pokeball.png'
+import kanjiLogo from '@/images/logos/kanji.gif'
 
 const projects = [
   {
@@ -11,6 +13,23 @@ const projects = [
     description: 'Internal integration platform for IAM',
     link: { href: 'http://www.empres.com', label: 'EmpRes Healthcare' },
     logo: empresLogo,
+  },
+  {
+    name: 'Pokedex Clone',
+    description:
+      'Fun tinker project to learn about Kotlin Multiplatform and Compose Multiplatform.',
+    link: { href: 'http://pokedex.dchroninger.com', label: 'Pokedex' },
+    logo: pokeballLogo,
+  },
+  {
+    name: 'Immersion Tracker',
+    description:
+      'Tracker for my Japanese Immersion. Tracks content, duration, as well as thoughts on the material.',
+    link: {
+      href: 'http://immersion.dchroninger.com',
+      label: 'Immersion Tracker',
+    },
+    logo: kanjiLogo,
   },
 ]
 
@@ -42,11 +61,11 @@ export default function Projects() {
       >
         {projects.map((project) => (
           <Card as="li" key={project.name}>
-            <div className="relative z-10 flex h-12 w-12 items-center justify-center rounded-full bg-white shadow-md ring-1 shadow-zinc-800/5 ring-zinc-900/5 dark:border dark:border-zinc-700/50 dark:bg-zinc-800 dark:ring-0">
+            <div className="relative z-10 flex h-12 w-12 items-center justify-center rounded-full bg-white shadow-md ring-1 shadow-zinc-800/5 ring-zinc-900/5 dark:border dark:border-zinc-700/50 dark:ring-0">
               <Image
                 src={project.logo}
                 alt=""
-                className="h-8 w-8"
+                className="h-8 w-8 rounded-full"
                 unoptimized
               />
             </div>
