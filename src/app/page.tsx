@@ -148,7 +148,7 @@ function Resume() {
       company: 'EmpRes Healthcare',
       title: 'Lead Software Engineer',
       logo: empresLogo,
-      start: '2019',
+      start: '2020',
       end: '2021',
     },
     {
@@ -156,7 +156,7 @@ function Resume() {
       title: 'Web Developer',
       logo: empresLogo,
       start: '2018',
-      end: '2011',
+      end: '2020',
     },
   ]
 
