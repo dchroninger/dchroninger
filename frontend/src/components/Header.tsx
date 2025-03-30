@@ -10,7 +10,6 @@ import clsx from "clsx";
 import { Container } from "@components/Container";
 import { Link, useLocation } from "@tanstack/react-router";
 import { ThemeContext } from "@context/theme";
-import avatarImage from "../assets/portraits/anime.png";
 
 function CloseIcon(props: React.ComponentPropsWithoutRef<"svg">) {
   return (
@@ -225,7 +224,7 @@ function Avatar({
       {...props}
     >
       <img
-        src={avatarImage}
+        src="https://yxolapfupw.ufs.sh/f/lUSjJBQAQXSHeWHpelfBPiacoZGfS5NKklxAXrMj4F7Q26de"
         alt=""
         sizes={large ? "4rem" : "2.25rem"}
         className={clsx(

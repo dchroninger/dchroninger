@@ -7,11 +7,6 @@ import { GitHubIcon, LinkedInIcon } from "@components/SocialIcons";
 import ehcgLogo from "../assets/logos/ehcg-logo.jpeg";
 import empresLogo from "../assets/logos/empres-logo.jpeg";
 
-import image1 from "../assets/portraits/genesis.jpeg";
-import image2 from "../assets/portraits/shogi.jpeg";
-import image3 from "../assets/portraits/bg-lake.jpeg";
-import image4 from "../assets/portraits/wade.jpeg";
-import image5 from "../assets/portraits/family-beach.png";
 import clsx from "clsx";
 
 export const Route = createFileRoute("/")({
@@ -226,7 +221,13 @@ function Photos() {
   return (
     <div className="mt-16 sm:mt-20">
       <div className="-my-4 flex justify-center gap-5 overflow-hidden py-4 sm:gap-8">
-        {[image1, image2, image3, image4, image5].map((image, imageIndex) => (
+        {[
+          "https://yxolapfupw.ufs.sh/f/lUSjJBQAQXSHffB2KvacmaE1FC5Ih7WzOPrS8lb3qgsHfwX6",
+          "https://yxolapfupw.ufs.sh/f/lUSjJBQAQXSHrsC0NRvhXDFwuiCk9LK7qO2W6YzRAT03VbNB",
+          "https://yxolapfupw.ufs.sh/f/lUSjJBQAQXSHPCa9ZVNp7Uc14mAOvxtohyuGBalwNXI0fT3R",
+          "https://yxolapfupw.ufs.sh/f/lUSjJBQAQXSHsUjeb6lAcTHi5sQZWe0qJn3BuOlb1DR86pIv",
+          "https://yxolapfupw.ufs.sh/f/lUSjJBQAQXSH5VWgMZA6GwuWfUntXm7zkYebQRhVNcIi8ZSg",
+        ].map((image, imageIndex) => (
           <div
             key={image + imageIndex}
             className={clsx(
