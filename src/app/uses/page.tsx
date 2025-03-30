@@ -90,7 +90,7 @@ export default function Uses() {
             <a
               href="https://github.com/dchroninger/.dotfiles"
               target="_blank"
-              className="text-teal-600 dark:text-teal-300"
+              className="texat-teal-600 dark:text-teal-300"
             >
               here
             </a>
