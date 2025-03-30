@@ -1,5 +1,5 @@
 import { StrictMode, useEffect, useState } from "react";
-import "./index.css";
+import "./styles/tailwind.css";
 
 // Import the generated route tree
 import { routeTree } from "./routeTree.gen";
@@ -46,9 +46,11 @@ export const App = () => {
     if (darkMode) {
       localStorage.theme = "dark";
       document.documentElement.classList.add("dark");
+      document.body.style.backgroundColor = "black";
     } else {
       localStorage.theme = "light";
       document.documentElement.classList.remove("dark");
+      document.body.style.backgroundColor = "#fafafa";
     }
   }, [darkMode, systemTheme]);
 

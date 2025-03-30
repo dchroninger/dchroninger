@@ -1,33 +1,28 @@
-import {
-  Outlet,
-  createRootRoute,
-  useRouterState,
-} from "@tanstack/react-router";
-import * as React from "react";
-import { Navbar } from "@components/navbar";
-import { RootSidebar } from "@components/sidebar";
-import { SidebarLayout } from "@components/sidebar-layout";
+import { Footer } from "@components/Footer";
+import { Header } from "@components/Header";
+import NotFound from "@components/NotFound";
+import { Outlet, createRootRoute } from "@tanstack/react-router";
 
 export const Route = createRootRoute({
   component: RouteLayout,
+  notFoundComponent: NotFound,
 });
 
 function RouteLayout() {
-  const location = useRouterState({ select: (s) => s.location });
-  const isPortal = location.pathname === "/portal";
   return (
-    <React.Fragment>
-      <SidebarLayout sidebar={<RootSidebar />} navbar={<Navbar />}>
-        {isPortal ? (
+    <div className="flex">
+      <div className="fixed inset-0 flex justify-center sm:px-8">
+        <div className="flex w-full max-w-7xl lg:px-8">
+          <div className="w-full bg-white ring-1 ring-zinc-100 dark:bg-zinc-900 dark:ring-zinc-300/20" />
+        </div>
+      </div>
+      <div className="relative flex-1 flex w-full flex-col">
+        <Header />
+        <main className="flex-auto">
           <Outlet />
-        ) : (
-          <div className="grow p-6 lg:rounded-lg lg:bg-white lg:p-10 lg:shadow-sm lg:ring-1 lg:ring-zinc-950/5 dark:lg:bg-zinc-900 dark:lg:ring-white/10">
-            <div className="mx-auto max-w-6xl">
-              <Outlet />
-            </div>
-          </div>
-        )}
-      </SidebarLayout>
-    </React.Fragment>
+        </main>
+        <Footer />
+      </div>
+    </div>
   );
 }
