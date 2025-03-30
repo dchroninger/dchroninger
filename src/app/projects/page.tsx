@@ -6,19 +6,20 @@ import { SimpleLayout } from '@/components/SimpleLayout'
 import empresLogo from '@/images/logos/empres.png'
 import pokeballLogo from '@/images/logos/pokeball.png'
 import kanjiLogo from '@/images/logos/kanji.gif'
+import hanaLogo from '@/images/logos/sakura.png'
 
 const projects = [
   {
     name: 'Synapse',
     description: 'Internal integration platform for IAM',
-    link: { href: 'http://www.empres.com', label: 'EmpRes Healthcare' },
+    link: { href: '#', label: 'EmpRes Healthcare' },
     logo: empresLogo,
   },
   {
     name: 'Pokedex Clone',
     description:
       'Fun tinker project to learn about Kotlin Multiplatform and Compose Multiplatform.',
-    link: { href: 'http://pokedex.dchroninger.com', label: 'Pokedex' },
+    link: { href: '#', label: 'Pokedex' },
     logo: pokeballLogo,
   },
   {
@@ -26,10 +27,20 @@ const projects = [
     description:
       'Tracker for my Japanese Immersion. Tracks content, duration, as well as thoughts on the material.',
     link: {
-      href: 'http://immersion.dchroninger.com',
+      href: '#',
       label: 'Immersion Tracker',
     },
     logo: kanjiLogo,
+  },
+  {
+    name: 'HanaChat',
+    description:
+      'Quick little chat server and client using websockets for communication. Supports audio/video as well.',
+    link: {
+      href: '#',
+      label: 'HanaChat',
+    },
+    logo: hanaLogo,
   },
 ]
 
