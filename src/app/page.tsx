@@ -222,14 +222,13 @@ export default async function Home() {
           </h1>
           <p className="mt-6 text-base text-zinc-600 dark:text-zinc-400">
             Hey there! I’m Dave, an experienced software engineer and solutions
-            architect who thrives at the intersection of technology, Japanese
-            language learning, and automotive culture. I’m currently working
-            towards a Bachelor’s degree in Computer Science, earning my
-            Associate’s in Japanese along the way. I spend my days designing
-            and building pretty cool stuff, and then my downtime exploring manga,
-            anime, and turning cars like my 1993 Nissan Gloria andGenesis Coupe
-            into passion projects. Welcome to my digital home—feel free to
-            explore and reach out!
+            architect, dog dad, car enthusiast, and enjoyer of Japanese culture,
+            language, and media. I’m currently working towards a Bachelor’s degree
+            in Computer Science, earning my Associate’s in Japanese along the way.
+            I spend my days designing and building pretty cool stuff, and then my
+            downtime exploring manga, anime, and turning cars like my 1993 Nissan
+            Gloria andGenesis Coupe into passion projects. Welcome to my digital
+            home—feel free to explore and reach out!
           </p>
           <div className="mt-6 flex gap-6">
             <SocialLink
