@@ -44,43 +44,41 @@ export default function Uses() {
   return (
     <SimpleLayout
       title="Software I use, gadgets I love, and other things I recommend."
-      intro="I get asked a lot about the things I use to build software, stay productive, or buy to fool myself into thinking I’m being productive when I’m really just procrastinating. Here’s a big list of all of my favorite stuff."
+      intro="Over the years I've gone through some iterations to figure out my preferred setup, but I think I've finally done it."
     >
       <div className="space-y-20">
         <ToolsSection title="Workstation">
-          <Tool title="14” MacBook Pro, M1 Max, 32GB RAM (2021)">
+          <Tool title="14” MacBook Pro">
             Before my MacBook, I had done all of my development on Windows PCs.
-            Moving to MacOS made a world of a difference for my productivity and
-            the ergonomics of my OS.
+            I've enjoyed the switch, and the closer ergonomics to Linux help
+            with maintining config files or scripts that may be run on a server.
           </Tool>
           <Tool title="Logitech Ergo Widescreen + DualUp Displays">
-            This monitor pairing truly feels like having superpowers when it
-            comes to productivity and development. The DualUp gives the perfect
-            canvas for reading large codebases, but also for staging all of the
-            different simulators and browsers for compatibility testing. The
-            widescreen replacing a previous dual 24" setup means being able to
-            center my work without bezels making me crane my neck.
+            This setup has been great for productivity. I learned long ago that
+            ultrawides were more comfortable for displaying code and content, but
+            adding the DualUp as a sidecar display let's me have a local web app,
+            dev tools, addiitonal terminals, or any other tools I need, without
+            disturbing my main area for focusing. 11/10, highly recommend.
           </Tool>
-          <Tool title="Zsa Voyager Split Ergonomic Keyboard">
+          <Tool title="Corne Split Keyboard">
             Now <strong>HERE</strong> is where I can really nerd out. For years
             I had dealt with wrist discomfort and shoulder pain from working on
             computers all day long. After coming across split keyboards, I
-            decided to try the Zsa Moonlander, which was a fantastic device. It
-            was a bit bigger than I needed, so I ended up eventually moving to
-            this Voyager, which is the best split, ortholinear keyboard out
-            there. Having layers for all of my important apps, and being able to
-            customize the layout to fit my needs has been infinitely helpful.
+            decided to try the Zsa Moonlander, then to their Voyager model. Both
+            were great devices, but I wanted something wireless again, so I built
+            my wireless Corne and haven't looked back. It packs up small
+            enough that I can take it anywhere, and it being wireless makes remote
+            work setup ridiculously easy. This is hands down my favorite item in
+            this list.
           </Tool>
-          <Tool title="Logitech MX Master 3S for Mac">
-            To be honest, there's really not much to say here. It's a
-            ridiculously comfortable mouse that has pretty cool gestures. The
-            one gripe I would have is that it requires there software to be
-            installed to work with the gestures, rather than having the OS
-            default gestures built into the device.
+          <Tool title="Logitech MX Master 3S">
+            To be honest, there's really not much to say here. It's amouse. It
+            does mouse things. It's pretty comfortable, but no more comfortable
+            than my Razer Naga Pro. So ¯\_(ツ)_/¯.
           </Tool>
         </ToolsSection>
         <ToolsSection title="Development tools">
-          <Tool title="Neovim">
+          <Tool title="Neovim + Tmux">
             Not to be that "btw" guy, but I'm honestly really happy that I moved
             to Neovim a few years ago. A lot of people brag about the speed, or
             the endless customizations, but for me, it's more about the
@@ -102,23 +100,14 @@ export default function Uses() {
             part though... is that you don't need to. It just works. Change the
             theme, and the rest is just configured right out of the box.
           </Tool>
-        </ToolsSection>
-        <ToolsSection title="Productivity">
-          <Tool title="Yabai + SKHD">
-            Yabai and SKHD paired together are like Batman and Robin. They turn
-            into a fantastic window manager for those focused sessions when I
-            don't want to reach for the mouse and ruin the emperor's groove.
-            Resizing, moving things, changing focus. All of these become reflex
-            once you get the muscle memory with the keybinds. Pairing this with
-            the Voyager keyboard has really been a game changer.
-          </Tool>
-          <Tool title="Focus">
-            Look. We all get distracted. That's why I have this handy little
-            pomodoro timer to keep me on track. It unfortunately doesn't have
-            ALL of the features I want, so I'll probably end up making my own at
-            some point. Being able to tie it into work accounts for task
-            management tracking, or GitHub issues to easily have focused coding
-            sessions.
+          <Tool title="Claude Code">
+            This tool has become a very helpful part of my day to day workflows.
+            It's been great for tackling research and providing resources, or
+            having a second set of eyes on a suite of tests to make sure that i'm
+            not over-looking any edge cases. Another great use case I have found
+            lately is a way to learn about architectural styles that I haven't been
+            able to work with at my job. Having a pair programmer when I need it
+            has been great.
           </Tool>
         </ToolsSection>
       </div>

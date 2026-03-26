@@ -218,18 +218,18 @@ export default async function Home() {
       <Container className="mt-9">
         <div className="max-w-2xl">
           <h1 className="text-4xl font-bold tracking-tight text-zinc-800 sm:text-5xl dark:text-zinc-100">
-            Software engineer, leader, and life-long learner.
+            Professional curious person. Learning hobbyist. Tinkerer.
           </h1>
           <p className="mt-6 text-base text-zinc-600 dark:text-zinc-400">
             Hey there! I’m Dave, an experienced software engineer and solutions
             architect who thrives at the intersection of technology, Japanese
             language learning, and automotive culture. I’m currently working
             towards a Bachelor’s degree in Computer Science, earning my
-            Associate’s in Japanese along the way. I spend my days crafting
-            thoughtful software solutions and my downtime exploring manga,
-            anime, and turning cars like my 1993 Nissan Gloria and custom
-            Genesis Coupe into passion projects. Welcome to my digital home—feel
-            free to explore and reach out!
+            Associate’s in Japanese along the way. I spend my days designing
+            and building pretty cool stuff, and then my downtime exploring manga,
+            anime, and turning cars like my 1993 Nissan Gloria andGenesis Coupe
+            into passion projects. Welcome to my digital home—feel free to
+            explore and reach out!
           </p>
           <div className="mt-6 flex gap-6">
             <SocialLink
