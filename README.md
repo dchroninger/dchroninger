@@ -4,7 +4,7 @@ _"From console logs to concept cars—turning passion into new creations."_
 
 ## Introduction
 
-I’m a self-taught software engineer with **6+ years of experience** who loves blending tech with my personal passions—be it **working on cars**, **learning Japanese**, or tinkering with **new programming languages**. Currently, I’m diving deeper into **Golang** while dabbling in **Elixir**, and I’m excited about the fresh perspectives both bring to building efficient, user-centric applications.
+I’m a self-taught software engineer with **8+ years of experience** who loves blending tech with my personal passions—be it **working on cars**, **learning Japanese**, or tinkering with **new programming languages**. Currently, I’m diving deeper into **Golang** while dabbling in **Elixir**, and I’m excited about the fresh perspectives both bring to building efficient, user-centric applications.
 
 By day, I’m an **IT Engineering Manager** who mentors a small but mighty team, designs IT infrastructure, and codes internal tools. My role gives me a unique blend of technical, operational, and leadership responsibilities—which I enjoy just as much as rolling up my sleeves to build something from scratch.
 
