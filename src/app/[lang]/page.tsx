@@ -190,7 +190,14 @@ export default function Home({ params }: { params: { lang: string } }) {
                 />
               </div>
             )}
-            <Label>{t.home.latest.label}</Label>
+            <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
+              <Label>{t.home.latest.label}</Label>
+              {lang === 'ja' && latest && latest.contentLang !== 'ja' && (
+                <span className="relative z-20 rounded-full bg-surface-2 px-2.5 py-0.5 font-mono text-xs text-muted ring-1 ring-line">
+                  {t.articles.englishOnly}
+                </span>
+              )}
+            </div>
             {latest ? (
               <>
                 <h3 className="mt-3 text-xl font-semibold tracking-tight text-ink">
@@ -204,9 +211,6 @@ export default function Home({ params }: { params: { lang: string } }) {
                 </p>
                 <p className="mt-auto pt-5 font-mono text-xs text-faint">
                   {formatDate(latest.date, lang)}
-                  {lang === 'ja' && latest.contentLang !== 'ja' && (
-                    <span> · {t.articles.englishOnly}</span>
-                  )}
                 </p>
               </>
             ) : (
