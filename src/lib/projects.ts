@@ -8,6 +8,14 @@ import pitchResultLight from '@/images/projects/kanpeki-pitch/02-result-light.pn
 import pitchResultDark from '@/images/projects/kanpeki-pitch/02-result-dark.png'
 import pitchPairLight from '@/images/projects/kanpeki-pitch/03-pair-light.png'
 import pitchPairDark from '@/images/projects/kanpeki-pitch/03-pair-dark.png'
+import booktroveLogo from '@/images/logos/booktrove.png'
+import booktroveToday from '@/images/projects/booktrove/01-today.png'
+import booktroveLibrary from '@/images/projects/booktrove/02-library.png'
+import booktroveBook from '@/images/projects/booktrove/03-book-progress.png'
+import booktroveShelf from '@/images/projects/booktrove/04-shelf.png'
+import booktroveFriend from '@/images/projects/booktrove/05-friend.png'
+import booktroveFeed from '@/images/projects/booktrove/07-feed.png'
+import booktroveWidgets from '@/images/projects/booktrove/08-widgets.png'
 import kanpekiReaderLogo from '@/images/logos/kanpeki-reader.png'
 import usagiLogo from '@/images/logos/usagi.png'
 import kanpekiSeries from '@/images/projects/kanpeki-reader/01-series.png'
@@ -147,6 +155,119 @@ export const projects: Project[] = [
           ja: 'Usagi TMSのウィジェットを置いたiPhoneのホーム画面',
         },
         caption: { en: 'Home-screen widgets.', ja: 'ホーム画面ウィジェット。' },
+      },
+    ],
+  },
+  {
+    id: 'booktrove',
+    name: 'BookTrove',
+    logo: booktroveLogo,
+    status: { en: 'Coming to the App Store', ja: 'App Storeで近日公開' },
+    tagline: {
+      en: 'A book tracker with a bookshelf that looks like yours.',
+      ja: '自分の本棚そのままの見た目で記録できる、読書管理アプリ。',
+    },
+    description: {
+      en: 'A native iPhone and iPad app for keeping track of your reading: a reading log with sessions and streaks, goals, and a to-scale virtual bookshelf built from real spines. Friends, groups, challenges and duels make it social, and home-screen widgets and a Live Activity keep your current book one glance away.',
+      ja: '読書を記録するためのiPhone・iPadのネイティブアプリ。読書セッションとストリーク付きの記録、目標、そして本物の背表紙で再現した実寸の本棚。友達・グループ・チャレンジ・対戦でソーシャルにも楽しめ、ホーム画面ウィジェットとライブアクティビティで今読んでいる本にすぐアクセスできます。',
+    },
+    highlights: {
+      en: [
+        'SwiftUI throughout, with a separate Swift package for the model and data layer.',
+        'A to-scale bookshelf: spines are sized from each book’s real dimensions and arranged like your actual shelves.',
+        'Shelf scanning: photograph a shelf and the books are identified and added.',
+        'Social reading: friends, groups, shared reviews, challenges and head-to-head duels, with per-group visibility.',
+        'Widgets, a Control Center scan control, and a Live Activity for the reading timer.',
+        'Supabase backend with row-level security and edge functions; fully re-themeable UI.',
+      ],
+      ja: [
+        '全面的にSwiftUI。モデルとデータ層は独立したSwiftパッケージ。',
+        '実寸の本棚：各本の実際のサイズから背表紙を描き、本物の本棚のように並べます。',
+        '本棚スキャン：本棚を撮影すると本を認識して追加します。',
+        'ソーシャル読書：友達、グループ、レビューの共有、チャレンジ、1対1の対戦。グループごとの公開範囲設定付き。',
+        'ウィジェット、コントロールセンターのスキャン、読書タイマーのライブアクティビティ。',
+        '行レベルセキュリティとEdge Functionsを使ったSupabaseバックエンド。テーマを丸ごと切り替え可能なUI。',
+      ],
+    },
+    tags: [
+      'Swift',
+      'SwiftUI',
+      'WidgetKit',
+      'ActivityKit',
+      'Supabase',
+      'PostgreSQL',
+    ],
+    cover: {
+      kind: 'phone',
+      light: booktroveShelf,
+      alt: {
+        en: 'BookTrove’s virtual bookshelf: shelves of manga spines drawn to scale',
+        ja: 'BookTroveのバーチャル本棚。実寸で描かれたマンガの背表紙が並ぶ棚',
+      },
+    },
+    gallery: [
+      {
+        kind: 'phone',
+        light: booktroveShelf,
+        alt: {
+          en: 'The virtual bookshelf with manga spines drawn to scale',
+          ja: '実寸で描かれたマンガの背表紙が並ぶバーチャル本棚',
+        },
+        caption: { en: 'A to-scale bookshelf.', ja: '実寸の本棚。' },
+      },
+      {
+        kind: 'phone',
+        light: booktroveLibrary,
+        alt: {
+          en: 'The library grid of book covers',
+          ja: '本の表紙が並ぶライブラリ',
+        },
+        caption: { en: 'The library.', ja: 'ライブラリ。' },
+      },
+      {
+        kind: 'phone',
+        light: booktroveBook,
+        alt: {
+          en: 'A book page with reading status and progress',
+          ja: '読書状況と進み具合を表示した本のページ',
+        },
+        caption: { en: 'Progress on a book.', ja: '本ごとの進み具合。' },
+      },
+      {
+        kind: 'phone',
+        light: booktroveToday,
+        alt: {
+          en: 'Today screen with a streak, a goal, a wishlist and friends’ reading',
+          ja: 'ストリーク、目標、ウィッシュリスト、友達の読書を表示した今日の画面',
+        },
+        caption: { en: 'Today at a glance.', ja: '今日のまとめ。' },
+      },
+      {
+        kind: 'phone',
+        light: booktroveFeed,
+        alt: {
+          en: 'The social feed with a rating and a review from friends',
+          ja: '友達の評価とレビューが並ぶソーシャルフィード',
+        },
+        caption: { en: 'Reading with friends.', ja: '友達と読書。' },
+      },
+      {
+        kind: 'phone',
+        light: booktroveFriend,
+        alt: {
+          en: 'A friend’s profile with their books and to-be-read pile',
+          ja: '友達のプロフィール。本と積読',
+        },
+        caption: { en: 'Friends’ shelves.', ja: '友達の本棚。' },
+      },
+      {
+        kind: 'phone',
+        light: booktroveWidgets,
+        alt: {
+          en: 'iPhone home screen with BookTrove reading and streak widgets',
+          ja: 'BookTroveの読書・ストリークウィジェットを置いたiPhoneのホーム画面',
+        },
+        caption: { en: 'Widgets.', ja: 'ウィジェット。' },
       },
     ],
   },
