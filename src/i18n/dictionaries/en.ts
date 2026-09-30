@@ -68,7 +68,7 @@ export const en = {
   hero: {
     hello: 'こんにちは · hello',
     lines: ['Professional curious person.', 'Perpetual learner.', 'Tinkerer.'],
-    bio: 'Hey there! I’m Dave, an experienced software engineer and solutions architect, dog dad, car enthusiast, and enjoyer of Japanese culture, language, and media. I’m currently enrolled in WGU’s Accelerated Computer Science Bachelor’s and Master’s program, wrapping up the B.S. in January 2027, and preparing to take the JLPT N2 next year. I spend my days designing and building pretty cool stuff, and then my downtime exploring manga, anime, and turning my Genesis Coupe into a passion project. Welcome to my little slice of the internet.',
+    bio: 'Hey there! I’m Dave, an experienced software engineer and solutions architect, dog dad, car enthusiast, and enjoyer of Japanese culture, language, and media. I’m currently enrolled in WGU’s Accelerated Computer Science Bachelor’s and Master’s program, wrapping up the B.S. in January 2027, and preparing to take the JLPT N2 next year. I spend my days designing and building pretty cool stuff, and my downtime exploring manga and anime and turning my Genesis Coupe into a passion project. Welcome to my little slice of the internet.',
   },
   kanji: {
     label: '今日の漢字',
@@ -83,7 +83,7 @@ export const en = {
       wguTitle: 'WGU Accelerated CS, B.S. + M.S.',
       wguBody: 'Finishing the bachelor’s in January 2027.',
       jlptTitle: 'JLPT N2',
-      jlptBody: 'Sitting the exam next year. 頑張ります。',
+      jlptBody: 'Taking the exam next year. 頑張ります。',
     },
     garage: {
       label: 'Garage',
@@ -123,31 +123,32 @@ export const en = {
     wade: 'Close-up of a wide-eyed cat wearing a collar',
   },
   about: {
-    title: 'I’m **Dave**—software engineer, Japanese learner, and endlessly curious human.',
+    title:
+      'I’m **Dave**—software engineer, Japanese learner, and endlessly curious human.',
     photoAlt:
       'Dave leaning on a wooden bridge railing, looking out at the neon signs and giant Ferris wheel of Dotonbori in Osaka',
     paragraphs: [
       'I’ve always been fascinated by figuring out how things work, which naturally drew me into software engineering. What started as self-teaching and experimentation eventually became my full-time career. I’ve spent the last several years coding, solving problems, and leading teams of smart, interesting people. My favorite part of software engineering is the endless opportunities to learn new things. There’s always something fresh to explore, and that keeps things exciting.',
-      'I’ve casually studied Japanese for a couple of years now, and I’m currently working toward the JLPT N2, which I plan to take next year. Alongside that, I’m in WGU’s Accelerated Computer Science program, wrapping up my Bachelor’s in January 2027 with the Master’s right behind it. It’s a fun way to blend my passion for technology with my love for Japanese culture and language learning.',
+      'I’ve casually studied Japanese for a couple of years now, and I’m currently working toward the JLPT N2, which I plan to take next year. Alongside that, I’m in WGU’s Accelerated Computer Science program, wrapping up my Bachelor’s in January 2027 with the Master’s right behind it. Between the two, I get to blend my love of technology with my love of Japanese culture and language.',
       'Cars are more than just transportation to me. They’re a way to express creativity and explore engineering hands-on. My current passion project is a widebody 2012 Genesis Coupe. It’s a labor of love, an endless source of tinkering and enjoyment, and yes, occasionally frustrating (and expensive!). It fuels my curiosity and gives me space to unwind, learn, and experiment.',
-      'When I’m not buried in code or car projects, you’ll often find me deep in manga or anime. These stories offer fresh perspectives and storytelling styles that keep me coming back. Beyond Japanese culture, I’m just endlessly curious. I’ll happily spend hours watching YouTube deep-dives or reading articles on random topics just because something caught my interest. There’s always something fascinating waiting to be learned, and I’m always eager to discover what it is.',
+      'When I’m not buried in code or car projects, you’ll often find me deep in manga or anime. These stories offer fresh perspectives and storytelling styles that keep me coming back. Beyond Japanese culture, I’m just endlessly curious. I’ll happily spend hours watching YouTube deep-dives or reading articles on random topics just because something caught my interest. The world is full of things worth learning about, and I’m always eager to find the next one.',
     ],
   },
   uses: {
     title: 'Software I use, gadgets I love, and other things I recommend.',
     intro:
-      'Over the years I’ve gone through some iterations to figure out my preferred setup, but I think I’ve finally done it.',
+      'Over the years I’ve gone through a lot of iterations to find my preferred setup, and I think I’ve finally landed on it.',
     sections: [
       {
         title: 'Workstation',
         items: [
           {
             title: '14” MacBook Pro',
-            body: 'Before my MacBook, I had done all of my development on Windows PCs. I’ve enjoyed the switch, and the closer ergonomics to Linux help with maintaining config files or scripts that may be run on a server.',
+            body: 'Before my MacBook, I had done all of my development on Windows PCs. I’ve enjoyed the switch. The Unix-like environment makes it easier to maintain config files and scripts that will eventually run on a server.',
           },
           {
             title: '49” Samsung Odyssey',
-            body: 'The newest addition to the desk. I learned long ago that ultrawides are more comfortable for code and content, and a 49" is basically two monitors with no bezel down the middle: an editor and terminals on one side, a running app and dev tools on the other, all in one field of view.',
+            body: 'The newest addition to the desk. I learned long ago that ultrawides are more comfortable for code and content, and a 49” is basically two monitors with no bezel down the middle: an editor and terminals on one side, a running app and dev tools on the other, all in one field of view.',
           },
           {
             title: 'Razer Thunderbolt Dock',
@@ -155,7 +156,7 @@ export const en = {
           },
           {
             title: 'Corne Split Keyboard',
-            body: 'Now **HERE** is where I can really nerd out. For years I had dealt with wrist discomfort and shoulder pain from working on computers all day long. After coming across split keyboards, I decided to try the Zsa Moonlander, then to their Voyager model. Both were great devices, but I wanted something wireless again, so I built my wireless Corne and haven’t looked back. It packs up small enough that I can take it anywhere, and it being wireless makes remote work setup ridiculously easy. This is hands down my favorite item in this list, and I’ll swear by it until the end of days.',
+            body: 'Now **HERE** is where I can really nerd out. For years I had dealt with wrist discomfort and shoulder pain from working on computers all day long. After coming across split keyboards, I decided to try the ZSA Moonlander, then their Voyager. Both were great devices, but I wanted something wireless again, so I built my wireless Corne and haven’t looked back. It packs up small enough that I can take it anywhere, and it being wireless makes remote work setup ridiculously easy. This is hands down my favorite item in this list, and I’ll swear by it until the end of days.',
           },
           {
             title: 'Razer Naga V2 Pro',
@@ -168,7 +169,7 @@ export const en = {
         items: [
           {
             title: 'Shure MV7X',
-            body: 'An XLR dynamic microphone, which means it mostly ignores the room and picks up my voice. It plugs into the interface below instead of straight into the computer.',
+            body: 'An XLR dynamic microphone, which means it mostly ignores the room and picks up my voice. That’s why it plugs into the interface below rather than straight into the computer.',
           },
           {
             title: 'Focusrite Scarlett 2i2 (4th Gen)',
@@ -185,15 +186,15 @@ export const en = {
         items: [
           {
             title: 'Neovim + Tmux',
-            body: 'Not to be that "btw" guy, but I’m honestly really happy that I moved to Neovim a few years ago. A lot of people brag about the speed, or the endless customizations, but for me, it’s more about the ergonomics. I can make the right changes to make my use of the computer feel more like thinking than typing. You can find my dotfiles [here](https://github.com/dchroninger/.dotfiles).',
+            body: 'Not to be that “btw” guy, but I’m honestly really happy that I moved to Neovim a few years ago. A lot of people brag about the speed, or the endless customizations, but for me, it’s more about the ergonomics. I can shape my setup so that using the computer feels more like thinking than typing. You can find my dotfiles [here](https://github.com/dchroninger/.dotfiles).',
           },
           {
             title: 'Ghostty',
-            body: 'I moved to Ghostty this year after it finally was released to the public. It’s a fast terminal, and incredibly customizable. The best part though... is that you don’t need to. It just works. Change the theme, and the rest is just configured right out of the box.',
+            body: 'I moved to Ghostty this year after it was finally released to the public. It’s a fast terminal, and incredibly customizable. The best part, though, is that you don’t need to. It just works. Change the theme, and the rest is just configured right out of the box.',
           },
           {
             title: 'Claude Code',
-            body: 'This tool has become a very helpful part of my day to day workflows. It’s been great for tackling research and providing resources, or having a second set of eyes on a suite of tests to make sure that I’m not over-looking any edge cases. Another great use case I have found lately is a way to learn about architectural styles that I haven’t been able to work with at my job. Having a pair programmer when I need it has been great.',
+            body: 'This tool has become a very helpful part of my day-to-day workflow. It’s great for research and finding resources, and as a second set of eyes on a test suite to make sure I’m not overlooking any edge cases. Lately I’ve also used it to learn about architectural styles I haven’t had the chance to work with at my job. Having a pair programmer when I need it has been great.',
           },
         ],
       },
@@ -214,11 +215,12 @@ export const en = {
       'Long-form thoughts on programming, learning, languages, leadership, cars, and more, newest first. Also available over RSS.',
     read: 'Read article',
     englishOnly: 'English only',
-    alsoJapanese: '日本語あり',
+    alsoJapanese: 'Also in 日本語',
     translatedOn: 'Translated {date}',
     readInJapanese: 'Read in Japanese (日本語)',
     englishOnlyBanner: 'This post is only available in English.',
-    rssTitle: 'Writing on software, learning Japanese, cars, and life, from Dave Chroninger.',
+    rssTitle:
+      'Writing on software, learning Japanese, cars, and life, from Dave Chroninger.',
   },
   notFound: {
     title: 'Page not found',
