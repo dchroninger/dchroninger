@@ -9,7 +9,7 @@ function ToolsSection({
 }: React.ComponentPropsWithoutRef<typeof Section>) {
   return (
     <Section {...props}>
-      <ul role="list" className="space-y-16">
+      <ul role="list" className="space-y-5">
         {children}
       </ul>
     </Section>
@@ -38,6 +38,7 @@ function Tool({
 export const metadata = {
   title: 'Uses',
   description: 'Software I use, gadgets I love, and other things I recommend.',
+  alternates: { canonical: '/uses' },
 }
 
 export default function Uses() {
@@ -88,7 +89,7 @@ export default function Uses() {
             <a
               href="https://github.com/dchroninger/.dotfiles"
               target="_blank"
-              className="texat-teal-600 dark:text-teal-300"
+              className="text-accent"
             >
               here
             </a>

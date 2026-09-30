@@ -1,6 +1,6 @@
-import Link from 'next/link'
-
 import { ContainerInner, ContainerOuter } from '@/components/Container'
+import { TransitionLink } from '@/components/TransitionLink'
+import { HAS_PROJECTS } from '@/lib/projects'
 
 function NavLink({
   href,
@@ -10,12 +10,9 @@ function NavLink({
   children: React.ReactNode
 }) {
   return (
-    <Link
-      href={href}
-      className="transition hover:text-teal-500 dark:hover:text-teal-400"
-    >
+    <TransitionLink href={href} className="transition hover:text-accent">
       {children}
-    </Link>
+    </TransitionLink>
   )
 }
 
@@ -23,16 +20,20 @@ export function Footer() {
   return (
     <footer className="mt-32 flex-none">
       <ContainerOuter>
-        <div className="border-t border-zinc-100 pt-10 pb-16 dark:border-zinc-700/40">
+        <div className="border-t border-line pt-10 pb-16">
           <ContainerInner>
             <div className="flex flex-col items-center justify-between gap-6 md:flex-row">
-              <div className="flex flex-wrap justify-center gap-x-6 gap-y-1 text-sm font-medium text-zinc-800 dark:text-zinc-200">
+              <div className="flex flex-wrap justify-center gap-x-6 gap-y-1 text-sm font-medium text-ink">
                 <NavLink href="/about">About</NavLink>
+                <NavLink href="/articles">Writing</NavLink>
+                {HAS_PROJECTS && <NavLink href="/projects">Projects</NavLink>}
                 <NavLink href="/uses">Uses</NavLink>
+                <a href="/feed.xml" className="transition hover:text-accent">
+                  RSS
+                </a>
               </div>
-              <p className="text-sm text-zinc-400 dark:text-zinc-500">
-                &copy; {new Date().getFullYear()} Dave Chroninger. All rights
-                reserved.
+              <p className="font-mono text-xs text-faint">
+                &copy; {new Date().getFullYear()} Dave Chroninger · 手作り
               </p>
             </div>
           </ContainerInner>

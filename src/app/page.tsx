@@ -1,39 +1,25 @@
-import Image, { type ImageProps } from 'next/image'
-import Link from 'next/link'
+import { type Metadata } from 'next'
+import Image from 'next/image'
 import clsx from 'clsx'
 
 import { Button } from '@/components/Button'
 import { Container } from '@/components/Container'
+import { Hero } from '@/components/Hero'
+import { PhotoMarquee } from '@/components/PhotoMarquee'
+import { Reveal } from '@/components/Reveal'
 import { GitHubIcon, LinkedInIcon } from '@/components/SocialIcons'
-import ehcgLogo from '@/images/logos/ehcg.png'
-import empresLogo from '@/images/logos/empres.png'
-import image1 from '@/images/photos/shogi.jpeg'
-import image2 from '@/images/photos/genesis.jpeg'
-import image3 from '@/images/photos/family-beach.png'
-import image4 from '@/images/photos/bg-lake.jpeg'
-import image5 from '@/images/photos/wade.jpeg'
+import { TransitionLink } from '@/components/TransitionLink'
+import { WorkTimeline } from '@/components/WorkTimeline'
+import genesisPhoto from '@/images/photos/genesis.jpeg'
+import shogiPhoto from '@/images/photos/shogi.jpeg'
+import { getAllArticles } from '@/lib/articles'
+import { formatDate } from '@/lib/formatDate'
+import { photos } from '@/lib/photos'
+import { CV_URL, roles, SHOW_CV, SHOW_WORK } from '@/lib/resume'
+import { CONTACT_EMAIL } from '@/lib/site'
 
-function BriefcaseIcon(props: React.ComponentPropsWithoutRef<'svg'>) {
-  return (
-    <svg
-      viewBox="0 0 24 24"
-      fill="none"
-      strokeWidth="1.5"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      aria-hidden="true"
-      {...props}
-    >
-      <path
-        d="M2.75 9.75a3 3 0 0 1 3-3h12.5a3 3 0 0 1 3 3v8.5a3 3 0 0 1-3 3H5.75a3 3 0 0 1-3-3v-8.5Z"
-        className="fill-zinc-100 stroke-zinc-400 dark:fill-zinc-100/10 dark:stroke-zinc-500"
-      />
-      <path
-        d="M3 14.25h6.249c.484 0 .952-.002 1.316.319l.777.682a.996.996 0 0 0 1.316 0l.777-.682c.364-.32.832-.319 1.316-.319H21M8.75 6.5V4.75a2 2 0 0 1 2-2h2.5a2 2 0 0 1 2 2V6.5"
-        className="stroke-zinc-400 dark:stroke-zinc-500"
-      />
-    </svg>
-  )
+export const metadata: Metadata = {
+  alternates: { canonical: '/' },
 }
 
 function ArrowDownIcon(props: React.ComponentPropsWithoutRef<'svg'>) {
@@ -49,192 +35,244 @@ function ArrowDownIcon(props: React.ComponentPropsWithoutRef<'svg'>) {
   )
 }
 
-
-function SocialLink({
-  icon: Icon,
-  ...props
-}: React.ComponentPropsWithoutRef<typeof Link> & {
-  icon: React.ComponentType<{ className?: string }>
+function Tile({
+  className,
+  children,
+  delay = 0,
+}: {
+  className?: string
+  children: React.ReactNode
+  delay?: number
 }) {
   return (
-    <Link className="group -m-1 p-1" {...props}>
-      <Icon className="h-6 w-6 fill-zinc-500 transition group-hover:fill-zinc-600 dark:fill-zinc-400 dark:group-hover:fill-zinc-300" />
-    </Link>
-  )
-}
-
-interface Role {
-  company: string
-  title: string
-  logo: ImageProps['src']
-  start: string | { label: string; dateTime: string }
-  end: string | { label: string; dateTime: string }
-}
-
-function Role({ role }: { role: Role }) {
-  let startLabel =
-    typeof role.start === 'string' ? role.start : role.start.label
-  let startDate =
-    typeof role.start === 'string' ? role.start : role.start.dateTime
-
-  let endLabel = typeof role.end === 'string' ? role.end : role.end.label
-  let endDate = typeof role.end === 'string' ? role.end : role.end.dateTime
-
-  return (
-    <li className="flex gap-4">
-      <div className="relative mt-1 flex h-10 w-10 flex-none items-center justify-center rounded-full shadow-md ring-1 shadow-zinc-800/5 ring-zinc-900/5 dark:border dark:border-zinc-700/50 dark:bg-zinc-800 dark:ring-0">
-        <Image src={role.logo} alt="" className="h-7 w-7" unoptimized />
+    <Reveal delay={delay} className={clsx('flex', className)}>
+      <div className="spotlight relative flex w-full flex-col overflow-hidden rounded-3xl bg-surface/70 p-6 ring-1 ring-line backdrop-blur-sm sm:p-7">
+        {children}
       </div>
-      <dl className="flex flex-auto flex-wrap gap-x-2">
-        <dt className="sr-only">Company</dt>
-        <dd className="w-full flex-none text-sm font-medium text-zinc-900 dark:text-zinc-100">
-          {role.company}
-        </dd>
-        <dt className="sr-only">Role</dt>
-        <dd className="text-xs text-zinc-500 dark:text-zinc-400">
-          {role.title}
-        </dd>
-        <dt className="sr-only">Date</dt>
-        <dd
-          className="ml-auto text-xs text-zinc-400 dark:text-zinc-500"
-          aria-label={`${startLabel} until ${endLabel}`}
-        >
-          <time dateTime={startDate}>{startLabel}</time>{' '}
-          <span aria-hidden="true">—</span>{' '}
-          <time dateTime={endDate}>{endLabel}</time>
-        </dd>
-      </dl>
-    </li>
+    </Reveal>
   )
 }
 
-function Resume() {
-  const resume: Array<Role> = [
-    {
-      company: 'Evergreen Healthcare Group',
-      title: 'Engineering Manager/Architect',
-      logo: ehcgLogo,
-      start: '2023',
-      end: {
-        label: 'Present',
-        dateTime: new Date().getFullYear().toString(),
-      },
-    },
-    {
-      company: 'EmpRes Healthcare',
-      title: 'Engineering Manager',
-      logo: empresLogo,
-      start: '2021',
-      end: '2023',
-    },
-    {
-      company: 'EmpRes Healthcare',
-      title: 'Lead Software Engineer',
-      logo: empresLogo,
-      start: '2020',
-      end: '2021',
-    },
-    {
-      company: 'EmpRes Healthcare',
-      title: 'Web Developer',
-      logo: empresLogo,
-      start: '2018',
-      end: '2020',
-    },
-  ]
-
+function Label({ children }: { children: React.ReactNode }) {
   return (
-    <div className="rounded-2xl border border-zinc-100 p-6 dark:border-zinc-700/40">
-      <h2 className="flex text-sm font-semibold text-zinc-900 dark:text-zinc-100">
-        <BriefcaseIcon className="h-6 w-6 flex-none" />
-        <span className="ml-3">Work</span>
-      </h2>
-      <ol className="mt-6 space-y-4">
-        {resume.map((role, roleIndex) => (
-          <Role key={roleIndex} role={role} />
-        ))}
-      </ol>
-      <Button
-        href="https://yxolapfupw.ufs.sh/f/lUSjJBQAQXSHO38PMlD8LWre2DvAp5jY4Jc3Ma7ymTiBESIq"
-        variant="secondary"
-        className="group mt-6 w-full"
-      >
-        Download CV
-        <ArrowDownIcon className="h-4 w-4 stroke-zinc-400 transition group-active:stroke-zinc-600 dark:group-hover:stroke-zinc-50 dark:group-active:stroke-zinc-50" />
-      </Button>
-    </div>
+    <p className="font-mono text-xs tracking-wider text-accent uppercase">
+      {children}
+    </p>
   )
 }
 
-function Photos() {
-  let rotations = ['rotate-2', '-rotate-2', 'rotate-2', 'rotate-2', '-rotate-2']
-
+function PhotoTile({
+  src,
+  alt,
+  label,
+  caption,
+  className,
+  delay,
+}: {
+  src: typeof genesisPhoto
+  alt: string
+  label: string
+  caption: string
+  className?: string
+  delay?: number
+}) {
   return (
-    <div className="mt-16 sm:mt-20">
-      <div className="-my-4 flex justify-center gap-5 overflow-hidden py-4 sm:gap-8">
-        {[image1, image2, image3, image4, image5].map((image, imageIndex) => (
-          <div
-            key={image.src}
-            className={clsx(
-              'relative aspect-9/10 w-44 flex-none overflow-hidden rounded-xl bg-zinc-100 sm:w-72 sm:rounded-2xl dark:bg-zinc-800',
-              rotations[imageIndex % rotations.length],
-            )}
-          >
-            <Image
-              src={image}
-              alt=""
-              sizes="(min-width: 640px) 18rem, 11rem"
-              className="absolute inset-0 h-full w-full object-cover"
-            />
-          </div>
-        ))}
+    <Reveal delay={delay} className={clsx('flex', className)}>
+      <div className="spotlight group relative min-h-72 w-full overflow-hidden rounded-3xl ring-1 ring-line">
+        <Image
+          src={src}
+          alt={alt}
+          sizes="(min-width: 1024px) 40vw, 90vw"
+          className="absolute inset-0 h-full w-full object-cover transition duration-700 group-hover:scale-105"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/10 to-transparent" />
+        <div className="absolute inset-x-0 bottom-0 p-6 sm:p-7">
+          <p className="font-mono text-xs tracking-wider text-white/70 uppercase">
+            {label}
+          </p>
+          <p className="mt-1 text-lg font-semibold text-white">{caption}</p>
+        </div>
       </div>
-    </div>
+    </Reveal>
   )
 }
 
 export default async function Home() {
+  let articles = await getAllArticles()
+  let latest = articles[0]
+
   return (
     <>
-      <Container className="mt-9">
-        <div className="max-w-2xl">
-          <h1 className="text-4xl font-bold tracking-tight text-zinc-800 sm:text-5xl dark:text-zinc-100">
-            Professional curious person. Learning hobbyist. Tinkerer.
-          </h1>
-          <p className="mt-6 text-base text-zinc-600 dark:text-zinc-400">
-            Hey there! I’m Dave, an experienced software engineer and solutions
-            architect, dog dad, car enthusiast, and enjoyer of Japanese culture,
-            language, and media. I’m currently working towards a Bachelor’s degree
-            in Computer Science, earning my Associate’s in Japanese along the way.
-            I spend my days designing and building pretty cool stuff, and then my
-            downtime exploring manga, anime, and turning cars like my 1993 Nissan
-            Gloria andGenesis Coupe into passion projects. Welcome to my digital
-            home—feel free to explore and reach out!
+      <Hero />
+      <PhotoMarquee photos={photos} />
+
+      <Container className="mt-20 md:mt-28">
+        <Reveal>
+          <p className="font-mono text-xs tracking-wider text-faint uppercase">
+            Right now
           </p>
-          <div className="mt-6 flex gap-6">
-            <SocialLink
-              href="https://github.com/dchroninger"
-              aria-label="Follow on GitHub"
-              target="_blank"
-              icon={GitHubIcon}
-            />
-            <SocialLink
-              href="https://www.linkedin.com/in/davidchroninger/"
-              aria-label="Follow on LinkedIn"
-              target="_blank"
-              icon={LinkedInIcon}
-            />
-          </div>
-        </div>
-      </Container>
-      <Photos />
-      <Container className="mt-24 md:mt-28">
-        <div className="mx-auto grid max-w-xl grid-cols-1 gap-y-20 lg:max-w-none lg:grid-cols-2">
-          <div className="flex flex-col gap-16">
-          </div>
-          <div className="space-y-10 lg:pl-16 xl:pl-24">
-            <Resume />
-          </div>
+          <h2 className="mt-2 text-3xl font-bold tracking-tight text-ink sm:text-4xl">
+            A few things I’m into.
+          </h2>
+        </Reveal>
+
+        <div className="mt-10 grid gap-5 lg:grid-cols-6">
+          <Tile className="lg:col-span-3">
+            <span
+              aria-hidden="true"
+              className="pointer-events-none absolute -right-4 -bottom-10 font-serif text-[11rem] leading-none text-accent/10 select-none"
+            >
+              学
+            </span>
+            <Label>Learning</Label>
+            <h3 className="mt-3 text-2xl font-semibold tracking-tight text-ink">
+              Two long games, at once.
+            </h3>
+            <ul className="mt-5 space-y-4 text-sm text-body">
+              <li className="flex gap-3">
+                <span className="mt-2 h-1.5 w-1.5 flex-none rounded-full bg-accent" />
+                <span>
+                  <strong className="font-semibold text-ink">
+                    WGU Accelerated CS, B.S. + M.S.
+                  </strong>
+                  <br />
+                  Finishing the bachelor’s in January 2027.
+                </span>
+              </li>
+              <li className="flex gap-3">
+                <span className="mt-2 h-1.5 w-1.5 flex-none rounded-full bg-accent-2" />
+                <span>
+                  <strong className="font-semibold text-ink">JLPT N2</strong>
+                  <br />
+                  Sitting the exam next year. 頑張ります。
+                </span>
+              </li>
+            </ul>
+          </Tile>
+
+          <PhotoTile
+            className="lg:col-span-3"
+            src={genesisPhoto}
+            alt="A blue widebody Genesis Coupe parked under tall trees"
+            label="Garage"
+            caption="2012 Genesis Coupe. A labor of love (and money)."
+            delay={0.08}
+          />
+
+          <Tile className="lg:col-span-2" delay={0.04}>
+            <Label>Latest writing</Label>
+            {latest ? (
+              <>
+                <h3 className="mt-3 text-xl font-semibold tracking-tight text-ink">
+                  <TransitionLink href={`/articles/${latest.slug}`}>
+                    <span className="absolute inset-0 z-10" />
+                    {latest.title}
+                  </TransitionLink>
+                </h3>
+                <p className="mt-3 line-clamp-3 text-sm text-body">
+                  {latest.description}
+                </p>
+                <p className="mt-auto pt-5 font-mono text-xs text-faint">
+                  {formatDate(latest.date)}
+                </p>
+              </>
+            ) : (
+              <p className="mt-3 text-sm text-body">Posts coming soon.</p>
+            )}
+          </Tile>
+
+          <PhotoTile
+            className="lg:col-span-2"
+            src={shogiPhoto}
+            alt="Dave crouching on a grassy trail, petting a husky"
+            label="Home"
+            caption="Dog dad, full time."
+            delay={0.08}
+          />
+
+          <Tile className="lg:col-span-2" delay={0.12}>
+            <Label>Elsewhere</Label>
+            <ul className="mt-4 space-y-1 text-sm font-medium text-ink">
+              {[
+                {
+                  href: 'https://github.com/dchroninger',
+                  label: 'GitHub',
+                  icon: GitHubIcon,
+                },
+                {
+                  href: 'https://www.linkedin.com/in/davidchroninger/',
+                  label: 'LinkedIn',
+                  icon: LinkedInIcon,
+                },
+              ].map(({ href, label, icon: Icon }) => (
+                <li key={label}>
+                  <a
+                    href={href}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="group -mx-2 flex items-center gap-3 rounded-lg px-2 py-1.5 transition hover:bg-surface-2"
+                  >
+                    <Icon className="h-5 w-5 fill-muted transition group-hover:fill-accent" />
+                    {label}
+                    <span
+                      aria-hidden="true"
+                      className="ml-auto text-faint transition group-hover:translate-x-0.5 group-hover:text-accent"
+                    >
+                      ↗
+                    </span>
+                  </a>
+                </li>
+              ))}
+              <li>
+                <a
+                  href={`mailto:${CONTACT_EMAIL}`}
+                  className="group -mx-2 flex items-center gap-3 rounded-lg px-2 py-1.5 transition hover:bg-surface-2"
+                >
+                  <span
+                    aria-hidden="true"
+                    className="flex h-5 w-5 items-center justify-center text-muted transition group-hover:text-accent"
+                  >
+                    ✉
+                  </span>
+                  Email
+                  <span
+                    aria-hidden="true"
+                    className="ml-auto text-faint transition group-hover:translate-x-0.5 group-hover:text-accent"
+                  >
+                    ↗
+                  </span>
+                </a>
+              </li>
+            </ul>
+          </Tile>
+
+          {SHOW_WORK && (
+            <Tile className="lg:col-span-6" delay={0.04}>
+              <div className="grid gap-10 lg:grid-cols-[1fr_1.4fr] lg:gap-16">
+                <div>
+                  <Label>The day job</Label>
+                  <h3 className="mt-3 text-2xl font-semibold tracking-tight text-ink">
+                    Building software for healthcare.
+                  </h3>
+                  <p className="mt-3 max-w-sm text-sm text-body">
+                    Web developer to engineering manager and architect. The
+                    résumé bits, for anyone who’s into that.
+                  </p>
+                  {SHOW_CV && (
+                    <Button
+                      href={CV_URL}
+                      variant="secondary"
+                      className="group relative z-10 mt-6"
+                    >
+                      Download CV
+                      <ArrowDownIcon className="h-4 w-4 stroke-current transition group-hover:translate-y-0.5" />
+                    </Button>
+                  )}
+                </div>
+                <WorkTimeline roles={roles} />
+              </div>
+            </Tile>
+          )}
         </div>
       </Container>
     </>

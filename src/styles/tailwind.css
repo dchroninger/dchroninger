@@ -34,3 +34,454 @@
   --text-9xl: 8rem;
   --text-9xl--line-height: 1;
 }
+
+/* ------------------------------------------------------------------ */
+/* Semantic tokens. Every component uses these, never raw colors, so   */
+/* a palette swap is just a different set of CSS variables.            */
+/* ------------------------------------------------------------------ */
+@theme inline {
+  --color-paper: var(--paper);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-ink: var(--ink);
+  --color-body: var(--body);
+  --color-muted: var(--muted);
+  --color-faint: var(--faint);
+  --color-line: var(--line);
+  --color-accent: var(--accent);
+  --color-accent-2: var(--accent-2);
+  --color-on-accent: var(--on-accent);
+
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--f-display), var(--font-inter), ui-sans-serif, system-ui;
+  --font-mono: var(--font-jetbrains), ui-monospace, SFMono-Regular, monospace;
+}
+
+/* ---- Palette 1: Kōyō — night drive (default) ---- */
+:root,
+:root[data-palette='koyo'] {
+  color-scheme: light;
+  --paper: #f7f1ea;
+  --surface: #fffaf4;
+  --surface-2: #f0e6da;
+  --ink: #1a1216;
+  --body: #4a3e42;
+  --muted: #7d6f72;
+  --faint: #ab9d9d;
+  --line: rgb(26 18 22 / 0.1);
+  --accent: #d93a26;
+  --accent-2: #0b8fa8;
+  --on-accent: #fff7f2;
+  --f-display: var(--font-archivo);
+  --grain: 0.05;
+  --glow: 0.1;
+}
+:root.dark,
+:root[data-palette='koyo'].dark {
+  color-scheme: dark;
+  --paper: #0c0a0d;
+  --surface: #151116;
+  --surface-2: #1f1920;
+  --ink: #f6efe9;
+  --body: #cfc5bf;
+  --muted: #918681;
+  --faint: #5f5652;
+  --line: rgb(255 240 230 / 0.09);
+  --accent: #ff5a45;
+  --accent-2: #33e1ff;
+  --on-accent: #1a0906;
+  --grain: 0.07;
+  --glow: 0.22;
+}
+
+/* ---- Palette 2: Washi / sumi — paper and ink ---- */
+:root[data-palette='washi'] {
+  color-scheme: light;
+  --paper: #f2ecdf;
+  --surface: #faf6ec;
+  --surface-2: #e8e0cf;
+  --ink: #16130f;
+  --body: #3d372e;
+  --muted: #7a7161;
+  --faint: #a69d8a;
+  --line: rgb(22 19 15 / 0.13);
+  --accent: #b3261e;
+  --accent-2: #23395b;
+  --on-accent: #fbf3e6;
+  --f-display: var(--font-instrument);
+  --grain: 0.16;
+  --glow: 0.07;
+}
+:root[data-palette='washi'].dark {
+  color-scheme: dark;
+  --paper: #12110f;
+  --surface: #1b1915;
+  --surface-2: #26231d;
+  --ink: #f0e9d9;
+  --body: #cdc5b3;
+  --muted: #8d8574;
+  --faint: #605a4d;
+  --line: rgb(240 233 217 / 0.1);
+  --accent: #e5594c;
+  --accent-2: #93aad9;
+  --on-accent: #1a0b09;
+  --grain: 0.12;
+  --glow: 0.14;
+}
+
+/* ---- Palette 3: Refined teal ---- */
+:root[data-palette='teal'] {
+  color-scheme: light;
+  --paper: #f3f7f7;
+  --surface: #ffffff;
+  --surface-2: #e5eeee;
+  --ink: #0b1f21;
+  --body: #36494b;
+  --muted: #66797b;
+  --faint: #9aabad;
+  --line: rgb(11 31 33 / 0.1);
+  --accent: #0c8a82;
+  --accent-2: #e07a2f;
+  --on-accent: #f2fffd;
+  --f-display: var(--font-manrope);
+  --grain: 0.03;
+  --glow: 0.12;
+}
+:root[data-palette='teal'].dark {
+  color-scheme: dark;
+  --paper: #061214;
+  --surface: #0c1c1f;
+  --surface-2: #12292d;
+  --ink: #e8f6f4;
+  --body: #b7cfcd;
+  --muted: #7c9997;
+  --faint: #4d6866;
+  --line: rgb(232 246 244 / 0.1);
+  --accent: #2dd4bf;
+  --accent-2: #ffb066;
+  --on-accent: #03201c;
+  --grain: 0.05;
+  --glow: 0.22;
+}
+
+/* ---- Palette 4: Catppuccin — Latte (light) / Mocha (dark) ---- */
+:root[data-palette='catppuccin'] {
+  color-scheme: light;
+  --paper: #eff1f5;
+  --surface: #e6e9ef;
+  --surface-2: #ccd0da;
+  --ink: #4c4f69;
+  --body: #5c5f77;
+  --muted: #7c7f93;
+  --faint: #9ca0b0;
+  --line: rgb(76 79 105 / 0.14);
+  --accent: #8839ef;
+  --accent-2: #ea76cb;
+  --on-accent: #eff1f5;
+  --f-display: var(--font-jetbrains);
+  --grain: 0.02;
+  --glow: 0.12;
+}
+:root[data-palette='catppuccin'].dark {
+  color-scheme: dark;
+  --paper: #1e1e2e;
+  --surface: #313244;
+  --surface-2: #45475a;
+  --ink: #cdd6f4;
+  --body: #a6adc8;
+  --muted: #7f849c;
+  --faint: #6c7086;
+  --line: rgb(205 214 244 / 0.11);
+  --accent: #cba6f7;
+  --accent-2: #f5c2e7;
+  --on-accent: #1e1e2e;
+  --grain: 0.03;
+  --glow: 0.2;
+}
+
+/* ------------------------------------------------------------------ */
+/* Base */                                                                */
+/* ------------------------------------------------------------------ */
+html {
+  background: var(--paper);
+  scroll-behavior: smooth;
+}
+body {
+  background: var(--paper);
+  color: var(--body);
+  font-family: var(--font-sans);
+}
+::selection {
+  background: color-mix(in oklab, var(--accent) 35%, transparent);
+  color: var(--ink);
+}
+h1,
+h2,
+.font-display {
+  font-family: var(--font-display);
+}
+/* Kōyō: Archivo in its wide cut — chunky, automotive. */
+:root:not([data-palette]) h1,
+:root:not([data-palette]) h2,
+:root[data-palette='koyo'] h1,
+:root[data-palette='koyo'] h2,
+:root[data-palette='koyo'] .font-display {
+  font-stretch: 112%;
+  letter-spacing: -0.015em;
+}
+/* Catppuccin: terminal nod — mono headlines. */
+:root[data-palette='catppuccin'] h1,
+:root[data-palette='catppuccin'] h2,
+:root[data-palette='catppuccin'] .font-display {
+  font-weight: 700;
+  letter-spacing: -0.05em;
+}
+/* Instrument Serif only ships one weight — don't fake-bold it. */
+:root[data-palette='washi'] h1,
+:root[data-palette='washi'] h2,
+:root[data-palette='washi'] .font-display {
+  font-weight: 400;
+  letter-spacing: -0.01em;
+}
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* Film grain / paper fibre. Strength is per-palette (--grain). */
+.grain::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  pointer-events: none;
+  opacity: var(--grain);
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.5  0 0 0 0 0.5  0 0 0 0 0.5  0 0 0 1 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+}
+
+/* Slow ambient colour wash behind everything. */
+.ambient {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+.ambient i {
+  position: absolute;
+  border-radius: 9999px;
+  filter: blur(90px);
+  opacity: var(--glow);
+  will-change: transform;
+}
+.ambient i:nth-child(1) {
+  width: 46vw;
+  height: 46vw;
+  left: -12vw;
+  top: -14vw;
+  background: var(--accent);
+  animation: drift-a 26s ease-in-out infinite alternate;
+}
+.ambient i:nth-child(2) {
+  width: 40vw;
+  height: 40vw;
+  right: -14vw;
+  top: 26vh;
+  background: var(--accent-2);
+  animation: drift-b 32s ease-in-out infinite alternate;
+}
+@keyframes drift-a {
+  to {
+    transform: translate3d(9vw, 8vh, 0) scale(1.15);
+  }
+}
+@keyframes drift-b {
+  to {
+    transform: translate3d(-8vw, -6vh, 0) scale(1.1);
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/* Cursor glow + spotlight cards (driven by CursorEffects.tsx)         */
+/* ------------------------------------------------------------------ */
+.cursor-glow {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  width: 640px;
+  height: 640px;
+  margin: -320px 0 0 -320px;
+  border-radius: 9999px;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.4s;
+  background: radial-gradient(
+    circle at center,
+    color-mix(in oklab, var(--accent) calc(var(--glow) * 100%), transparent),
+    transparent 62%
+  );
+  will-change: transform;
+}
+.cursor-glow[data-on='true'] {
+  opacity: 1;
+}
+@media (hover: none), (prefers-reduced-motion: reduce) {
+  .cursor-glow {
+    display: none;
+  }
+}
+
+.spotlight {
+  isolation: isolate;
+  --mx: 50%;
+  --my: 50%;
+}
+.spotlight::before,
+.spotlight::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.35s;
+}
+/* soft fill */
+.spotlight::before {
+  z-index: -1;
+  background: radial-gradient(
+    380px circle at var(--mx) var(--my),
+    color-mix(in oklab, var(--accent) 16%, transparent),
+    transparent 70%
+  );
+}
+/* bright hairline border that follows the cursor */
+.spotlight::after {
+  padding: 1px;
+  background: radial-gradient(
+    260px circle at var(--mx) var(--my),
+    var(--accent),
+    transparent 70%
+  );
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask:
+    linear-gradient(#000 0 0) content-box exclude,
+    linear-gradient(#000 0 0);
+}
+.spotlight:hover::before,
+.spotlight:hover::after,
+.spotlight:focus-within::before,
+.spotlight:focus-within::after {
+  opacity: 1;
+}
+
+/* ------------------------------------------------------------------ */
+/* View transitions                                                    */
+/* ------------------------------------------------------------------ */
+.vt-main {
+  view-transition-name: page;
+}
+.vt-post-title {
+  view-transition-name: post-title;
+}
+
+/* Page navigation: chrome (header, background) stays put; the page
+   content slides + fades. Only the content wrapper is a named layer. */
+html[data-vt='nav']::view-transition-old(root),
+html[data-vt='nav']::view-transition-new(root) {
+  animation: none;
+}
+html[data-vt='nav']::view-transition-old(page) {
+  animation: vt-out 0.22s cubic-bezier(0.4, 0, 1, 1) both;
+}
+html[data-vt='nav']::view-transition-new(page) {
+  animation: vt-in 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+html[data-vt='nav']::view-transition-group(post-title) {
+  animation-duration: 0.55s;
+  animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+}
+@keyframes vt-out {
+  to {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+}
+@keyframes vt-in {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+}
+
+/* Theme / palette change: circular reveal driven from JS. */
+html[data-vt='theme']::view-transition-old(root),
+html[data-vt='theme']::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+html[data-vt='theme']::view-transition-old(root) {
+  z-index: 1;
+}
+html[data-vt='theme']::view-transition-new(root) {
+  z-index: 2;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  ::view-transition-group(*),
+  ::view-transition-old(*),
+  ::view-transition-new(*) {
+    animation: none !important;
+  }
+  .ambient i {
+    animation: none;
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/* Prose (blog) — map typography plugin vars onto the palette          */
+/* ------------------------------------------------------------------ */
+.prose {
+  --tw-prose-body: var(--body);
+  --tw-prose-headings: var(--ink);
+  --tw-prose-links: var(--accent);
+  --tw-prose-links-hover: var(--accent);
+  --tw-prose-underline: color-mix(in oklab, var(--accent) 30%, transparent);
+  --tw-prose-underline-hover: var(--accent);
+  --tw-prose-bold: var(--ink);
+  --tw-prose-counters: var(--muted);
+  --tw-prose-bullets: var(--faint);
+  --tw-prose-hr: var(--line);
+  --tw-prose-quote-borders: var(--accent);
+  --tw-prose-captions: var(--muted);
+  --tw-prose-code: var(--ink);
+  --tw-prose-code-bg: var(--surface-2);
+  --tw-prose-pre-code: #f4efe8;
+  --tw-prose-pre-bg: color-mix(in oklab, var(--ink) 92%, var(--paper));
+  --tw-prose-pre-border: transparent;
+  --tw-prose-th-borders: var(--line);
+  --tw-prose-td-borders: var(--line);
+}
+.prose h2,
+.prose h3 {
+  font-family: var(--font-display);
+}
+
+/* Instrument Serif runs small for its size — nudge headings in prose. */
+:root[data-palette='washi'] .prose h2 {
+  font-size: 1.75rem;
+  line-height: 2.25rem;
+}
+:root[data-palette='washi'] .prose h3 {
+  font-size: 1.4rem;
+  line-height: 2rem;
+}

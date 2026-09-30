@@ -2,7 +2,6 @@
 
 import { useEffect, useRef, useState } from 'react'
 import Image from 'next/image'
-import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useTheme } from 'next-themes'
 import {
@@ -14,6 +13,10 @@ import {
 import clsx from 'clsx'
 
 import { Container } from '@/components/Container'
+import { PaletteSwitcher } from '@/components/PaletteSwitcher'
+import { TransitionLink as Link } from '@/components/TransitionLink'
+import { HAS_PROJECTS } from '@/lib/projects'
+import { withRevealTransition } from '@/lib/viewTransition'
 import avatarImage from '@/images/avatar.png'
 
 function CloseIcon(props: React.ComponentPropsWithoutRef<'svg'>) {
@@ -98,30 +101,34 @@ function MobileNavigation(
 ) {
   return (
     <Popover {...props}>
-      <PopoverButton className="group flex items-center rounded-full bg-white/90 px-4 py-2 text-sm font-medium text-zinc-800 shadow-lg ring-1 shadow-zinc-800/5 ring-zinc-900/5 backdrop-blur-sm dark:bg-zinc-800/90 dark:text-zinc-200 dark:ring-white/10 dark:hover:ring-white/20">
+      <PopoverButton className="group flex items-center rounded-full bg-surface/80 px-4 py-2 text-sm font-medium text-ink shadow-lg ring-1 shadow-black/5 ring-line backdrop-blur-md hover:ring-accent/40">
         Menu
-        <ChevronDownIcon className="ml-3 h-auto w-2 stroke-zinc-500 group-hover:stroke-zinc-700 dark:group-hover:stroke-zinc-400" />
+        <ChevronDownIcon className="ml-3 h-auto w-2 stroke-muted group-hover:stroke-ink" />
       </PopoverButton>
       <PopoverBackdrop
         transition
-        className="fixed inset-0 z-50 bg-zinc-800/40 backdrop-blur-xs duration-150 data-closed:opacity-0 data-enter:ease-out data-leave:ease-in dark:bg-black/80"
+        className="fixed inset-0 z-50 bg-paper/70 backdrop-blur-sm duration-150 data-closed:opacity-0 data-enter:ease-out data-leave:ease-in"
       />
       <PopoverPanel
         focus
         transition
-        className="fixed inset-x-4 top-8 z-50 origin-top rounded-3xl bg-white p-8 ring-1 ring-zinc-900/5 duration-150 data-closed:scale-95 data-closed:opacity-0 data-enter:ease-out data-leave:ease-in dark:bg-zinc-900 dark:ring-zinc-800"
+        className="fixed inset-x-4 top-8 z-50 origin-top rounded-3xl bg-surface p-8 ring-1 ring-line duration-150 data-closed:scale-95 data-closed:opacity-0 data-enter:ease-out data-leave:ease-in"
       >
         <div className="flex flex-row-reverse items-center justify-between">
           <PopoverButton aria-label="Close menu" className="-m-1 p-1">
-            <CloseIcon className="h-6 w-6 text-zinc-500 dark:text-zinc-400" />
+            <CloseIcon className="h-6 w-6 text-muted" />
           </PopoverButton>
-          <h2 className="text-sm font-medium text-zinc-600 dark:text-zinc-400">
+          <h2 className="font-mono text-xs tracking-wider text-muted uppercase">
             Navigation
           </h2>
         </div>
         <nav className="mt-6">
-          <ul className="-my-2 divide-y divide-zinc-100 text-base text-zinc-800 dark:divide-zinc-100/5 dark:text-zinc-300">
+          <ul className="-my-2 divide-y divide-line text-base text-ink">
             <MobileNavItem href="/about">About</MobileNavItem>
+            <MobileNavItem href="/articles">Writing</MobileNavItem>
+            {HAS_PROJECTS && (
+              <MobileNavItem href="/projects">Projects</MobileNavItem>
+            )}
             <MobileNavItem href="/uses">Uses</MobileNavItem>
           </ul>
         </nav>
@@ -137,7 +144,8 @@ function NavItem({
   href: string
   children: React.ReactNode
 }) {
-  let isActive = usePathname() === href
+  let pathname = usePathname()
+  let isActive = pathname === href || pathname.startsWith(href + '/')
 
   return (
     <li>
@@ -145,14 +153,12 @@ function NavItem({
         href={href}
         className={clsx(
           'relative block px-3 py-2 transition',
-          isActive
-            ? 'text-teal-500 dark:text-teal-400'
-            : 'hover:text-teal-500 dark:hover:text-teal-400',
+          isActive ? 'text-accent' : 'hover:text-accent',
         )}
       >
         {children}
         {isActive && (
-          <span className="absolute inset-x-1 -bottom-px h-px bg-linear-to-r from-teal-500/0 via-teal-500/40 to-teal-500/0 dark:from-teal-400/0 dark:via-teal-400/40 dark:to-teal-400/0" />
+          <span className="absolute inset-x-1 -bottom-px h-px bg-linear-to-r from-transparent via-accent/60 to-transparent" />
         )}
       </Link>
     </li>
@@ -162,8 +168,10 @@ function NavItem({
 function DesktopNavigation(props: React.ComponentPropsWithoutRef<'nav'>) {
   return (
     <nav {...props}>
-      <ul className="flex rounded-full bg-white/90 px-3 text-sm font-medium text-zinc-800 shadow-lg ring-1 shadow-zinc-800/5 ring-zinc-900/5 backdrop-blur-sm dark:bg-zinc-800/90 dark:text-zinc-200 dark:ring-white/10">
+      <ul className="flex rounded-full bg-surface/80 px-3 text-sm font-medium text-ink shadow-lg ring-1 shadow-black/5 ring-line backdrop-blur-md">
         <NavItem href="/about">About</NavItem>
+        <NavItem href="/articles">Writing</NavItem>
+        {HAS_PROJECTS && <NavItem href="/projects">Projects</NavItem>}
         <NavItem href="/uses">Uses</NavItem>
       </ul>
     </nav>
@@ -183,11 +191,17 @@ function ThemeToggle() {
     <button
       type="button"
       aria-label={mounted ? `Switch to ${otherTheme} theme` : 'Toggle theme'}
-      className="group rounded-full bg-white/90 px-3 py-2 shadow-lg ring-1 shadow-zinc-800/5 ring-zinc-900/5 backdrop-blur-sm transition dark:bg-zinc-800/90 dark:ring-white/10 dark:hover:ring-white/20"
-      onClick={() => setTheme(otherTheme)}
+      className="group rounded-full bg-surface/80 px-3 py-2 shadow-lg ring-1 shadow-black/5 ring-line backdrop-blur-md transition hover:ring-accent/40"
+      onClick={(e) => {
+        let r = e.currentTarget.getBoundingClientRect()
+        withRevealTransition(
+          { x: r.left + r.width / 2, y: r.top + r.height / 2 },
+          () => setTheme(otherTheme),
+        )
+      }}
     >
-      <SunIcon className="h-6 w-6 fill-zinc-100 stroke-zinc-500 transition group-hover:fill-zinc-200 group-hover:stroke-zinc-700 dark:hidden [@media(prefers-color-scheme:dark)]:fill-teal-50 [@media(prefers-color-scheme:dark)]:stroke-teal-500 [@media(prefers-color-scheme:dark)]:group-hover:fill-teal-50 [@media(prefers-color-scheme:dark)]:group-hover:stroke-teal-600" />
-      <MoonIcon className="hidden h-6 w-6 fill-zinc-700 stroke-zinc-500 transition dark:block [@media_not_(prefers-color-scheme:dark)]:fill-teal-400/10 [@media_not_(prefers-color-scheme:dark)]:stroke-teal-500 [@media(prefers-color-scheme:dark)]:group-hover:stroke-zinc-400" />
+      <SunIcon className="h-6 w-6 fill-accent/10 stroke-accent transition group-hover:fill-accent/25 dark:hidden" />
+      <MoonIcon className="hidden h-6 w-6 fill-accent-2/15 stroke-accent-2 transition group-hover:fill-accent-2/30 dark:block" />
     </button>
   )
 }
@@ -206,7 +220,7 @@ function AvatarContainer({
     <div
       className={clsx(
         className,
-        'h-10 w-10 rounded-full bg-white/90 p-0.5 shadow-lg ring-1 shadow-zinc-800/5 ring-zinc-900/5 backdrop-blur-sm dark:bg-zinc-800/90 dark:ring-white/10',
+        'h-10 w-10 rounded-full bg-surface/80 p-0.5 shadow-lg ring-1 shadow-black/5 ring-line backdrop-blur-md',
       )}
       {...props}
     />
@@ -232,7 +246,7 @@ function Avatar({
         alt=""
         sizes={large ? '4rem' : '2.25rem'}
         className={clsx(
-          'rounded-full bg-zinc-100 object-cover dark:bg-zinc-800',
+          'rounded-full bg-surface-2 object-cover',
           large ? 'h-16 w-16' : 'h-9 w-9',
         )}
         priority
@@ -285,12 +299,19 @@ export function Header() {
         let offset = Math.max(height, scrollY - upDelay)
         setProperty('--header-height', `${offset}px`)
         setProperty('--header-mb', `${height - offset}px`)
-      } else if (top === 0) {
+      } else if (top <= 0) {
+        // Tolerant of scroll steps that skip past the exact pixel where the
+        // sticky header would have pinned (the original checked top === 0).
         setProperty('--header-height', `${scrollY + height}px`)
         setProperty('--header-mb', `${-scrollY}px`)
       }
 
-      if (top === 0 && scrollY > 0 && scrollY >= downDelay) {
+      if (
+        top <= 0 &&
+        top >= -height * 2 &&
+        scrollY > 0 &&
+        scrollY >= downDelay
+      ) {
         setProperty('--header-inner-position', 'fixed')
         removeProperty('--header-top')
         removeProperty('--avatar-top')
@@ -332,7 +353,13 @@ export function Header() {
       setProperty('--avatar-border-opacity', scale === toScale ? '1' : '0')
     }
 
+    function updateFade() {
+      // 0 at the top of the page → 1 once we've scrolled ~80px
+      setProperty('--header-fade', String(clamp(window.scrollY / 80, 0, 1)))
+    }
+
     function updateStyles() {
+      updateFade()
       updateHeaderStyles()
       updateAvatarStyles()
       isInitial.current = false
@@ -350,6 +377,12 @@ export function Header() {
 
   return (
     <>
+      {/* Fades content out under the nav once you scroll, like the marquee edges */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none fixed inset-x-0 top-0 z-40 h-28 bg-linear-to-b from-paper via-paper/70 to-transparent backdrop-blur-[3px] [mask-image:linear-gradient(to_bottom,#000_45%,transparent)]"
+        style={{ opacity: 'var(--header-fade, 0)' }}
+      />
       <header
         className="pointer-events-none relative z-50 flex flex-none flex-col"
         style={{
@@ -423,7 +456,8 @@ export function Header() {
                 <DesktopNavigation className="pointer-events-auto hidden md:block" />
               </div>
               <div className="flex justify-end md:flex-1">
-                <div className="pointer-events-auto">
+                <div className="pointer-events-auto flex items-center gap-2 sm:gap-3">
+                  <PaletteSwitcher />
                   <ThemeToggle />
                 </div>
               </div>

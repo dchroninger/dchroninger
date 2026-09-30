@@ -1,5 +1,6 @@
-import Link from 'next/link'
 import clsx from 'clsx'
+
+import { TransitionLink } from '@/components/TransitionLink'
 
 function ChevronRightIcon(props: React.ComponentPropsWithoutRef<'svg'>) {
   return (
@@ -14,10 +15,12 @@ function ChevronRightIcon(props: React.ComponentPropsWithoutRef<'svg'>) {
   )
 }
 
+/** A real card: surface, hairline ring, cursor-tracking spotlight. */
 export function Card<T extends React.ElementType = 'div'>({
   as,
   className,
   children,
+  ...props
 }: Omit<React.ComponentPropsWithoutRef<T>, 'as' | 'className'> & {
   as?: T
   className?: string
@@ -26,7 +29,12 @@ export function Card<T extends React.ElementType = 'div'>({
 
   return (
     <Component
-      className={clsx(className, 'group relative flex flex-col items-start')}
+      data-vt-card
+      className={clsx(
+        className,
+        'spotlight group relative flex flex-col items-start rounded-2xl bg-surface/70 p-6 ring-1 ring-line backdrop-blur-sm transition duration-300 hover:-translate-y-0.5',
+      )}
+      {...props}
     >
       {children}
     </Component>
@@ -36,15 +44,12 @@ export function Card<T extends React.ElementType = 'div'>({
 Card.Link = function CardLink({
   children,
   ...props
-}: React.ComponentPropsWithoutRef<typeof Link>) {
+}: React.ComponentPropsWithoutRef<typeof TransitionLink>) {
   return (
-    <>
-      <div className="absolute -inset-x-4 -inset-y-6 z-0 scale-95 bg-zinc-50 opacity-0 transition group-hover:scale-100 group-hover:opacity-100 sm:-inset-x-6 sm:rounded-2xl dark:bg-zinc-800/50" />
-      <Link {...props}>
-        <span className="absolute -inset-x-4 -inset-y-6 z-20 sm:-inset-x-6 sm:rounded-2xl" />
-        <span className="relative z-10">{children}</span>
-      </Link>
-    </>
+    <TransitionLink {...props}>
+      <span className="absolute inset-0 z-20 rounded-2xl" />
+      <span className="relative z-10">{children}</span>
+    </TransitionLink>
   )
 }
 
@@ -52,6 +57,7 @@ Card.Title = function CardTitle<T extends React.ElementType = 'h2'>({
   as,
   href,
   children,
+  ...props
 }: Omit<React.ComponentPropsWithoutRef<T>, 'as' | 'href'> & {
   as?: T
   href?: string
@@ -59,7 +65,11 @@ Card.Title = function CardTitle<T extends React.ElementType = 'h2'>({
   let Component = as ?? 'h2'
 
   return (
-    <Component className="text-base font-semibold tracking-tight text-zinc-800 dark:text-zinc-100">
+    <Component
+      data-vt-title
+      className="text-lg font-semibold tracking-tight text-ink"
+      {...props}
+    >
       {href ? <Card.Link href={href}>{children}</Card.Link> : children}
     </Component>
   )
@@ -71,9 +81,7 @@ Card.Description = function CardDescription({
   children: React.ReactNode
 }) {
   return (
-    <p className="relative z-10 mt-2 text-sm text-zinc-600 dark:text-zinc-400">
-      {children}
-    </p>
+    <p className="relative z-10 mt-2 text-sm text-body">{children}</p>
   )
 }
 
@@ -81,10 +89,10 @@ Card.Cta = function CardCta({ children }: { children: React.ReactNode }) {
   return (
     <div
       aria-hidden="true"
-      className="relative z-10 mt-4 flex items-center text-sm font-medium text-teal-500"
+      className="relative z-10 mt-4 flex items-center text-sm font-medium text-accent"
     >
       {children}
-      <ChevronRightIcon className="ml-1 h-4 w-4 stroke-current" />
+      <ChevronRightIcon className="ml-1 h-4 w-4 stroke-current transition-transform group-hover:translate-x-1" />
     </div>
   )
 }
@@ -105,7 +113,7 @@ Card.Eyebrow = function CardEyebrow<T extends React.ElementType = 'p'>({
     <Component
       className={clsx(
         className,
-        'relative z-10 order-first mb-3 flex items-center text-sm text-zinc-400 dark:text-zinc-500',
+        'relative z-10 order-first mb-3 flex items-center font-mono text-xs text-faint',
         decorate && 'pl-3.5',
       )}
       {...props}
@@ -115,7 +123,7 @@ Card.Eyebrow = function CardEyebrow<T extends React.ElementType = 'p'>({
           className="absolute inset-y-0 left-0 flex items-center"
           aria-hidden="true"
         >
-          <span className="h-4 w-0.5 rounded-full bg-zinc-200 dark:bg-zinc-500" />
+          <span className="h-4 w-0.5 rounded-full bg-accent/60" />
         </span>
       )}
       {children}

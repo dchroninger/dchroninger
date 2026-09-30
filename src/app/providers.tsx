@@ -1,8 +1,17 @@
 'use client'
 
-import { createContext, useEffect, useRef } from 'react'
-import { usePathname } from 'next/navigation'
+import {
+  createContext,
+  useCallback,
+  useContext,
+  useEffect,
+  useRef,
+} from 'react'
+import { usePathname, useRouter } from 'next/navigation'
 import { ThemeProvider, useTheme } from 'next-themes'
+
+import { CursorEffects } from '@/components/CursorEffects'
+import { canViewTransition, runNavTransition } from '@/lib/viewTransition'
 
 function usePrevious<T>(value: T) {
   let ref = useRef<T>()
@@ -40,16 +49,58 @@ function ThemeWatcher() {
 
 export const AppContext = createContext<{ previousPathname?: string }>({})
 
+type Navigate = (href: string, from?: HTMLElement | null) => boolean
+const NavContext = createContext<Navigate>(() => false)
+export const useNavTransition = () => useContext(NavContext)
+
 export function Providers({ children }: { children: React.ReactNode }) {
   let pathname = usePathname()
+  let router = useRouter()
   let previousPathname = usePrevious(pathname)
+  let settle = useRef<(() => void) | null>(null)
+
+  // Resolve the pending view transition once the new route has rendered.
+  useEffect(() => {
+    if (!settle.current) return
+    let done = settle.current
+    settle.current = null
+    requestAnimationFrame(() => requestAnimationFrame(done))
+  }, [pathname])
+
+  let navigate = useCallback<Navigate>(
+    (href, from) => {
+      if (!canViewTransition()) return false
+      if (href.split(/[?#]/)[0] === window.location.pathname) return false
+
+      // Link → article shared-element morph: title on the list becomes the h1.
+      let shared =
+        from?.closest('[data-vt-card]')?.querySelector<HTMLElement>(
+          '[data-vt-title]',
+        ) ?? null
+
+      runNavTransition(
+        () =>
+          new Promise<void>((resolve) => {
+            settle.current = resolve
+            router.push(href)
+            setTimeout(resolve, 1500) // never hang the page
+          }),
+        shared,
+      )
+      return true
+    },
+    [router],
+  )
 
   return (
     <AppContext.Provider value={{ previousPathname }}>
-      <ThemeProvider attribute="class" disableTransitionOnChange>
-        <ThemeWatcher />
-        {children}
-      </ThemeProvider>
+      <NavContext.Provider value={navigate}>
+        <ThemeProvider attribute="class" disableTransitionOnChange>
+          <ThemeWatcher />
+          <CursorEffects />
+          {children}
+        </ThemeProvider>
+      </NavContext.Provider>
     </AppContext.Provider>
   )
 }
