@@ -53,16 +53,26 @@ export function ArticleLayout({
               </time>
             </header>
             {article.image && (
-              <div className="vt-post-image relative mt-8 aspect-16/10 overflow-hidden rounded-2xl bg-surface-2 shadow-xl ring-1 shadow-black/10 ring-line">
-                <Image
-                  src={article.image}
-                  alt={article.imageAlt ?? ''}
-                  priority
-                  sizes="(min-width: 768px) 42rem, 100vw"
-                  className="absolute inset-0 h-full w-full object-cover"
-                  style={{ objectPosition: article.imagePosition }}
-                />
-              </div>
+              <figure className="mt-8">
+                <div className="vt-post-image relative aspect-16/10 overflow-hidden rounded-2xl bg-surface-2 shadow-xl ring-1 shadow-black/10 ring-line">
+                  <Image
+                    src={article.image}
+                    alt={article.imageAlt ?? ''}
+                    priority
+                    sizes="(min-width: 768px) 42rem, 100vw"
+                    className="absolute inset-0 h-full w-full object-cover"
+                    style={{ objectPosition: article.imagePosition }}
+                  />
+                </div>
+                {article.imageCaption && (
+                  <figcaption className="mt-3 flex items-baseline gap-2 font-mono text-xs text-muted">
+                    <span aria-hidden="true" className="text-accent">
+                      ↑
+                    </span>
+                    {article.imageCaption}
+                  </figcaption>
+                )}
+              </figure>
             )}
             <Prose className="mt-8" data-mdx-content>
               {children}

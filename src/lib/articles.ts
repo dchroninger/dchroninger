@@ -9,6 +9,8 @@ interface Article {
   /** Optional cover photo (import it in the post's .mdx) */
   image?: StaticImageData
   imageAlt?: string
+  /** Optional caption shown under the cover */
+  imageCaption?: string
   /** CSS object-position for cropping the cover, e.g. '50% 20%' */
   imagePosition?: string
 }
