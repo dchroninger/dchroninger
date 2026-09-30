@@ -1,4 +1,5 @@
 import { ArticleLayout } from '@/components/ArticleLayout'
+import cover from '@/images/photos/osaka-canal.jpeg'
 
 export const article = {
   author: 'Dave Chroninger',
@@ -6,11 +7,22 @@ export const article = {
   title: 'Welcome to my little slice of the internet.',
   description:
     'An introduction of the blog, what I will use it for, and what to expect.',
+  image: cover,
+  imageAlt:
+    'Dave in a white tee leaning on a railing beside the Dotonbori canal in Osaka, paper lanterns and shop signs behind him',
+  imagePosition: '50% 22%',
 }
 
 export const metadata = {
   title: article.title,
   description: article.description,
+  openGraph: {
+    title: article.title,
+    description: article.description,
+    type: 'article',
+    publishedTime: article.date,
+    images: [{ url: cover.src, width: cover.width, height: cover.height }],
+  },
 }
 
 export default (props) => <ArticleLayout article={article} {...props} />

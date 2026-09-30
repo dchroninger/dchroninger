@@ -65,12 +65,12 @@ export default function About() {
               src={portraitImage}
               alt="Dave crouching on a grassy trail, petting a husky"
               sizes="(min-width: 1024px) 32rem, 20rem"
-              className="aspect-square rotate-3 rounded-2xl bg-surface-2 object-cover shadow-2xl shadow-black/10 ring-1 ring-line transition duration-500 hover:rotate-0"
+              className="aspect-square rotate-3 rounded-2xl bg-surface-2 object-cover shadow-2xl ring-1 shadow-black/10 ring-line transition duration-500 hover:rotate-0"
             />
           </div>
         </div>
         <div className="lg:order-first lg:row-span-2">
-          <h1 className="text-4xl font-bold tracking-tight text-ink text-balance sm:text-5xl">
+          <h1 className="text-4xl font-bold tracking-tight text-balance text-ink sm:text-5xl">
             I’m <span className="text-accent">Dave</span>
             —software engineer, Japanese learner, and endlessly curious human.
           </h1>
@@ -86,22 +86,21 @@ export default function About() {
               and that keeps things exciting.
             </p>
             <p>
-              I’ve casually studied Japanese for a couple of years now, but
-              recently my wife and I dove in headfirst by pursuing an
-              Associate’s degree together. It’s an exciting challenge and deeply
-              rewarding. I’m tackling this language adventure while also working
-              toward my Bachelor’s in Computer Science, blending my passion for
+              I’ve casually studied Japanese for a couple of years now, and I’m
+              currently working toward the JLPT N2, which I plan to take next
+              year. Alongside that, I’m in WGU’s Accelerated Computer Science
+              program, wrapping up my Bachelor’s in January 2027 with the
+              Master’s right behind it. It’s a fun way to blend my passion for
               technology with my love for Japanese culture and language
               learning.
             </p>
             <p>
               Cars are more than just transportation to me. They’re a way to
-              express creativity and explore engineering hands-on. I currently
-              own two passion-project cars: a 1993 Nissan Gloria and a widebody
-              2012 Genesis Coupe. They’re both labors of love, endless sources
-              of tinkering and enjoyment, and yes, occasionally frustrating (and
-              expensive!). These projects fuel my curiosity and give me space to
-              unwind, learn, and experiment.
+              express creativity and explore engineering hands-on. My current
+              passion project is a widebody 2012 Genesis Coupe. It’s a labor of
+              love, an endless source of tinkering and enjoyment, and yes,
+              occasionally frustrating (and expensive!). It fuels my curiosity
+              and gives me space to unwind, learn, and experiment.
             </p>
             <p>
               When I’m not buried in code or car projects, you’ll often find me

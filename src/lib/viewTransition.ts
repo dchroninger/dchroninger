@@ -61,18 +61,23 @@ export function withRevealTransition(
   })
 }
 
-/** Cross-page navigation. `commit` should kick off the route change. */
+/**
+ * Cross-page navigation. `commit` should kick off the route change.
+ * `shared` are elements on the *current* page that morph into same-named
+ * elements on the next page (temporarily given a view-transition-name).
+ */
 export function runNavTransition(
   commit: () => Promise<void>,
-  sharedElement?: HTMLElement | null,
+  shared: Array<{ el: HTMLElement; name: string }> = [],
 ) {
   let root = document.documentElement
   root.dataset.vt = 'nav'
-  if (sharedElement) sharedElement.classList.add('vt-post-title')
+  for (let { el, name } of shared)
+    el.style.setProperty('view-transition-name', name)
 
   let transition = (document as VTDocument).startViewTransition!(commit)
   transition.finished.finally(() => {
     delete root.dataset.vt
-    sharedElement?.classList.remove('vt-post-title')
+    for (let { el } of shared) el.style.removeProperty('view-transition-name')
   })
 }

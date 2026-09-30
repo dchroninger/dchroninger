@@ -72,11 +72,12 @@ export function Providers({ children }: { children: React.ReactNode }) {
       if (!canViewTransition()) return false
       if (href.split(/[?#]/)[0] === window.location.pathname) return false
 
-      // Link → article shared-element morph: title on the list becomes the h1.
-      let shared =
-        from?.closest('[data-vt-card]')?.querySelector<HTMLElement>(
-          '[data-vt-title]',
-        ) ?? null
+      // List card → article: title and cover photo morph into the post.
+      let card = from?.closest('[data-vt-card]')
+      let shared = ['title', 'image'].flatMap((kind) => {
+        let el = card?.querySelector<HTMLElement>(`[data-vt-${kind}]`)
+        return el ? [{ el, name: `post-${kind}` }] : []
+      })
 
       runNavTransition(
         () =>

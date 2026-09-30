@@ -160,6 +160,17 @@ export default async function Home() {
           />
 
           <Tile className="lg:col-span-2" delay={0.04}>
+            {latest?.image && (
+              <div className="relative -mx-6 -mt-6 mb-5 aspect-16/10 overflow-hidden sm:-mx-7 sm:-mt-7">
+                <Image
+                  src={latest.image}
+                  alt={latest.imageAlt ?? ''}
+                  sizes="(min-width: 1024px) 30vw, 90vw"
+                  className="absolute inset-0 h-full w-full object-cover"
+                  style={{ objectPosition: latest.imagePosition }}
+                />
+              </div>
+            )}
             <Label>Latest writing</Label>
             {latest ? (
               <>

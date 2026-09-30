@@ -1,10 +1,16 @@
 import glob from 'fast-glob'
+import { type StaticImageData } from 'next/image'
 
 interface Article {
   title: string
   description: string
   author: string
   date: string
+  /** Optional cover photo (import it in the post's .mdx) */
+  image?: StaticImageData
+  imageAlt?: string
+  /** CSS object-position for cropping the cover, e.g. '50% 20%' */
+  imagePosition?: string
 }
 
 export interface ArticleWithSlug extends Article {

@@ -1,5 +1,7 @@
 import { type Metadata } from 'next'
 
+import Image from 'next/image'
+
 import { Card } from '@/components/Card'
 import { Reveal } from '@/components/Reveal'
 import { SimpleLayout } from '@/components/SimpleLayout'
@@ -10,6 +12,20 @@ function Article({ article }: { article: ArticleWithSlug }) {
   return (
     <Reveal as="article" className="md:grid md:grid-cols-4 md:items-baseline">
       <Card className="md:col-span-3">
+        {article.image && (
+          <div
+            data-vt-image
+            className="relative z-10 mb-5 aspect-video w-full overflow-hidden rounded-xl bg-surface-2 ring-1 ring-line"
+          >
+            <Image
+              src={article.image}
+              alt={article.imageAlt ?? ''}
+              sizes="(min-width: 768px) 36rem, 100vw"
+              className="absolute inset-0 h-full w-full object-cover transition duration-700 group-hover:scale-105"
+              style={{ objectPosition: article.imagePosition }}
+            />
+          </div>
+        )}
         <Card.Title href={`/articles/${article.slug}`}>
           {article.title}
         </Card.Title>

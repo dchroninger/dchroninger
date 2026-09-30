@@ -390,6 +390,9 @@ h2,
 .vt-post-title {
   view-transition-name: post-title;
 }
+.vt-post-image {
+  view-transition-name: post-image;
+}
 
 /* Page navigation: chrome (header, background) stays put; the page
    content slides + fades. Only the content wrapper is a named layer. */
@@ -403,7 +406,8 @@ html[data-vt='nav']::view-transition-old(page) {
 html[data-vt='nav']::view-transition-new(page) {
   animation: vt-in 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
-html[data-vt='nav']::view-transition-group(post-title) {
+html[data-vt='nav']::view-transition-group(post-title),
+html[data-vt='nav']::view-transition-group(post-image) {
   animation-duration: 0.55s;
   animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
 }

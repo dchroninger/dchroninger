@@ -1,5 +1,7 @@
 'use client'
 
+import Image from 'next/image'
+
 import { Container } from '@/components/Container'
 import { Prose } from '@/components/Prose'
 import { TransitionLink } from '@/components/TransitionLink'
@@ -33,13 +35,13 @@ export function ArticleLayout({
           <TransitionLink
             href="/articles"
             aria-label="Back to all writing"
-            className="group mb-8 flex h-10 w-10 items-center justify-center rounded-full bg-surface/80 ring-1 shadow-md shadow-black/5 ring-line backdrop-blur-md transition hover:ring-accent/40 lg:absolute lg:-left-5 lg:-mt-2 lg:mb-0 xl:-top-1.5 xl:left-0 xl:mt-0"
+            className="group mb-8 flex h-10 w-10 items-center justify-center rounded-full bg-surface/80 shadow-md ring-1 shadow-black/5 ring-line backdrop-blur-md transition hover:ring-accent/40 lg:absolute lg:-left-5 lg:-mt-2 lg:mb-0 xl:-top-1.5 xl:left-0 xl:mt-0"
           >
             <ArrowLeftIcon className="h-4 w-4 stroke-muted transition group-hover:-translate-x-0.5 group-hover:stroke-accent" />
           </TransitionLink>
           <article>
             <header className="flex flex-col">
-              <h1 className="vt-post-title mt-6 text-4xl font-bold tracking-tight text-ink text-balance sm:text-5xl">
+              <h1 className="vt-post-title mt-6 text-4xl font-bold tracking-tight text-balance text-ink sm:text-5xl">
                 {article.title}
               </h1>
               <time
@@ -50,6 +52,18 @@ export function ArticleLayout({
                 <span className="ml-3">{formatDate(article.date)}</span>
               </time>
             </header>
+            {article.image && (
+              <div className="vt-post-image relative mt-8 aspect-16/10 overflow-hidden rounded-2xl bg-surface-2 shadow-xl ring-1 shadow-black/10 ring-line">
+                <Image
+                  src={article.image}
+                  alt={article.imageAlt ?? ''}
+                  priority
+                  sizes="(min-width: 768px) 42rem, 100vw"
+                  className="absolute inset-0 h-full w-full object-cover"
+                  style={{ objectPosition: article.imagePosition }}
+                />
+              </div>
+            )}
             <Prose className="mt-8" data-mdx-content>
               {children}
             </Prose>
