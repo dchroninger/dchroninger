@@ -1,33 +1,37 @@
 # Hey there, I’m Dave! 👋
 
-_"From console logs to concept cars—turning passion into new creations."_
+_“From console logs to concept cars—turning passion into new creations.”_
 
-## Introduction
+🌐 **[dchroninger.com](https://www.dchroninger.com)** · [日本語版](https://www.dchroninger.com/ja) · [LinkedIn](https://www.linkedin.com/in/davidchroninger/) · [Email](mailto:info@dchroninger.com)
 
-I’m a self-taught software engineer with **8+ years of experience** who loves blending tech with my personal passions—be it **working on cars**, **learning Japanese**, or tinkering with **new programming languages**. Currently, I’m diving deeper into **Golang** while dabbling in **Elixir**, and I’m excited about the fresh perspectives both bring to building efficient, user-centric applications.
+## About me
 
-By day, I’m an **IT Engineering Manager** who mentors a small but mighty team, designs IT infrastructure, and codes internal tools. My role gives me a unique blend of technical, operational, and leadership responsibilities—which I enjoy just as much as rolling up my sleeves to build something from scratch.
+I’m a self-taught software engineer and solutions architect with **8+ years of experience** who loves blending tech with my personal passions—**working on cars**, **learning Japanese**, and **tinkering with new tools**.
+
+By day, I’m an **Engineering Manager/Architect at Evergreen Healthcare Group**, building software for healthcare. It’s a mix of technical, architectural, and leadership work, and I enjoy it just as much as rolling up my sleeves to build something from scratch.
+
+On the side, I’m finishing my **B.S. in Computer Science at WGU** (an accelerated B.S./M.S. program, with the bachelor’s wrapping up in **January 2027**) and preparing to take the **JLPT N2** next year.
 
 ## Skills & Tech
 
-- **Primary Languages**:
+- **Primary languages**:
 
+  - **Golang** for backend APIs, and my go-to for just about anything server-side
   - **TypeScript** for modern web frontends and quick scripts
-  - **Golang** for backend APIs (currently deepening my expertise)
-  - **PowerShell** for system scripting
   - **SQL** for database design and querying (most experienced in Microsoft SQL Server)
+  - **PowerShell** for system scripting
 
-- **Secondary Languages**:
+- **Secondary languages**:
 
-  - **Rust** because shouldn't we all rewrite everything in Rust?
+  - **Rust** because shouldn’t we all rewrite everything in Rust?
   - **C#** for ease of integration with on-premises Active Directory
   - **CFML** for a legacy codebase I inherited
 
-- **Frameworks, Libraries & Tools**:
+- **Frameworks, libraries & tools**:
 
-  - Regularly working with **React**, **GoFiber**, and **TailwindCSS**
-  - Formerly used **Express.js**,**Next.js**, **MUI**, **Redux**, and **Prisma** but now leaning towards Context-based state management and direct SQL
-  - Experimenting with **TanStack** libraries and expanding my **GoFiber** skills
+  - Regularly working with **React**, **Next.js**, **Tailwind CSS**, and **GoFiber**
+  - Formerly used **Express.js**, **MUI**, **Redux**, and **Prisma**, but now leaning toward Context-based state management and direct SQL
+  - Experimenting with **TanStack** libraries
 
 - **Databases & ETL**:
   - Deep experience with **Microsoft SQL Server** (including **SSIS** ETL pipelines)
@@ -35,32 +39,29 @@ By day, I’m an **IT Engineering Manager** who mentors a small but mighty team,
 
 ## Projects & Focus
 
-- **CAN-bus Exploration** – Tapping into automotive systems and eventually building a custom **infotainment system** for my cars
-- **Printer Management App** – A practical solution for a daily workflow challenge
-- **[Dotfiles](https://github.com/dchroninger/.dotfiles)** – Because I’m a big fan of refining workflows and sharing tips for a better dev environment
+- **[Dotfiles](https://github.com/dchroninger/.dotfiles)**: because I’m a big fan of refining workflows and sharing tips for a better dev environment
+- **CAN-bus exploration**: tapping into automotive systems and eventually building a custom **infotainment system** for my car
+- **Printer management app**: a practical solution for a daily workflow challenge
 
-> _I’m always open to new ideas—if you’ve got something interesting to collaborate on, let’s chat!_
+> _I’m always open to new ideas. If you’ve got something interesting to collaborate on, let’s chat!_
 
-## Workflow & Tools
+## Setup
 
-- **Editor & Terminal**: [NeoVim](https://neovim.io/) + tmux
-- **CLI for Git**: Because sometimes, simplicity reigns supreme
-- **Productivity Setup**:
-  - **yabai**, **skhd** for window management
-  - **Alfred**, **Focus**, **kitty**, **Karabiner Elements** to streamline my daily tasks
-- **Hardware**:
-  - M1 Max MacBook Pro
-  - [Zsa Voyager](https://shop.zsa.io/) keyboard (Kaihl brown switches)
-  - Logitech MX Master 3 mouse
+The full, current list lives on my **[Uses page](https://www.dchroninger.com/uses)**. The short version:
+
+- **Editor & terminal**: [Neovim](https://neovim.io/) + tmux in [Ghostty](https://ghostty.org/), with Claude Code alongside
+- **Machine**: 14” MacBook Pro, a 49” Samsung Odyssey, and a Razer Thunderbolt dock
+- **Input**: a self-built wireless **Corne** split keyboard and a Razer Naga V2 Pro mouse
 
 I’m most comfortable in POSIX-compliant environments, but can adapt to just about any setup if needed.
 
-## Hobbies & Life Outside Code
+## Life Outside Code
 
 Outside of coding, you’ll likely find me:
 
-- **Under the hood** of my **widebody Genesis Coupe** or my **1993 Y32 Nissan Gloria**
-- **Studying Japanese**—pursuing a language degree while also working on my Computer Science transfer
+- **Under the hood** of my **widebody 2012 Genesis Coupe**
+- **Studying Japanese** and reading too much **manga** (and watching too much **anime**)
+- Being a **dog dad**
 - Brainstorming how to merge these interests (coding + cars = custom infotainment system, right?)
 
 ---

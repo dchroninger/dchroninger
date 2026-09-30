@@ -215,7 +215,7 @@ export const en = {
       'Long-form thoughts on programming, learning, languages, leadership, cars, and more, newest first. Also available over RSS.',
     read: 'Read article',
     englishOnly: 'English only',
-    alsoJapanese: 'Also in 日本語',
+    alsoJapanese: '日本語あり',
     translatedOn: 'Translated {date}',
     readInJapanese: 'Read in Japanese (日本語)',
     englishOnlyBanner: 'This post is only available in English.',
