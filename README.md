@@ -21,11 +21,9 @@ On the side, I’m finishing my **B.S. in Computer Science at WGU** (an accelera
   - **SQL** for database design and querying (most experienced in Microsoft SQL Server)
   - **PowerShell** for system scripting
 
-- **Secondary languages**:
+- **Also:**
 
   - **Rust** because shouldn’t we all rewrite everything in Rust?
-  - **C#** for ease of integration with on-premises Active Directory
-  - **CFML** for a legacy codebase I inherited
 
 - **Frameworks, libraries & tools**:
 
