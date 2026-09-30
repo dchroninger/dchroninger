@@ -11,6 +11,7 @@ import { usePathname, useRouter } from 'next/navigation'
 import { ThemeProvider, useTheme } from 'next-themes'
 
 import { CursorEffects } from '@/components/CursorEffects'
+import { scrollPageToTop } from '@/lib/scroll'
 import { canViewTransition, runNavTransition } from '@/lib/viewTransition'
 
 function usePrevious<T>(value: T) {
@@ -60,6 +61,11 @@ export function Providers({ children }: { children: React.ReactNode }) {
   let settle = useRef<(() => void) | null>(null)
 
   // Resolve the pending view transition once the new route has rendered.
+  // Phones scroll inside #scroller, which Next's scroll-to-top doesn't reach.
+  useEffect(() => {
+    scrollPageToTop()
+  }, [pathname])
+
   useEffect(() => {
     if (!settle.current) return
     let done = settle.current

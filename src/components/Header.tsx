@@ -19,6 +19,7 @@ import { TransitionLink as Link } from '@/components/TransitionLink'
 import { parseLocalePath } from '@/i18n/config'
 import { useT } from '@/i18n/LangProvider'
 import { HAS_PROJECTS } from '@/lib/projects'
+import { pageScrollMax, pageScrollY } from '@/lib/scroll'
 import { withRevealTransition } from '@/lib/viewTransition'
 import avatarImage from '@/images/avatar.png'
 
@@ -293,11 +294,7 @@ export function Header() {
       }
 
       let { top, height } = headerRef.current.getBoundingClientRect()
-      let scrollY = clamp(
-        window.scrollY,
-        0,
-        document.body.scrollHeight - window.innerHeight,
-      )
+      let scrollY = clamp(pageScrollY(), 0, pageScrollMax())
 
       if (isInitial.current) {
         setProperty('--header-position', 'sticky')
@@ -345,7 +342,7 @@ export function Header() {
       let fromX = 0
       let toX = 2 / 16
 
-      let scrollY = downDelay - window.scrollY
+      let scrollY = downDelay - pageScrollY()
 
       let scale = (scrollY * (fromScale - toScale)) / downDelay + toScale
       scale = clamp(scale, fromScale, toScale)
@@ -368,7 +365,7 @@ export function Header() {
 
     function updateFade() {
       // 0 at the top of the page → 1 once we've scrolled ~80px
-      setProperty('--header-fade', String(clamp(window.scrollY / 80, 0, 1)))
+      setProperty('--header-fade', String(clamp(pageScrollY() / 80, 0, 1)))
     }
 
     function updateStyles() {
@@ -379,11 +376,14 @@ export function Header() {
     }
 
     updateStyles()
+    let scroller = document.getElementById('scroller')
     window.addEventListener('scroll', updateStyles, { passive: true })
+    scroller?.addEventListener('scroll', updateStyles, { passive: true })
     window.addEventListener('resize', updateStyles)
 
     return () => {
       window.removeEventListener('scroll', updateStyles)
+      scroller?.removeEventListener('scroll', updateStyles)
       window.removeEventListener('resize', updateStyles)
     }
   }, [isHomePage])
@@ -410,7 +410,7 @@ export function Header() {
               className="order-last mt-[calc(--spacing(16)-(--spacing(3)))]"
             />
             <Container
-              className="top-0 order-last -mb-3 pt-3"
+              className="top-0 order-last -mb-3 pt-3 max-md:-top-6"
               style={{
                 position:
                   'var(--header-position)' as React.CSSProperties['position'],
@@ -443,7 +443,7 @@ export function Header() {
         )}
         <div
           ref={headerRef}
-          className="top-0 z-10 h-16 pt-6"
+          className="top-0 z-10 h-16 pt-6 max-md:-top-6"
           style={{
             position:
               'var(--header-position)' as React.CSSProperties['position'],
