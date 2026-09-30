@@ -39,7 +39,10 @@ function useSwitch() {
 /* ------------------------------------------------------------------ */
 
 function UsFlag() {
-  let stripes = Array.from({ length: 13 }, (_, i) => i)
+  // Simplified for a ~26px circle: 7 stripes and 9 stars read as the flag,
+  // where the real 13 + 50 would just smear together.
+  let stripes = 7
+  let cantonHeight = (4 * 60) / stripes // canton covers the top 4 stripes
   return (
     <svg
       viewBox="0 0 60 60"
@@ -48,24 +51,22 @@ function UsFlag() {
       aria-hidden="true"
     >
       <rect width="60" height="60" fill="#fff" />
-      {stripes
-        .filter((i) => i % 2 === 0)
-        .map((i) => (
-          <rect
-            key={i}
-            y={(i * 60) / 13}
-            width="60"
-            height={60 / 13}
-            fill="#B22234"
-          />
-        ))}
-      <rect width="30" height={(7 * 60) / 13} fill="#3C3B6E" />
-      {Array.from({ length: 12 }, (_, i) => (
+      {[0, 2, 4, 6].map((i) => (
+        <rect
+          key={i}
+          y={(i * 60) / stripes}
+          width="60"
+          height={60 / stripes}
+          fill="#B22234"
+        />
+      ))}
+      <rect width="30" height={cantonHeight} fill="#3C3B6E" />
+      {Array.from({ length: 9 }, (_, i) => (
         <circle
           key={i}
-          cx={5 + (i % 4) * 7.2}
-          cy={5.5 + Math.floor(i / 4) * 8.6}
-          r="1.25"
+          cx={6 + (i % 3) * 9}
+          cy={7 + Math.floor(i / 3) * 10}
+          r="1.8"
           fill="#fff"
         />
       ))}
