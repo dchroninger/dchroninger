@@ -4,7 +4,7 @@ import { motion, useReducedMotion } from 'motion/react'
 
 import { Container } from '@/components/Container'
 import { KanjiMorph } from '@/components/KanjiMorph'
-import { GitHubIcon, LinkedInIcon } from '@/components/SocialIcons'
+import { GitHubIcon, LinkedInIcon, MailIcon } from '@/components/SocialIcons'
 import { CONTACT_EMAIL } from '@/lib/site'
 
 const EASE = [0.16, 1, 0.3, 1] as const
@@ -87,18 +87,6 @@ export function Hero() {
             {...fade(0.85, reduce)}
             className="mt-7 flex flex-wrap items-center gap-x-6 gap-y-3"
           >
-            <a
-              href={`mailto:${CONTACT_EMAIL}`}
-              className="group inline-flex items-center gap-2 rounded-full bg-accent px-4 py-2 text-sm font-semibold text-on-accent transition hover:brightness-110"
-            >
-              Say hi
-              <span
-                aria-hidden="true"
-                className="transition-transform group-hover:translate-x-0.5"
-              >
-                →
-              </span>
-            </a>
             <div className="flex gap-5">
               <a
                 className="group -m-1 p-1"
@@ -117,6 +105,14 @@ export function Hero() {
                 rel="noreferrer"
               >
                 <LinkedInIcon className="h-6 w-6 fill-muted transition group-hover:fill-accent" />
+              </a>
+              <a
+                className="group -m-1 p-1"
+                href={`mailto:${CONTACT_EMAIL}`}
+                aria-label={`Email Dave at ${CONTACT_EMAIL}`}
+                title={CONTACT_EMAIL}
+              >
+                <MailIcon className="h-6 w-6 fill-muted transition group-hover:fill-accent" />
               </a>
             </div>
           </motion.div>

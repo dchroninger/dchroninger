@@ -7,7 +7,7 @@ import { Container } from '@/components/Container'
 import { Hero } from '@/components/Hero'
 import { PhotoMarquee } from '@/components/PhotoMarquee'
 import { Reveal } from '@/components/Reveal'
-import { GitHubIcon, LinkedInIcon } from '@/components/SocialIcons'
+import { GitHubIcon, LinkedInIcon, MailIcon } from '@/components/SocialIcons'
 import { TransitionLink } from '@/components/TransitionLink'
 import { WorkTimeline } from '@/components/WorkTimeline'
 import genesisPhoto from '@/images/photos/genesis.jpeg'
@@ -239,12 +239,7 @@ export default async function Home() {
                   href={`mailto:${CONTACT_EMAIL}`}
                   className="group -mx-2 flex items-center gap-3 rounded-lg px-2 py-1.5 transition hover:bg-surface-2"
                 >
-                  <span
-                    aria-hidden="true"
-                    className="flex h-5 w-5 items-center justify-center text-muted transition group-hover:text-accent"
-                  >
-                    ✉
-                  </span>
+                  <MailIcon className="h-5 w-5 fill-muted transition group-hover:fill-accent" />
                   Email
                   <span
                     aria-hidden="true"
