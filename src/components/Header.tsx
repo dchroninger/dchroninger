@@ -105,7 +105,7 @@ function MobileNavigation(
   let t = useT()
   return (
     <Popover {...props}>
-      <PopoverButton className="group flex items-center rounded-full bg-surface/80 px-4 py-2 text-sm font-medium text-ink shadow-lg ring-1 shadow-black/5 ring-line backdrop-blur-md hover:ring-accent/40">
+      <PopoverButton className="group flex shrink-0 items-center rounded-full bg-surface/80 px-4 py-2 text-sm font-medium whitespace-nowrap text-ink shadow-lg ring-1 shadow-black/5 ring-line backdrop-blur-md hover:ring-accent/40">
         {t.nav.menu}
         <ChevronDownIcon className="ml-3 h-auto w-2 stroke-muted group-hover:stroke-ink" />
       </PopoverButton>

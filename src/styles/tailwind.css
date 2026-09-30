@@ -500,6 +500,9 @@ html[data-vt='theme']::view-transition-new(root) {
 :lang(ja) body {
   line-break: strict;
   word-break: auto-phrase;
+  /* long katakana runs count as one "phrase"; let them wrap instead of
+     stretching the layout past the screen edge */
+  overflow-wrap: anywhere;
 }
 :lang(ja) h1,
 :lang(ja) h2,
