@@ -1,6 +1,13 @@
 import { type StaticImageData } from 'next/image'
 
 import { type Locale } from '@/i18n/config'
+import kanpekiPitchLogo from '@/images/logos/kanpeki-pitch.png'
+import pitchCoverLight from '@/images/projects/kanpeki-pitch/00-cover-light.png'
+import pitchCoverDark from '@/images/projects/kanpeki-pitch/00-cover-dark.png'
+import pitchResultLight from '@/images/projects/kanpeki-pitch/02-result-light.png'
+import pitchResultDark from '@/images/projects/kanpeki-pitch/02-result-dark.png'
+import pitchPairLight from '@/images/projects/kanpeki-pitch/03-pair-light.png'
+import pitchPairDark from '@/images/projects/kanpeki-pitch/03-pair-dark.png'
 import kanpekiReaderLogo from '@/images/logos/kanpeki-reader.png'
 import usagiLogo from '@/images/logos/usagi.png'
 import kanpekiSeries from '@/images/projects/kanpeki-reader/01-series.png'
@@ -233,6 +240,84 @@ export const projects: Project[] = [
         caption: {
           en: 'Sample pages: Hokusai Manga (1816), The Met, CC0.',
           ja: 'サンプル：北斎漫画（1816年）、メトロポリタン美術館、CC0。',
+        },
+      },
+    ],
+  },
+  {
+    id: 'kanpeki-pitch',
+    name: 'Kanpeki Pitch',
+    logo: kanpekiPitchLogo,
+    status: { en: 'Research prototype', ja: '研究プロトタイプ' },
+    tagline: {
+      en: 'Say a Japanese sentence; see which words had the wrong pitch.',
+      ja: '日本語の文を話すと、アクセントがずれた単語を教えてくれます。',
+    },
+    description: {
+      en: 'A pitch-accent trainer that runs entirely on-device. It works out the dictionary accent for each phrase, lines your recording up mora by mora, tracks your pitch, and grades every phrase: ok, wrong, or honestly not sure. A research spike toward an iOS app, with a web demo for sentences, JLPT vocabulary and minimal pairs like 箸・橋・端.',
+      ja: '端末内だけで動くピッチアクセント練習ツール。フレーズごとの辞書アクセントを求め、録音をモーラ単位で揃え、声の高さを追跡して、各フレーズを「正しい・違う・判定できない」で評価します。iOSアプリに向けた研究スパイクで、文・JLPT語彙・「箸・橋・端」のようなミニマルペアを練習できるWebデモ付き。',
+    },
+    highlights: {
+      en: [
+        'OpenJTalk for the expected accent, a hiragana wav2vec2 model for mora timing, SwiftF0 for pitch.',
+        'A tree model and a BiGRU sequence model, averaged: calibrated on new speakers, fewer “not sure”s.',
+        'Evaluated on speakers and sentences it never trained on: about 4% false alarms and 1% missed errors.',
+        'It abstains rather than guessing: telling a learner they were wrong when they were right is the worst failure.',
+        'Reference audio from VOICEVOX, reshaped so its pitch matches the dictionary.',
+      ],
+      ja: [
+        '期待アクセントはOpenJTalk、モーラのタイミングはひらがなwav2vec2モデル、声の高さはSwiftF0。',
+        '決定木モデルとBiGRU系列モデルの平均で、初めての話者でも安定し、「判定できない」を減らしています。',
+        '学習に使っていない話者と文で評価：誤警報は約4%、見逃しは約1%。',
+        '当てずっぽうより「判定しない」を選びます。正しいのに間違いと言うのが学習者にとって最悪だからです。',
+        '参照音声はVOICEVOX。辞書のアクセントに合うよう音程を整えています。',
+      ],
+    },
+    tags: [
+      'Python',
+      'PyTorch',
+      'scikit-learn',
+      'FastAPI',
+      'wav2vec2',
+      'OpenJTalk',
+      'VOICEVOX',
+    ],
+    href: 'https://github.com/dchroninger/kanpeki-pitch',
+    label: { en: 'View on GitHub', ja: 'GitHubで見る' },
+    cover: {
+      kind: 'web',
+      light: pitchCoverLight,
+      dark: pitchCoverDark,
+      alt: {
+        en: 'Pitch accent result: 80%, 4 of 5 phrases correct, with が in 音が flagged as the wrong pitch',
+        ja: 'アクセント判定結果：80%、5フレーズ中4つ正解、「音が」の「が」が誤りとして表示',
+      },
+    },
+    gallery: [
+      {
+        kind: 'web',
+        light: pitchResultLight,
+        dark: pitchResultDark,
+        alt: {
+          en: 'A sentence with its pitch guide, then the result comparing the expected and heard pitch per mora',
+          ja: '文とアクセントガイド、その下に期待と実際の音の高さをモーラごとに比べた結果',
+        },
+        caption: {
+          en: 'Graded phrase by phrase: here only 音が came out flat instead of dropping.',
+          ja: 'フレーズごとに判定。ここでは「音が」だけが下がらず平らになっています。',
+        },
+      },
+      {
+        kind: 'web',
+        light: pitchPairLight,
+        dark: pitchPairDark,
+        alt: {
+          en: 'Minimal pairs: 橋, 箸 and 端, all read はし, with their pitch patterns',
+          ja: 'ミニマルペア：どれも「はし」と読む橋・箸・端と、それぞれのアクセント',
+        },
+        caption: {
+          en: 'Minimal pairs: which はし did you say?',
+          ja: 'ミニマルペア：どの「はし」を言ったか。',
         },
       },
     ],

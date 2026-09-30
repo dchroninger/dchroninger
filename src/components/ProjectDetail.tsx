@@ -145,8 +145,11 @@ export function ProjectDetail({
               group[0].kind === 'phone' &&
                 'mx-auto grid max-w-3xl grid-cols-2 gap-6 sm:gap-10',
               group[0].kind === 'phone' &&
-                group.length >= 3 &&
+                group.length === 3 &&
                 'max-w-5xl sm:grid-cols-3',
+              group[0].kind === 'phone' &&
+                group.length >= 4 &&
+                'max-w-5xl sm:grid-cols-4',
             )}
           >
             {group.map((shot) => (
