@@ -4,6 +4,7 @@ import clsx from 'clsx'
 
 import { Button } from '@/components/Button'
 import { Container } from '@/components/Container'
+import { EmailLink } from '@/components/EmailLink'
 import { Hero } from '@/components/Hero'
 import { PhotoMarquee } from '@/components/PhotoMarquee'
 import { Reveal } from '@/components/Reveal'
@@ -235,10 +236,7 @@ export default async function Home() {
                 </li>
               ))}
               <li>
-                <a
-                  href={`mailto:${CONTACT_EMAIL}`}
-                  className="group -mx-2 flex items-center gap-3 rounded-lg px-2 py-1.5 transition hover:bg-surface-2"
-                >
+                <EmailLink className="group -mx-2 flex items-center gap-3 rounded-lg px-2 py-1.5 transition hover:bg-surface-2">
                   <MailIcon className="h-5 w-5 fill-muted transition group-hover:fill-accent" />
                   Email
                   <span
@@ -247,7 +245,7 @@ export default async function Home() {
                   >
                     ↗
                   </span>
-                </a>
+                </EmailLink>
               </li>
             </ul>
           </Tile>

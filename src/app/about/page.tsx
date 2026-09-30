@@ -3,6 +3,7 @@ import Image from 'next/image'
 import clsx from 'clsx'
 
 import { Container } from '@/components/Container'
+import { EmailLink } from '@/components/EmailLink'
 import { Reveal } from '@/components/Reveal'
 import { TransitionLink as Link } from '@/components/TransitionLink'
 import {
@@ -27,13 +28,20 @@ function SocialLink({
 }) {
   return (
     <li className={clsx(className, 'flex')}>
-      <Link
-        href={href}
-        className="group flex text-sm font-medium text-ink transition hover:text-accent"
-      >
-        <Icon className="h-6 w-6 flex-none fill-muted transition group-hover:fill-accent" />
-        <span className="ml-4">{children}</span>
-      </Link>
+      {href.startsWith('mailto:') ? (
+        <EmailLink className="group flex text-sm font-medium text-ink transition hover:text-accent">
+          <Icon className="h-6 w-6 flex-none fill-muted transition group-hover:fill-accent" />
+          <span className="ml-4">{children}</span>
+        </EmailLink>
+      ) : (
+        <Link
+          href={href}
+          className="group flex text-sm font-medium text-ink transition hover:text-accent"
+        >
+          <Icon className="h-6 w-6 flex-none fill-muted transition group-hover:fill-accent" />
+          <span className="ml-4">{children}</span>
+        </Link>
+      )}
     </li>
   )
 }

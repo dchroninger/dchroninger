@@ -3,6 +3,7 @@
 import { motion, useReducedMotion } from 'motion/react'
 
 import { Container } from '@/components/Container'
+import { EmailLink } from '@/components/EmailLink'
 import { KanjiMorph } from '@/components/KanjiMorph'
 import { GitHubIcon, LinkedInIcon, MailIcon } from '@/components/SocialIcons'
 import { CONTACT_EMAIL } from '@/lib/site'
@@ -106,14 +107,12 @@ export function Hero() {
               >
                 <LinkedInIcon className="h-6 w-6 fill-muted transition group-hover:fill-accent" />
               </a>
-              <a
+              <EmailLink
                 className="group -m-1 p-1"
-                href={`mailto:${CONTACT_EMAIL}`}
                 aria-label={`Email Dave at ${CONTACT_EMAIL}`}
-                title={CONTACT_EMAIL}
               >
                 <MailIcon className="h-6 w-6 fill-muted transition group-hover:fill-accent" />
-              </a>
+              </EmailLink>
             </div>
           </motion.div>
         </div>
