@@ -30,7 +30,7 @@ On the side, I’m finishing my **B.S. in Computer Science at WGU** (an accelera
 - **Frameworks, libraries & tools**:
 
   - Regularly working with **React**, **TanStack** libraries (heavily), **Tailwind CSS**, and **GoFiber**
-  - **Next.js** isn't my daily driver these days, but I’m still very familiar with it
+  - **Next.js** isn’t my daily driver these days, but I’m still very familiar with it
   - Formerly used **Express.js**, **MUI**, **Redux**, and **Prisma**, but now leaning toward Context-based state management and direct SQL
 
 - **Databases & ETL**:
