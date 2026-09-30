@@ -11,7 +11,7 @@ import {
   LinkedInIcon,
   XIcon,
 } from '@/components/SocialIcons'
-import portraitImage from '@/images/photos/shogi.jpeg'
+import portraitImage from '@/images/photos/osaka-bridge.jpeg'
 
 function SocialLink({
   className,
@@ -63,8 +63,9 @@ export default function About() {
           <div className="max-w-xs px-2.5 lg:max-w-none">
             <Image
               src={portraitImage}
-              alt="Dave crouching on a grassy trail, petting a husky"
+              alt="Dave leaning on a wooden bridge railing, looking out at the neon signs and giant Ferris wheel of Dotonbori in Osaka"
               sizes="(min-width: 1024px) 32rem, 20rem"
+              style={{ objectPosition: '50% 78%' }}
               className="aspect-square rotate-3 rounded-2xl bg-surface-2 object-cover shadow-2xl ring-1 shadow-black/10 ring-line transition duration-500 hover:rotate-0"
             />
           </div>
