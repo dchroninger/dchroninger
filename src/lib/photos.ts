@@ -8,33 +8,24 @@ import osakaBridge from '@/images/photos/osaka-bridge.jpeg'
 import osakaCanal from '@/images/photos/osaka-canal.jpeg'
 import shogi from '@/images/photos/shogi.jpeg'
 import wade from '@/images/photos/wade.jpeg'
+import { type Dictionary } from '@/i18n'
+
+export type PhotoId = keyof Dictionary['photos']
 
 export interface Photo {
+  id: PhotoId
   src: StaticImageData
-  alt: string
 }
 
-// Add new photos here (drop the file in src/images/photos) and they show up
-// in the home page strip automatically.
+// Add new photos here (drop the file in src/images/photos, then add its alt
+// text under `photos` in BOTH src/i18n/dictionaries/en.ts and ja.ts).
 export const photos: Photo[] = [
-  { src: shogi, alt: 'Dave crouching on a grassy trail, petting a husky' },
-  {
-    src: osakaCanal,
-    alt: 'Dave in a white tee leaning on a railing beside the Dotonbori canal in Osaka, paper lanterns and shop signs behind him',
-  },
-  { src: genesis, alt: 'A blue widebody Genesis Coupe parked under tall trees' },
-  {
-    src: familyBeach,
-    alt: 'A woman and a fluffy husky sitting on a golden hillside at sunset',
-  },
-  {
-    src: godzillaStore,
-    alt: 'Dave flashing a peace sign next to a life-size Godzilla statue in the Godzilla Store',
-  },
-  { src: bgLake, alt: 'A dog on the rocky shore of a quiet forest lake' },
-  {
-    src: osakaBridge,
-    alt: 'Dave leaning on a wooden bridge railing, looking out at the neon signs and giant Ferris wheel of Dotonbori',
-  },
-  { src: wade, alt: 'Close-up of a wide-eyed cat wearing a collar' },
+  { id: 'shogi', src: shogi },
+  { id: 'osakaCanal', src: osakaCanal },
+  { id: 'genesis', src: genesis },
+  { id: 'familyBeach', src: familyBeach },
+  { id: 'godzilla', src: godzillaStore },
+  { id: 'bgLake', src: bgLake },
+  { id: 'osakaBridge', src: osakaBridge },
+  { id: 'wade', src: wade },
 ]

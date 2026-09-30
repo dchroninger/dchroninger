@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect, useRef, useState } from 'react'
-import Image from 'next/image'
+import Image, { type StaticImageData } from 'next/image'
 import {
   motion,
   useAnimationFrame,
@@ -12,7 +12,7 @@ import {
 } from 'motion/react'
 import clsx from 'clsx'
 
-import { type Photo } from '@/lib/photos'
+type Photo = { id: string; src: StaticImageData; alt: string }
 
 const SPEED = 0.028 // px per ms
 
@@ -22,7 +22,7 @@ function Tile({ photo, index }: { photo: Photo; index: number }) {
       whileHover={{ rotate: 0, scale: 1.05, y: -8, zIndex: 20 }}
       transition={{ type: 'spring', stiffness: 260, damping: 20 }}
       className={clsx(
-        'relative aspect-9/10 w-44 flex-none overflow-hidden rounded-xl bg-surface-2 shadow-xl shadow-black/10 ring-1 ring-line sm:w-64 sm:rounded-2xl',
+        'relative aspect-9/10 w-44 flex-none overflow-hidden rounded-xl bg-surface-2 shadow-xl ring-1 shadow-black/10 ring-line sm:w-64 sm:rounded-2xl',
         index % 2 === 0 ? 'rotate-2' : '-rotate-2',
         index % 3 === 1 && 'sm:translate-y-6',
       )}

@@ -4,25 +4,29 @@ import Image from 'next/image'
 import { Card } from '@/components/Card'
 import { Reveal } from '@/components/Reveal'
 import { SimpleLayout } from '@/components/SimpleLayout'
+import { getDictionary } from '@/i18n'
+import { fmt, type Locale } from '@/i18n/config'
+import { pageMetadata } from '@/i18n/metadata'
 import { HAS_PROJECTS, projects } from '@/lib/projects'
 
-export const metadata: Metadata = {
-  title: 'Projects',
-  description:
-    'A short, hand-picked list of things I’ve built: apps, tools, and experiments.',
-  alternates: { canonical: '/projects' },
-  robots: HAS_PROJECTS ? undefined : { index: false },
+export function generateMetadata({
+  params,
+}: {
+  params: { lang: string }
+}): Metadata {
+  let lang = params.lang as Locale
+  return pageMetadata(lang, '/projects', {
+    ...getDictionary(lang).meta.projects,
+    noindex: !HAS_PROJECTS,
+  })
 }
 
-export default function Projects() {
+export default function Projects({ params }: { params: { lang: string } }) {
+  let t = getDictionary(params.lang as Locale)
   return (
     <SimpleLayout
-      title="Things I’ve made trying to put my dent in the universe."
-      intro={
-        HAS_PROJECTS
-          ? 'A short, hand-picked list of things I’ve built: apps, tools, and experiments.'
-          : 'I’m picking a short, intentional list to show here, with screenshots. Check back soon.'
-      }
+      title={t.projects.title}
+      intro={HAS_PROJECTS ? t.projects.intro : t.projects.introEmpty}
     >
       {HAS_PROJECTS && (
         <ul
@@ -40,7 +44,7 @@ export default function Projects() {
                 {project.screenshot && (
                   <Image
                     src={project.screenshot}
-                    alt={`Screenshot of ${project.name}`}
+                    alt={fmt(t.projects.screenshotOf, { name: project.name })}
                     sizes="(min-width: 1024px) 20rem, 90vw"
                     className="relative z-10 mb-6 aspect-video w-full rounded-xl object-cover ring-1 ring-line"
                   />
@@ -64,7 +68,7 @@ export default function Projects() {
                 </h2>
                 <Card.Description>{project.description}</Card.Description>
                 {project.href && (
-                  <Card.Cta>{project.label ?? 'View project'}</Card.Cta>
+                  <Card.Cta>{project.label ?? t.projects.view}</Card.Cta>
                 )}
               </Card>
             </Reveal>

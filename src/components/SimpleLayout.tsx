@@ -14,7 +14,7 @@ export function SimpleLayout({
     <Container className="mt-16 sm:mt-32">
       <header className="max-w-2xl">
         <Reveal>
-          <h1 className="text-4xl font-bold tracking-tight text-ink text-balance sm:text-5xl">
+          <h1 className="text-4xl font-bold tracking-tight text-balance text-ink sm:text-5xl">
             {title}
           </h1>
         </Reveal>

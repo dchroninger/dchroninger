@@ -6,15 +6,11 @@ import { Container } from '@/components/Container'
 import { EmailLink } from '@/components/EmailLink'
 import { KanjiMorph } from '@/components/KanjiMorph'
 import { GitHubIcon, LinkedInIcon, MailIcon } from '@/components/SocialIcons'
+import { fmt } from '@/i18n/config'
+import { useT } from '@/i18n/LangProvider'
 import { CONTACT_EMAIL } from '@/lib/site'
 
 const EASE = [0.16, 1, 0.3, 1] as const
-
-const LINES = [
-  { text: 'Professional curious person.', accent: false },
-  { text: 'Perpetual learner.', accent: false },
-  { text: 'Tinkerer.', accent: true },
-]
 
 function Word({ children, delay }: { children: string; delay: number }) {
   let reduce = useReducedMotion()
@@ -42,7 +38,12 @@ function fade(delay: number, reduce: boolean | null) {
 
 export function Hero() {
   let reduce = useReducedMotion()
+  let t = useT()
   let n = 0
+  let LINES = t.hero.lines.map((text, i, all) => ({
+    text,
+    accent: i === all.length - 1,
+  }))
 
   return (
     <Container className="mt-9">
@@ -53,7 +54,7 @@ export function Hero() {
             className="font-mono text-xs tracking-wider text-accent uppercase"
           >
             <span className="mr-2 inline-block h-1.5 w-1.5 rounded-full bg-accent align-middle" />
-            こんにちは · hello
+            {t.hero.hello}
           </motion.p>
 
           <h1 className="mt-5 text-5xl leading-[1.04] font-bold tracking-tight text-ink sm:text-6xl">
@@ -74,14 +75,7 @@ export function Hero() {
             {...fade(0.7, reduce)}
             className="mt-7 max-w-xl text-base text-body"
           >
-            Hey there! I’m Dave, an experienced software engineer and solutions
-            architect, dog dad, car enthusiast, and enjoyer of Japanese culture,
-            language, and media. I’m currently enrolled in WGU’s Accelerated
-            Computer Science Bachelor’s and Master’s program, wrapping up the
-            B.S. in January 2027, and preparing to take the JLPT N2 next year. I
-            spend my days designing and building pretty cool stuff, and then my
-            downtime exploring manga, anime, and turning my Genesis Coupe into a
-            passion project. Welcome to my little slice of the internet.
+            {t.hero.bio}
           </motion.p>
 
           <motion.div
@@ -92,7 +86,7 @@ export function Hero() {
               <a
                 className="group -m-1 p-1"
                 href="https://github.com/dchroninger"
-                aria-label="Dave on GitHub"
+                aria-label={t.social.github}
                 target="_blank"
                 rel="noreferrer"
               >
@@ -101,7 +95,7 @@ export function Hero() {
               <a
                 className="group -m-1 p-1"
                 href="https://www.linkedin.com/in/davidchroninger/"
-                aria-label="Dave on LinkedIn"
+                aria-label={t.social.linkedin}
                 target="_blank"
                 rel="noreferrer"
               >
@@ -109,7 +103,7 @@ export function Hero() {
               </a>
               <EmailLink
                 className="group -m-1 p-1"
-                aria-label={`Email Dave at ${CONTACT_EMAIL}`}
+                aria-label={fmt(t.email.aria, { email: CONTACT_EMAIL })}
               >
                 <MailIcon className="h-6 w-6 fill-muted transition group-hover:fill-accent" />
               </EmailLink>

@@ -80,9 +80,7 @@ Card.Description = function CardDescription({
 }: {
   children: React.ReactNode
 }) {
-  return (
-    <p className="relative z-10 mt-2 text-sm text-body">{children}</p>
-  )
+  return <p className="relative z-10 mt-2 text-sm text-body">{children}</p>
 }
 
 Card.Cta = function CardCta({ children }: { children: React.ReactNode }) {

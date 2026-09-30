@@ -3,6 +3,9 @@
 import { useEffect, useRef, useState } from 'react'
 import { AnimatePresence, motion, useReducedMotion } from 'motion/react'
 
+import { fmt } from '@/i18n/config'
+import { useT } from '@/i18n/LangProvider'
+
 const WORDS = [
   { k: '学', kana: 'まなぶ', en: 'to learn' },
   { k: '作', kana: 'つくる', en: 'to make' },
@@ -20,6 +23,7 @@ const MORPH = 1.3 // seconds to melt into the next
  */
 export function KanjiMorph() {
   let reduce = useReducedMotion()
+  let t = useT()
   let a = useRef<HTMLSpanElement>(null)
   let b = useRef<HTMLSpanElement>(null)
   let skip = useRef(false)
@@ -84,7 +88,11 @@ export function KanjiMorph() {
         if (reduce) setIndex((n) => (n + 1) % WORDS.length)
         else skip.current = true
       }}
-      aria-label={`Kanji of the moment: ${word.k}, ${word.kana}, ${word.en}. Activate for the next one.`}
+      aria-label={fmt(t.kanji.aria, {
+        k: word.k,
+        kana: word.kana,
+        en: word.en,
+      })}
       className="spotlight group relative flex aspect-square w-full flex-col items-center justify-center overflow-hidden rounded-[2rem] bg-surface/70 ring-1 ring-line backdrop-blur-sm transition-transform duration-500 hover:-translate-y-1"
     >
       {/* threshold filter that makes the blur read as liquid */}
@@ -101,10 +109,11 @@ export function KanjiMorph() {
       </svg>
 
       <span className="absolute top-5 left-6 font-mono text-[11px] tracking-wider text-faint uppercase">
-        今日の漢字
+        {t.kanji.label}
       </span>
       <span className="absolute top-5 right-6 font-mono text-[11px] text-faint">
-        {String(index + 1).padStart(2, '0')}/{String(WORDS.length).padStart(2, '0')}
+        {String(index + 1).padStart(2, '0')}/
+        {String(WORDS.length).padStart(2, '0')}
       </span>
 
       <span

@@ -1,12 +1,19 @@
 'use client'
 
 import { useRef } from 'react'
-import Image from 'next/image'
+import Image, { type StaticImageData } from 'next/image'
 import { motion, useReducedMotion, useScroll, useSpring } from 'motion/react'
 
-import { type Role } from '@/lib/resume'
+export type TimelineRole = {
+  company: string
+  title: string
+  logo: StaticImageData
+  start: string
+  end: string
+  current?: boolean
+}
 
-export function WorkTimeline({ roles }: { roles: Role[] }) {
+export function WorkTimeline({ roles }: { roles: TimelineRole[] }) {
   let reduce = useReducedMotion()
   let ref = useRef<HTMLOListElement>(null)
   let { scrollYProgress } = useScroll({
@@ -33,7 +40,11 @@ export function WorkTimeline({ roles }: { roles: Role[] }) {
           initial={reduce ? false : { opacity: 0, x: 18 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true, margin: '0px 0px -10% 0px' }}
-          transition={{ duration: 0.6, delay: i * 0.05, ease: [0.16, 1, 0.3, 1] }}
+          transition={{
+            duration: 0.6,
+            delay: i * 0.05,
+            ease: [0.16, 1, 0.3, 1],
+          }}
           className="relative flex gap-4"
         >
           <div className="relative z-10 flex h-10 w-10 flex-none items-center justify-center rounded-full bg-surface shadow-md ring-1 shadow-black/5 ring-line">

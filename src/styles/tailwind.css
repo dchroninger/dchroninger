@@ -52,8 +52,10 @@
   --color-accent-2: var(--accent-2);
   --color-on-accent: var(--on-accent);
 
-  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
-  --font-display: var(--f-display), var(--font-inter), ui-sans-serif, system-ui;
+  --font-sans: var(--font-inter), var(--font-noto-jp), ui-sans-serif, system-ui,
+    sans-serif;
+  --font-display: var(--f-display), var(--f-display-ja), var(--font-inter),
+    ui-sans-serif, system-ui;
   --font-mono: var(--font-jetbrains), ui-monospace, SFMono-Regular, monospace;
 }
 
@@ -73,6 +75,7 @@
   --accent-2: #0b8fa8;
   --on-accent: #fff7f2;
   --f-display: var(--font-archivo);
+  --f-display-ja: var(--font-noto-jp);
   --grain: 0.05;
   --glow: 0.1;
 }
@@ -109,6 +112,7 @@
   --accent-2: #23395b;
   --on-accent: #fbf3e6;
   --f-display: var(--font-instrument);
+  --f-display-ja: var(--font-shippori);
   --grain: 0.16;
   --glow: 0.07;
 }
@@ -144,6 +148,7 @@
   --accent-2: #e07a2f;
   --on-accent: #f2fffd;
   --f-display: var(--font-manrope);
+  --f-display-ja: var(--font-noto-jp);
   --grain: 0.03;
   --glow: 0.12;
 }
@@ -179,6 +184,7 @@
   --accent-2: #ea76cb;
   --on-accent: #eff1f5;
   --f-display: var(--font-jetbrains);
+  --f-display-ja: var(--font-noto-jp);
   --grain: 0.02;
   --glow: 0.12;
 }
@@ -488,4 +494,69 @@ html[data-vt='theme']::view-transition-new(root) {
 :root[data-palette='washi'] .prose h3 {
   font-size: 1.4rem;
   line-height: 2rem;
+}
+
+/* Japanese typography: no negative tracking, phrase-aware line breaks. */
+:lang(ja) body {
+  line-break: strict;
+  word-break: auto-phrase;
+}
+:lang(ja) h1,
+:lang(ja) h2,
+:lang(ja) h3,
+:lang(ja) .font-display {
+  letter-spacing: 0 !important;
+  font-stretch: 100% !important;
+  line-height: 1.25;
+}
+:lang(ja) .tracking-tight {
+  letter-spacing: 0;
+}
+
+/* ---- Language toggle: the target flag wipes in over the active one ---- */
+.flagswitch .flag {
+  position: absolute;
+  inset: 0;
+}
+.flagswitch .flag-base {
+  z-index: 1;
+}
+/* rest: target flag collapsed into the bottom-right corner */
+.flagswitch .flag-target {
+  z-index: 2;
+  clip-path: polygon(100% 100%, 100% 100%, 100% 100%, 100% 100%);
+  transition: clip-path 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+/* hover: slides in as the bottom-right half (diagonal split, US / JP) */
+.flagswitch:hover:not([data-lock]) .flag-target,
+.flagswitch:focus-visible:not([data-lock]) .flag-target {
+  clip-path: polygon(100% 0, 100% 100%, 0 100%, 0 100%);
+}
+/* click: target flag fills the whole circle */
+.flagswitch[data-state='switching'] .flag-target {
+  clip-path: polygon(100% 0, 100% 100%, 0 100%, 0 0);
+}
+.flagswitch .flag-seam {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  opacity: 0;
+  transition: opacity 0.3s;
+  background: linear-gradient(
+    to top left,
+    transparent calc(50% - 0.75px),
+    rgb(255 255 255 / 0.95) calc(50% - 0.5px),
+    rgb(255 255 255 / 0.95) calc(50% + 0.5px),
+    transparent calc(50% + 0.75px)
+  );
+}
+.flagswitch:hover:not([data-lock]):not([data-state='switching']) .flag-seam,
+.flagswitch:focus-visible:not([data-lock]):not([data-state='switching'])
+  .flag-seam {
+  opacity: 1;
+}
+@media (prefers-reduced-motion: reduce) {
+  .flagswitch .flag-target {
+    transition: none;
+  }
 }

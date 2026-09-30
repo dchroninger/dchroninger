@@ -4,6 +4,8 @@ import { useEffect, useRef, useState } from 'react'
 import { AnimatePresence, motion } from 'motion/react'
 import clsx from 'clsx'
 
+import { fmt } from '@/i18n/config'
+import { useT } from '@/i18n/LangProvider'
 import { CONTACT_EMAIL } from '@/lib/site'
 
 /**
@@ -16,6 +18,7 @@ export function EmailLink({
   className,
   ...props
 }: Omit<React.ComponentPropsWithoutRef<'a'>, 'href'>) {
+  let t = useT()
   let [state, setState] = useState<'idle' | 'copied' | 'manual'>('idle')
   let timer = useRef<ReturnType<typeof setTimeout>>()
 
@@ -47,7 +50,9 @@ export function EmailLink({
     >
       {children}
       <span role="status" aria-live="polite" className="sr-only">
-        {state === 'copied' ? `Copied ${CONTACT_EMAIL} to clipboard` : ''}
+        {state === 'copied'
+          ? fmt(t.email.copiedAnnounce, { email: CONTACT_EMAIL })
+          : ''}
       </span>
       <AnimatePresence>
         {state !== 'idle' && (
@@ -60,7 +65,8 @@ export function EmailLink({
           >
             {state === 'copied' ? (
               <>
-                <span className="text-accent-2">✓</span> Copied {CONTACT_EMAIL}
+                <span className="text-accent-2">✓</span>{' '}
+                {fmt(t.email.copied, { email: CONTACT_EMAIL })}
               </>
             ) : (
               CONTACT_EMAIL

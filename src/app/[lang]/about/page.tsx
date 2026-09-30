@@ -14,6 +14,10 @@ import {
   XIcon,
 } from '@/components/SocialIcons'
 import portraitImage from '@/images/photos/osaka-bridge.jpeg'
+import { getDictionary } from '@/i18n'
+import { type Locale } from '@/i18n/config'
+import { pageMetadata } from '@/i18n/metadata'
+import { Rich } from '@/components/Rich'
 
 function SocialLink({
   className,
@@ -46,14 +50,17 @@ function SocialLink({
   )
 }
 
-export const metadata: Metadata = {
-  title: 'About',
-  description:
-    'I’m Dave: software engineer, Japanese learner, dog dad, and car tinkerer. Here’s the longer version of who I am and what I’m into.',
-  alternates: { canonical: '/about' },
+export function generateMetadata({
+  params,
+}: {
+  params: { lang: string }
+}): Metadata {
+  let lang = params.lang as Locale
+  return pageMetadata(lang, '/about', getDictionary(lang).meta.about)
 }
 
-export default function About() {
+export default function About({ params }: { params: { lang: string } }) {
+  let t = getDictionary(params.lang as Locale)
   return (
     <Container className="mt-16 sm:mt-32">
       <div className="grid grid-cols-1 gap-y-16 lg:grid-cols-2 lg:grid-rows-[auto_1fr] lg:gap-y-12">
@@ -61,7 +68,7 @@ export default function About() {
           <div className="max-w-xs px-2.5 lg:max-w-none">
             <Image
               src={portraitImage}
-              alt="Dave leaning on a wooden bridge railing, looking out at the neon signs and giant Ferris wheel of Dotonbori in Osaka"
+              alt={t.about.photoAlt}
               sizes="(min-width: 1024px) 32rem, 20rem"
               style={{ objectPosition: '50% 78%' }}
               className="aspect-square rotate-3 rounded-2xl bg-surface-2 object-cover shadow-2xl ring-1 shadow-black/10 ring-line transition duration-500 hover:rotate-0"
@@ -70,47 +77,12 @@ export default function About() {
         </div>
         <div className="lg:order-first lg:row-span-2">
           <h1 className="text-4xl font-bold tracking-tight text-balance text-ink sm:text-5xl">
-            I’m <span className="text-accent">Dave</span>
-            —software engineer, Japanese learner, and endlessly curious human.
+            <Rich text={t.about.title} strongClassName="text-accent" />
           </h1>
           <div className="mt-6 space-y-7 text-base text-body">
-            <p>
-              I’ve always been fascinated by figuring out how things work, which
-              naturally drew me into software engineering. What started as
-              self-teaching and experimentation eventually became my full-time
-              career. I’ve spent the last several years coding, solving
-              problems, and leading teams of smart, interesting people. My
-              favorite part of software engineering is the endless opportunities
-              to learn new things. There’s always something fresh to explore,
-              and that keeps things exciting.
-            </p>
-            <p>
-              I’ve casually studied Japanese for a couple of years now, and I’m
-              currently working toward the JLPT N2, which I plan to take next
-              year. Alongside that, I’m in WGU’s Accelerated Computer Science
-              program, wrapping up my Bachelor’s in January 2027 with the
-              Master’s right behind it. It’s a fun way to blend my passion for
-              technology with my love for Japanese culture and language
-              learning.
-            </p>
-            <p>
-              Cars are more than just transportation to me. They’re a way to
-              express creativity and explore engineering hands-on. My current
-              passion project is a widebody 2012 Genesis Coupe. It’s a labor of
-              love, an endless source of tinkering and enjoyment, and yes,
-              occasionally frustrating (and expensive!). It fuels my curiosity
-              and gives me space to unwind, learn, and experiment.
-            </p>
-            <p>
-              When I’m not buried in code or car projects, you’ll often find me
-              deep in manga or anime. These stories offer fresh perspectives and
-              storytelling styles that keep me coming back. Beyond Japanese
-              culture, I’m just endlessly curious. I’ll happily spend hours
-              watching YouTube deep-dives or reading articles on random topics
-              just because something caught my interest. There’s always
-              something fascinating waiting to be learned, and I’m always eager
-              to discover what it is.
-            </p>
+            {t.about.paragraphs.map((paragraph) => (
+              <p key={paragraph.slice(0, 24)}>{paragraph}</p>
+            ))}
           </div>
         </div>
         <div className="lg:pl-20">
@@ -120,14 +92,14 @@ export default function About() {
               icon={GitHubIcon}
               className="mt-4"
             >
-              Follow on GitHub
+              {t.social.followGithub}
             </SocialLink>
             <SocialLink
               href="https://www.linkedin.com/in/davidchroninger/"
               icon={LinkedInIcon}
               className="mt-4"
             >
-              Follow on LinkedIn
+              {t.social.followLinkedin}
             </SocialLink>
             <SocialLink
               href="mailto:info@dchroninger.com"

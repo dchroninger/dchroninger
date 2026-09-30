@@ -13,8 +13,11 @@ import {
 import clsx from 'clsx'
 
 import { Container } from '@/components/Container'
+import { FlagLanguageToggle } from '@/components/LanguageSwitcher'
 import { PaletteSwitcher } from '@/components/PaletteSwitcher'
 import { TransitionLink as Link } from '@/components/TransitionLink'
+import { parseLocalePath } from '@/i18n/config'
+import { useT } from '@/i18n/LangProvider'
 import { HAS_PROJECTS } from '@/lib/projects'
 import { withRevealTransition } from '@/lib/viewTransition'
 import avatarImage from '@/images/avatar.png'
@@ -99,10 +102,11 @@ function MobileNavItem({
 function MobileNavigation(
   props: React.ComponentPropsWithoutRef<typeof Popover>,
 ) {
+  let t = useT()
   return (
     <Popover {...props}>
       <PopoverButton className="group flex items-center rounded-full bg-surface/80 px-4 py-2 text-sm font-medium text-ink shadow-lg ring-1 shadow-black/5 ring-line backdrop-blur-md hover:ring-accent/40">
-        Menu
+        {t.nav.menu}
         <ChevronDownIcon className="ml-3 h-auto w-2 stroke-muted group-hover:stroke-ink" />
       </PopoverButton>
       <PopoverBackdrop
@@ -115,21 +119,21 @@ function MobileNavigation(
         className="fixed inset-x-4 top-8 z-50 origin-top rounded-3xl bg-surface p-8 ring-1 ring-line duration-150 data-closed:scale-95 data-closed:opacity-0 data-enter:ease-out data-leave:ease-in"
       >
         <div className="flex flex-row-reverse items-center justify-between">
-          <PopoverButton aria-label="Close menu" className="-m-1 p-1">
+          <PopoverButton aria-label={t.nav.closeMenu} className="-m-1 p-1">
             <CloseIcon className="h-6 w-6 text-muted" />
           </PopoverButton>
           <h2 className="font-mono text-xs tracking-wider text-muted uppercase">
-            Navigation
+            {t.nav.navigation}
           </h2>
         </div>
         <nav className="mt-6">
           <ul className="-my-2 divide-y divide-line text-base text-ink">
-            <MobileNavItem href="/about">About</MobileNavItem>
-            <MobileNavItem href="/articles">Writing</MobileNavItem>
+            <MobileNavItem href="/about">{t.nav.about}</MobileNavItem>
+            <MobileNavItem href="/articles">{t.nav.writing}</MobileNavItem>
             {HAS_PROJECTS && (
-              <MobileNavItem href="/projects">Projects</MobileNavItem>
+              <MobileNavItem href="/projects">{t.nav.projects}</MobileNavItem>
             )}
-            <MobileNavItem href="/uses">Uses</MobileNavItem>
+            <MobileNavItem href="/uses">{t.nav.uses}</MobileNavItem>
           </ul>
         </nav>
       </PopoverPanel>
@@ -144,7 +148,7 @@ function NavItem({
   href: string
   children: React.ReactNode
 }) {
-  let pathname = usePathname()
+  let pathname = parseLocalePath(usePathname()).path
   let isActive = pathname === href || pathname.startsWith(href + '/')
 
   return (
@@ -166,13 +170,14 @@ function NavItem({
 }
 
 function DesktopNavigation(props: React.ComponentPropsWithoutRef<'nav'>) {
+  let t = useT()
   return (
     <nav {...props}>
       <ul className="flex rounded-full bg-surface/80 px-3 text-sm font-medium text-ink shadow-lg ring-1 shadow-black/5 ring-line backdrop-blur-md">
-        <NavItem href="/about">About</NavItem>
-        <NavItem href="/articles">Writing</NavItem>
-        {HAS_PROJECTS && <NavItem href="/projects">Projects</NavItem>}
-        <NavItem href="/uses">Uses</NavItem>
+        <NavItem href="/about">{t.nav.about}</NavItem>
+        <NavItem href="/articles">{t.nav.writing}</NavItem>
+        {HAS_PROJECTS && <NavItem href="/projects">{t.nav.projects}</NavItem>}
+        <NavItem href="/uses">{t.nav.uses}</NavItem>
       </ul>
     </nav>
   )
@@ -180,6 +185,7 @@ function DesktopNavigation(props: React.ComponentPropsWithoutRef<'nav'>) {
 
 function ThemeToggle() {
   let { resolvedTheme, setTheme } = useTheme()
+  let t = useT()
   let otherTheme = resolvedTheme === 'dark' ? 'light' : 'dark'
   let [mounted, setMounted] = useState(false)
 
@@ -190,7 +196,13 @@ function ThemeToggle() {
   return (
     <button
       type="button"
-      aria-label={mounted ? `Switch to ${otherTheme} theme` : 'Toggle theme'}
+      aria-label={
+        mounted
+          ? otherTheme === 'light'
+            ? t.a11y.switchToLight
+            : t.a11y.switchToDark
+          : t.a11y.toggleTheme
+      }
       className="group rounded-full bg-surface/80 px-3 py-2 shadow-lg ring-1 shadow-black/5 ring-line backdrop-blur-md transition hover:ring-accent/40"
       onClick={(e) => {
         let r = e.currentTarget.getBoundingClientRect()
@@ -234,10 +246,11 @@ function Avatar({
 }: Omit<React.ComponentPropsWithoutRef<typeof Link>, 'href'> & {
   large?: boolean
 }) {
+  let t = useT()
   return (
     <Link
       href="/"
-      aria-label="Home"
+      aria-label={t.nav.home}
       className={clsx(className, 'pointer-events-auto')}
       {...props}
     >
@@ -256,7 +269,7 @@ function Avatar({
 }
 
 export function Header() {
-  let isHomePage = usePathname() === '/'
+  let isHomePage = parseLocalePath(usePathname()).path === '/'
 
   let headerRef = useRef<React.ElementRef<'div'>>(null)
   let avatarRef = useRef<React.ElementRef<'div'>>(null)
@@ -457,6 +470,7 @@ export function Header() {
               </div>
               <div className="flex justify-end md:flex-1">
                 <div className="pointer-events-auto flex items-center gap-2 sm:gap-3">
+                  <FlagLanguageToggle />
                   <PaletteSwitcher />
                   <ThemeToggle />
                 </div>

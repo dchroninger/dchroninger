@@ -5,6 +5,8 @@ import { Popover, PopoverButton, PopoverPanel } from '@headlessui/react'
 import clsx from 'clsx'
 import { useTheme } from 'next-themes'
 
+import { fmt } from '@/i18n/config'
+import { useT } from '@/i18n/LangProvider'
 import { setPalette, usePalette } from '@/lib/palette-store'
 import { PALETTES, type PaletteId } from '@/lib/palettes'
 import { withRevealTransition } from '@/lib/viewTransition'
@@ -58,6 +60,7 @@ function CheckIcon(props: React.ComponentPropsWithoutRef<'svg'>) {
 
 export function PaletteSwitcher() {
   let current = usePalette()
+  let t = useT()
   let { resolvedTheme } = useTheme()
   let [mounted, setMounted] = useState(false)
   useEffect(() => setMounted(true), [])
@@ -67,8 +70,8 @@ export function PaletteSwitcher() {
   return (
     <Popover className="relative">
       <PopoverButton
-        aria-label={`Color theme: ${active.name}. Change theme`}
-        className="group flex items-center gap-2 rounded-full bg-surface/80 py-2 pr-3 pl-2.5 shadow-lg shadow-black/5 ring-1 ring-line backdrop-blur-md transition hover:ring-accent/40 data-open:ring-accent/50"
+        aria-label={fmt(t.a11y.colorTheme, { name: active.name })}
+        className="group flex items-center gap-2 rounded-full bg-surface/80 py-2 pr-3 pl-2.5 shadow-lg ring-1 shadow-black/5 ring-line backdrop-blur-md transition hover:ring-accent/40 data-open:ring-accent/50"
       >
         <Swatch id={current} dark={dark} className="h-6 w-6" />
         <span className="hidden font-mono text-xs text-muted sm:block">
@@ -79,7 +82,7 @@ export function PaletteSwitcher() {
       <PopoverPanel
         transition
         anchor={{ to: 'bottom end', gap: 12 }}
-        className="z-50 w-64 origin-top-right rounded-2xl bg-surface p-2 shadow-2xl shadow-black/20 ring-1 ring-line transition duration-150 data-closed:scale-95 data-closed:opacity-0"
+        className="z-50 w-64 origin-top-right rounded-2xl bg-surface p-2 shadow-2xl ring-1 shadow-black/20 ring-line transition duration-150 data-closed:scale-95 data-closed:opacity-0"
       >
         <ul role="list" className="space-y-0.5">
           {PALETTES.map((p) => {
@@ -109,7 +112,7 @@ export function PaletteSwitcher() {
                       {p.name}
                     </span>
                     <span className="block text-xs leading-5 text-muted">
-                      {p.note}
+                      {t.palettes[p.id].note}
                     </span>
                   </span>
                   {selected && <CheckIcon className="h-4 w-4 text-accent" />}

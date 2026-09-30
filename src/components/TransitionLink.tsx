@@ -4,6 +4,8 @@ import { forwardRef } from 'react'
 import Link from 'next/link'
 
 import { useNavTransition } from '@/app/providers'
+import { localePath } from '@/i18n/config'
+import { useLang } from '@/i18n/LangProvider'
 
 /**
  * Drop-in for next/link that wraps client navigation in a View Transition.
@@ -14,11 +16,19 @@ export const TransitionLink = forwardRef<
   React.ComponentPropsWithoutRef<typeof Link>
 >(function TransitionLink({ onClick, href, ...props }, ref) {
   let navigate = useNavTransition()
+  let lang = useLang()
+
+  // Internal links get the current language prefix automatically.
+  function localize(h: string) {
+    if (!h.startsWith('/') || /^\/(ja|en)(\/|$|\?|#)/.test(h)) return h
+    return localePath(lang, h)
+  }
+  let localized = typeof href === 'string' ? localize(href) : href
 
   return (
     <Link
       ref={ref}
-      href={href}
+      href={localized}
       onClick={(e) => {
         onClick?.(e)
         if (
@@ -31,7 +41,7 @@ export const TransitionLink = forwardRef<
           props.target === '_blank'
         )
           return
-        let url = typeof href === 'string' ? href : href.pathname
+        let url = typeof localized === 'string' ? localized : localized.pathname
         if (!url || !url.startsWith('/')) return
         if (navigate(url, e.currentTarget)) e.preventDefault()
       }}

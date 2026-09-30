@@ -15,12 +15,18 @@ import genesisPhoto from '@/images/photos/genesis.jpeg'
 import shogiPhoto from '@/images/photos/shogi.jpeg'
 import { getAllArticles } from '@/lib/articles'
 import { formatDate } from '@/lib/formatDate'
+import { getDictionary } from '@/i18n'
+import { type Locale } from '@/i18n/config'
+import { pageMetadata } from '@/i18n/metadata'
 import { photos } from '@/lib/photos'
 import { CV_URL, roles, SHOW_CV, SHOW_WORK } from '@/lib/resume'
-import { CONTACT_EMAIL } from '@/lib/site'
 
-export const metadata: Metadata = {
-  alternates: { canonical: '/' },
+export function generateMetadata({
+  params,
+}: {
+  params: { lang: string }
+}): Metadata {
+  return pageMetadata(params.lang as Locale, '/')
 }
 
 function ArrowDownIcon(props: React.ComponentPropsWithoutRef<'svg'>) {
@@ -98,22 +104,32 @@ function PhotoTile({
   )
 }
 
-export default async function Home() {
-  let articles = await getAllArticles()
-  let latest = articles[0]
+export default function Home({ params }: { params: { lang: string } }) {
+  let lang = params.lang as Locale
+  let t = getDictionary(lang)
+  let latest = getAllArticles(lang)[0]
+  let marqueePhotos = photos.map((p) => ({ ...p, alt: t.photos[p.id] }))
+  let timeline = roles.map((r) => ({
+    company: r.company,
+    title: t.work.titles[r.titleKey],
+    logo: r.logo,
+    start: r.start,
+    end: r.end ?? t.work.present,
+    current: r.current,
+  }))
 
   return (
     <>
       <Hero />
-      <PhotoMarquee photos={photos} />
+      <PhotoMarquee photos={marqueePhotos} />
 
       <Container className="mt-20 md:mt-28">
         <Reveal>
           <p className="font-mono text-xs tracking-wider text-faint uppercase">
-            Right now
+            {t.home.rightNow}
           </p>
           <h2 className="mt-2 text-3xl font-bold tracking-tight text-ink sm:text-4xl">
-            A few things I’m into.
+            {t.home.intoTitle}
           </h2>
         </Reveal>
 
@@ -125,27 +141,29 @@ export default async function Home() {
             >
               学
             </span>
-            <Label>Learning</Label>
+            <Label>{t.home.learning.label}</Label>
             <h3 className="mt-3 text-2xl font-semibold tracking-tight text-ink">
-              Two long games, at once.
+              {t.home.learning.title}
             </h3>
             <ul className="mt-5 space-y-4 text-sm text-body">
               <li className="flex gap-3">
                 <span className="mt-2 h-1.5 w-1.5 flex-none rounded-full bg-accent" />
                 <span>
                   <strong className="font-semibold text-ink">
-                    WGU Accelerated CS, B.S. + M.S.
+                    {t.home.learning.wguTitle}
                   </strong>
                   <br />
-                  Finishing the bachelor’s in January 2027.
+                  {t.home.learning.wguBody}
                 </span>
               </li>
               <li className="flex gap-3">
                 <span className="mt-2 h-1.5 w-1.5 flex-none rounded-full bg-accent-2" />
                 <span>
-                  <strong className="font-semibold text-ink">JLPT N2</strong>
+                  <strong className="font-semibold text-ink">
+                    {t.home.learning.jlptTitle}
+                  </strong>
                   <br />
-                  Sitting the exam next year. 頑張ります。
+                  {t.home.learning.jlptBody}
                 </span>
               </li>
             </ul>
@@ -154,9 +172,9 @@ export default async function Home() {
           <PhotoTile
             className="lg:col-span-3"
             src={genesisPhoto}
-            alt="A blue widebody Genesis Coupe parked under tall trees"
-            label="Garage"
-            caption="2012 Genesis Coupe. A labor of love (and money)."
+            alt={t.photos.genesis}
+            label={t.home.garage.label}
+            caption={t.home.garage.caption}
             delay={0.08}
           />
 
@@ -172,7 +190,7 @@ export default async function Home() {
                 />
               </div>
             )}
-            <Label>Latest writing</Label>
+            <Label>{t.home.latest.label}</Label>
             {latest ? (
               <>
                 <h3 className="mt-3 text-xl font-semibold tracking-tight text-ink">
@@ -185,25 +203,28 @@ export default async function Home() {
                   {latest.description}
                 </p>
                 <p className="mt-auto pt-5 font-mono text-xs text-faint">
-                  {formatDate(latest.date)}
+                  {formatDate(latest.date, lang)}
+                  {lang === 'ja' && latest.contentLang !== 'ja' && (
+                    <span> · {t.articles.englishOnly}</span>
+                  )}
                 </p>
               </>
             ) : (
-              <p className="mt-3 text-sm text-body">Posts coming soon.</p>
+              <p className="mt-3 text-sm text-body">{t.home.latest.empty}</p>
             )}
           </Tile>
 
           <PhotoTile
             className="lg:col-span-2"
             src={shogiPhoto}
-            alt="Dave crouching on a grassy trail, petting a husky"
-            label="Home"
-            caption="Dog dad, full time."
+            alt={t.photos.shogi}
+            label={t.home.homeTile.label}
+            caption={t.home.homeTile.caption}
             delay={0.08}
           />
 
           <Tile className="lg:col-span-2" delay={0.12}>
-            <Label>Elsewhere</Label>
+            <Label>{t.home.elsewhere}</Label>
             <ul className="mt-4 space-y-1 text-sm font-medium text-ink">
               {[
                 {
@@ -238,7 +259,7 @@ export default async function Home() {
               <li>
                 <EmailLink className="group -mx-2 flex items-center gap-3 rounded-lg px-2 py-1.5 transition hover:bg-surface-2">
                   <MailIcon className="h-5 w-5 fill-muted transition group-hover:fill-accent" />
-                  Email
+                  {t.email.label}
                   <span
                     aria-hidden="true"
                     className="ml-auto text-faint transition group-hover:translate-x-0.5 group-hover:text-accent"
@@ -254,13 +275,12 @@ export default async function Home() {
             <Tile className="lg:col-span-6" delay={0.04}>
               <div className="grid gap-10 lg:grid-cols-[1fr_1.4fr] lg:gap-16">
                 <div>
-                  <Label>The day job</Label>
+                  <Label>{t.home.job.label}</Label>
                   <h3 className="mt-3 text-2xl font-semibold tracking-tight text-ink">
-                    Building software for healthcare.
+                    {t.home.job.title}
                   </h3>
                   <p className="mt-3 max-w-sm text-sm text-body">
-                    Web developer to engineering manager and architect. The
-                    résumé bits, for anyone who’s into that.
+                    {t.home.job.body}
                   </p>
                   {SHOW_CV && (
                     <Button
@@ -268,12 +288,12 @@ export default async function Home() {
                       variant="secondary"
                       className="group relative z-10 mt-6"
                     >
-                      Download CV
+                      {t.home.job.cv}
                       <ArrowDownIcon className="h-4 w-4 stroke-current transition group-hover:translate-y-0.5" />
                     </Button>
                   )}
                 </div>
-                <WorkTimeline roles={roles} />
+                <WorkTimeline roles={timeline} />
               </div>
             </Tile>
           )}

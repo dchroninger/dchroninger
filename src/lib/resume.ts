@@ -3,12 +3,16 @@ import { type StaticImageData } from 'next/image'
 import ehcgLogo from '@/images/logos/ehcg.png'
 import empresLogo from '@/images/logos/empres.png'
 
+import { type Dictionary } from '@/i18n'
+
 export interface Role {
   company: string
-  title: string
+  /** key into the dictionary's work.titles */
+  titleKey: keyof Dictionary['work']['titles']
   logo: StaticImageData
   start: string
-  end: string
+  /** Year, or null for the current role (rendered as "Present") */
+  end: string | null
   current?: boolean
 }
 
@@ -24,29 +28,29 @@ export const CV_URL =
 export const roles: Role[] = [
   {
     company: 'Evergreen Healthcare Group',
-    title: 'Engineering Manager/Architect',
+    titleKey: 'ehcgManager',
     logo: ehcgLogo,
     start: '2023',
-    end: 'Present',
+    end: null,
     current: true,
   },
   {
     company: 'EmpRes Healthcare',
-    title: 'Engineering Manager',
+    titleKey: 'empresManager',
     logo: empresLogo,
     start: '2021',
     end: '2023',
   },
   {
     company: 'EmpRes Healthcare',
-    title: 'Lead Software Engineer',
+    titleKey: 'empresLead',
     logo: empresLogo,
     start: '2020',
     end: '2021',
   },
   {
     company: 'EmpRes Healthcare',
-    title: 'Web Developer',
+    titleKey: 'empresWeb',
     logo: empresLogo,
     start: '2018',
     end: '2020',

@@ -1,4 +1,3 @@
-import { ArticleLayout } from '@/components/ArticleLayout'
 import cover from '@/images/photos/osaka-canal.jpeg'
 
 export const article = {
@@ -13,20 +12,6 @@ export const article = {
   imageCaption: 'First full day in Japan. Dotonbori, Osaka, Aug. 2025',
   imagePosition: '50% 36%',
 }
-
-export const metadata = {
-  title: article.title,
-  description: article.description,
-  openGraph: {
-    title: article.title,
-    description: article.description,
-    type: 'article',
-    publishedTime: article.date,
-    images: [{ url: cover.src, width: cover.width, height: cover.height }],
-  },
-}
-
-export default (props) => <ArticleLayout article={article} {...props} />
 
 Welcome! I'm Dave. I'm a husband, software engineer, leader, and learner. After years of "I'll get to it after the next project", I decided to finally just ship something and get this going. This blog is going to be a collection of my thoughts on software, my journey through learning Japanese, travel, and my hobbies. You can think of this as the place anyone can go to learn about me or get in touch to collaborate. First and foremost it's my place to document my thoughts and my growth.
 
