@@ -16,6 +16,9 @@ import booktroveShelf from '@/images/projects/booktrove/04-shelf.png'
 import booktroveFriend from '@/images/projects/booktrove/05-friend.png'
 import booktroveFeed from '@/images/projects/booktrove/07-feed.png'
 import booktroveWidgets from '@/images/projects/booktrove/08-widgets.png'
+import genesisLogo from '@/images/logos/genesis-cluster.png'
+import genesisClusterDark from '@/images/projects/genesis/cluster-dark.png'
+import genesisClusterLight from '@/images/projects/genesis/cluster-light.png'
 import kanpekiReaderLogo from '@/images/logos/kanpeki-reader.png'
 import usagiLogo from '@/images/logos/usagi.png'
 import kanpekiSeries from '@/images/projects/kanpeki-reader/01-series.png'
@@ -439,6 +442,62 @@ export const projects: Project[] = [
         caption: {
           en: 'Minimal pairs: which はし did you say?',
           ja: 'ミニマルペア：どの「はし」を言ったか。',
+        },
+      },
+    ],
+  },
+  {
+    id: 'genesis-cluster',
+    name: 'Genesis Cluster',
+    logo: genesisLogo,
+    status: { en: 'Early prototype', ja: '初期プロトタイプ' },
+    tagline: {
+      en: 'A custom digital gauge cluster for my project car.',
+      ja: '自分のプロジェクトカーのための、自作デジタルメーター。',
+    },
+    description: {
+      en: 'The first step toward a custom infotainment system for my widebody Genesis Coupe: a digital instrument cluster with speed and RPM gauges and warning lamps, plus a telemetry panel that simulates the car so the UI can be built before any hardware is wired in. Next up: reading real data off the CAN bus.',
+      ja: 'ワイドボディのジェネシスクーペ用に、自作インフォテインメントを作る第一歩。速度計・回転計・警告灯を備えたデジタルメーターと、実機をつなぐ前にUIを作れるよう車の状態を再現するテレメトリーパネル。次はCANバスから実データを読み取ります。',
+    },
+    highlights: {
+      en: [
+        'Gauges drawn from scratch with Flutter’s CustomPainter.',
+        'Simulated telemetry: speed, RPM, fuel, oil and coolant temperature, oil pressure, boost and air/fuel ratio.',
+        'Indicator lamps for turn signals, high beams, check engine, fuel, voltage and oil.',
+        'Light and dark themes, for day and night driving.',
+        'Planned: live CAN-bus data, a second center-stack display, and in-car hardware.',
+      ],
+      ja: [
+        'メーターはFlutterのCustomPainterでゼロから描画。',
+        'テレメトリーを再現：速度、回転数、燃料、油温・水温、油圧、ブースト、空燃比。',
+        'ウインカー、ハイビーム、エンジン警告、燃料、電圧、油圧の警告灯。',
+        '昼と夜の運転に合わせたライト・ダークテーマ。',
+        '今後：CANバスの実データ、センタースタック用の2画面目、車載ハードウェア。',
+      ],
+    },
+    tags: ['Flutter', 'Dart', 'CustomPainter', 'CAN bus'],
+    href: 'https://github.com/dchroninger/genesis',
+    label: { en: 'View on GitHub', ja: 'GitHubで見る' },
+    cover: {
+      kind: 'web',
+      light: genesisClusterDark,
+      alt: {
+        en: 'A digital gauge cluster showing 110 mph and 5,727 rpm, with a telemetry control panel',
+        ja: '時速110マイル、5727回転を表示するデジタルメーターと、テレメトリーの操作パネル',
+      },
+    },
+    gallery: [
+      {
+        kind: 'web',
+        light: genesisClusterLight,
+        dark: genesisClusterDark,
+        alt: {
+          en: 'The gauge cluster with speed and RPM gauges, warning lamps and simulated telemetry controls',
+          ja: '速度計・回転計・警告灯と、テレメトリーを再現する操作パネル',
+        },
+        caption: {
+          en: 'Drag the sliders to simulate the car; the gauges follow.',
+          ja: 'スライダーで車の状態を再現すると、メーターが追従します。',
         },
       },
     ],
