@@ -51,31 +51,53 @@ export default function Uses() {
         <ToolsSection title="Workstation">
           <Tool title="14” MacBook Pro">
             Before my MacBook, I had done all of my development on Windows PCs.
-            I've enjoyed the switch, and the closer ergonomics to Linux help
-            with maintining config files or scripts that may be run on a server.
+            I&apos;ve enjoyed the switch, and the closer ergonomics to Linux
+            help with maintaining config files or scripts that may be run on a
+            server.
           </Tool>
-          <Tool title="Logitech Ergo Widescreen + DualUp Displays">
-            This setup has been great for productivity. I learned long ago that
-            ultrawides were more comfortable for displaying code and content, but
-            adding the DualUp as a sidecar display let's me have a local web app,
-            dev tools, addiitonal terminals, or any other tools I need, without
-            disturbing my main area for focusing. 11/10, highly recommend.
+          <Tool title="49” Samsung Odyssey">
+            The newest addition to the desk. I learned long ago that ultrawides
+            are more comfortable for code and content, and a 49&quot; is
+            basically two monitors with no bezel down the middle: an editor and
+            terminals on one side, a running app and dev tools on the other, all
+            in one field of view.
+          </Tool>
+          <Tool title="Razer Thunderbolt Dock">
+            One cable from the laptop to everything else. It also has an NVMe
+            M.2 drive built right into it, so I get fast external storage
+            without another box or cable on the desk.
           </Tool>
           <Tool title="Corne Split Keyboard">
             Now <strong>HERE</strong> is where I can really nerd out. For years
             I had dealt with wrist discomfort and shoulder pain from working on
             computers all day long. After coming across split keyboards, I
             decided to try the Zsa Moonlander, then to their Voyager model. Both
-            were great devices, but I wanted something wireless again, so I built
-            my wireless Corne and haven't looked back. It packs up small
-            enough that I can take it anywhere, and it being wireless makes remote
-            work setup ridiculously easy. This is hands down my favorite item in
-            this list.
+            were great devices, but I wanted something wireless again, so I
+            built my wireless Corne and haven&apos;t looked back. It packs up
+            small enough that I can take it anywhere, and it being wireless
+            makes remote work setup ridiculously easy. This is hands down my
+            favorite item in this list, and I&apos;ll swear by it until the end
+            of days.
           </Tool>
-          <Tool title="Logitech MX Master 3S">
-            To be honest, there's really not much to say here. It's amouse. It
-            does mouse things. It's pretty comfortable, but no more comfortable
-            than my Razer Naga Pro. So ¯\_(ツ)_/¯.
+          <Tool title="Razer Naga V2 Pro">
+            It&apos;s a mouse. It does mouse things. What I like about this one
+            is the swappable side plates, so I can pick how many thumb buttons I
+            want under my hand. I used to use a Logitech MX Master 3S, and it
+            was great too, but the Naga is the one that stuck.
+          </Tool>
+        </ToolsSection>
+        <ToolsSection title="Audio">
+          <Tool title="Shure MV7X">
+            An XLR dynamic microphone, which means it mostly ignores the room
+            and picks up my voice. It plugs into the interface below instead of
+            straight into the computer.
+          </Tool>
+          <Tool title="Focusrite Scarlett 2i2 (4th Gen)">
+            The audio interface that sits between the mic and the computer.
+            Clean preamps, simple controls, and it just works.
+          </Tool>
+          <Tool title="Soundbrenner IEMs">
+            In-ear monitors for everything from calls to focus music.
           </Tool>
         </ToolsSection>
         <ToolsSection title="Development tools">
@@ -104,11 +126,11 @@ export default function Uses() {
           <Tool title="Claude Code">
             This tool has become a very helpful part of my day to day workflows.
             It's been great for tackling research and providing resources, or
-            having a second set of eyes on a suite of tests to make sure that i'm
-            not over-looking any edge cases. Another great use case I have found
-            lately is a way to learn about architectural styles that I haven't been
-            able to work with at my job. Having a pair programmer when I need it
-            has been great.
+            having a second set of eyes on a suite of tests to make sure that
+            I'm not over-looking any edge cases. Another great use case I have
+            found lately is a way to learn about architectural styles that I
+            haven't been able to work with at my job. Having a pair programmer
+            when I need it has been great.
           </Tool>
         </ToolsSection>
       </div>
