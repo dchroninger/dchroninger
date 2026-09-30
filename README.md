@@ -29,19 +29,18 @@ On the side, I’m finishing my **B.S. in Computer Science at WGU** (an accelera
 
 - **Frameworks, libraries & tools**:
 
-  - Regularly working with **React**, **Next.js**, **Tailwind CSS**, and **GoFiber**
+  - Regularly working with **React**, **TanStack** libraries (heavily), **Tailwind CSS**, and **GoFiber**
+  - **Next.js** isn't my daily driver these days, but I’m still very familiar with it
   - Formerly used **Express.js**, **MUI**, **Redux**, and **Prisma**, but now leaning toward Context-based state management and direct SQL
-  - Experimenting with **TanStack** libraries
 
 - **Databases & ETL**:
-  - Deep experience with **Microsoft SQL Server** (including **SSIS** ETL pipelines)
-  - Some past experience with **MongoDB**
+  - Deep experience with **Microsoft SQL Server**
+  - Hands-on experience with **SSIS** ETL pipelines and **MongoDB** (it’s been a while, but I know them well)
 
 ## Projects & Focus
 
 - **[Dotfiles](https://github.com/dchroninger/.dotfiles)**: because I’m a big fan of refining workflows and sharing tips for a better dev environment
 - **CAN-bus exploration**: tapping into automotive systems and eventually building a custom **infotainment system** for my car
-- **Printer management app**: a practical solution for a daily workflow challenge
 
 > _I’m always open to new ideas. If you’ve got something interesting to collaborate on, let’s chat!_
 
