@@ -6,6 +6,7 @@ import clsx from 'clsx'
 
 import { useNavTransition } from '@/app/providers'
 import {
+  LOCALE_COOKIE,
   localePath,
   otherLocale,
   parseLocalePath,
@@ -39,10 +40,10 @@ function useSwitch() {
 /* ------------------------------------------------------------------ */
 
 function UsFlag() {
-  // Simplified for a ~26px circle: 7 stripes and 9 stars read as the flag,
+  // Simplified for a ~26px circle: 9 stripes and 9 stars read as the flag,
   // where the real 13 + 50 would just smear together.
-  let stripes = 7
-  let cantonHeight = (4 * 60) / stripes // canton covers the top 4 stripes
+  let stripes = 9
+  let cantonHeight = (5 * 60) / stripes // canton covers the top 5 stripes
   return (
     <svg
       viewBox="0 0 60 60"
@@ -51,7 +52,7 @@ function UsFlag() {
       aria-hidden="true"
     >
       <rect width="60" height="60" fill="#fff" />
-      {[0, 2, 4, 6].map((i) => (
+      {[0, 2, 4, 6, 8].map((i) => (
         <rect
           key={i}
           y={(i * 60) / stripes}
@@ -116,6 +117,8 @@ export function FlagLanguageToggle({ className }: { className?: string }) {
         if (state === 'switching') return
         hoverLocked = true
         setLocked(true)
+        // remember the explicit choice; it overrides browser-language detection
+        document.cookie = `${LOCALE_COOKIE}=${target}; path=/; max-age=31536000; samesite=lax`
         setState('switching')
         // let the flag finish filling the circle before the page changes
         let reduce = window.matchMedia(
