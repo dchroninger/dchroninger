@@ -2,7 +2,7 @@ import { type MetadataRoute } from 'next'
 
 import { locales, localePath } from '@/i18n/config'
 import { getAllArticles } from '@/lib/articles'
-import { HAS_PROJECTS } from '@/lib/projects'
+import { HAS_PROJECTS, projects } from '@/lib/projects'
 import { SITE_URL } from '@/lib/site'
 
 export default function sitemap(): MetadataRoute.Sitemap {
@@ -44,6 +44,20 @@ export default function sitemap(): MetadataRoute.Sitemap {
           article.jaVersion!.translatedDate ?? article.date,
         ),
         alternates: { languages: { en: url('en', path), ja: url('ja', path) } },
+      })
+    }
+  }
+
+  for (let p of projects) {
+    for (let lang of locales) {
+      entries.push({
+        url: url(lang, `/projects/${p.id}`),
+        alternates: {
+          languages: {
+            en: url('en', `/projects/${p.id}`),
+            ja: url('ja', `/projects/${p.id}`),
+          },
+        },
       })
     }
   }

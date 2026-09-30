@@ -18,6 +18,7 @@ export interface Shot {
   dark?: StaticImageData
   alt: Localized<string>
   kind: 'web' | 'phone'
+  caption?: Localized<string>
 }
 
 export interface Project {
@@ -32,11 +33,10 @@ export interface Project {
   /** Public link (App Store, live site). Never a private repo. */
   href?: string
   label?: Localized<string>
-  shots: {
-    hero: Shot
-    phone?: Shot
-    extra?: Shot[]
-  }
+  /** Shown on the project list card. */
+  cover: Shot
+  /** Everything shown on the detail page, in order. */
+  gallery: Shot[]
 }
 
 // The curated list. Nav, footer and sitemap entries appear automatically
@@ -80,8 +80,17 @@ export const projects: Project[] = [
       'SwiftUI',
       'WidgetKit',
     ],
-    shots: {
-      hero: {
+    cover: {
+      kind: 'web',
+      light: usagiWebHomeLight,
+      dark: usagiWebHomeDark,
+      alt: {
+        en: 'Usagi TMS web app home: active loads, loads needing a carrier, ready to bill, overdue invoices, and compliance alerts',
+        ja: 'Usagi TMS Webアプリのホーム画面。稼働中の荷物、要手配、請求待ち、期限切れ請求書、コンプライアンス警告',
+      },
+    },
+    gallery: [
+      {
         kind: 'web',
         light: usagiWebHomeLight,
         dark: usagiWebHomeDark,
@@ -89,8 +98,25 @@ export const projects: Project[] = [
           en: 'Usagi TMS web app home: active loads, loads needing a carrier, ready to bill, overdue invoices, and compliance alerts',
           ja: 'Usagi TMS Webアプリのホーム画面。稼働中の荷物、要手配、請求待ち、期限切れ請求書、コンプライアンス警告',
         },
+        caption: {
+          en: 'Home: today’s numbers and everything that needs attention.',
+          ja: 'ホーム：今日の数字と、対応が必要なこと。',
+        },
       },
-      phone: {
+      {
+        kind: 'web',
+        light: usagiWebLoadLight,
+        dark: usagiWebLoadDark,
+        alt: {
+          en: 'A load in transit, with tabs for stops, carrier, charges and pay, tracking, documents and history',
+          ja: '輸送中の荷物の詳細。停車地、運送会社、料金と支払い、追跡、書類、履歴のタブ',
+        },
+        caption: {
+          en: 'A load, from stops and carrier to charges, tracking and documents.',
+          ja: '荷物の詳細：停車地、運送会社、料金、追跡、書類まで。',
+        },
+      },
+      {
         kind: 'phone',
         light: usagiPhoneHomeLight,
         dark: usagiPhoneHomeDark,
@@ -98,27 +124,18 @@ export const projects: Project[] = [
           en: 'Usagi TMS iPhone app home screen with the same key numbers',
           ja: '同じ主要指標を表示するUsagi TMSのiPhoneアプリ',
         },
+        caption: { en: 'The iPhone app.', ja: 'iPhoneアプリ。' },
       },
-      extra: [
-        {
-          kind: 'web',
-          light: usagiWebLoadLight,
-          dark: usagiWebLoadDark,
-          alt: {
-            en: 'A load in transit, with tabs for stops, carrier, charges and pay, tracking, documents and history',
-            ja: '輸送中の荷物の詳細。停車地、運送会社、料金と支払い、追跡、書類、履歴のタブ',
-          },
+      {
+        kind: 'phone',
+        light: usagiWidgets,
+        alt: {
+          en: 'iPhone home screen with Usagi TMS widgets',
+          ja: 'Usagi TMSのウィジェットを置いたiPhoneのホーム画面',
         },
-        {
-          kind: 'phone',
-          light: usagiWidgets,
-          alt: {
-            en: 'iPhone home screen with Usagi TMS widgets',
-            ja: 'Usagi TMSのウィジェットを置いたiPhoneのホーム画面',
-          },
-        },
-      ],
-    },
+        caption: { en: 'Home-screen widgets.', ja: 'ホーム画面ウィジェット。' },
+      },
+    ],
   },
 ]
 

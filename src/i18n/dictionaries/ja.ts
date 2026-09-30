@@ -205,6 +205,9 @@ export const ja: Dictionary = {
     intro: 'アプリ、ツール、実験など、厳選した作品たちです。',
     introEmpty:
       '少数精鋭のリストを、スクリーンショット付きで準備中です。もう少しお待ちください。',
+    back: 'すべての作品',
+    builtWith: '使用技術',
+    highlights: 'ポイント',
     view: '作品を見る',
     screenshotOf: '{name}のスクリーンショット',
   },

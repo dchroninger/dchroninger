@@ -206,6 +206,9 @@ export const en = {
       'A short, hand-picked list of things I’ve built: apps, tools, and experiments.',
     introEmpty:
       'I’m picking a short, intentional list to show here, with screenshots. Check back soon.',
+    back: 'All projects',
+    builtWith: 'Built with',
+    highlights: 'Highlights',
     view: 'View project',
     screenshotOf: 'Screenshot of {name}',
   },
