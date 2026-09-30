@@ -410,7 +410,7 @@ export function Header() {
               className="order-last mt-[calc(--spacing(16)-(--spacing(3)))]"
             />
             <Container
-              className="top-0 order-last -mb-3 pt-3 max-md:-top-6"
+              className="top-0 order-last -mb-3 pt-3"
               style={{
                 position:
                   'var(--header-position)' as React.CSSProperties['position'],
@@ -443,7 +443,7 @@ export function Header() {
         )}
         <div
           ref={headerRef}
-          className="top-0 z-10 h-16 pt-6 max-md:-top-6"
+          className="top-0 z-10 h-16 pt-6"
           style={{
             position:
               'var(--header-position)' as React.CSSProperties['position'],
