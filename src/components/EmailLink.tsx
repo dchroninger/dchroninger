@@ -5,8 +5,8 @@ import { AnimatePresence, motion } from 'motion/react'
 import clsx from 'clsx'
 
 import { fmt } from '@/i18n/config'
-import { useT } from '@/i18n/LangProvider'
-import { CONTACT_EMAIL } from '@/lib/site'
+import { useLang, useT } from '@/i18n/LangProvider'
+import { contactEmail } from '@/lib/site'
 
 /**
  * mailto link with a fallback: clicking still tries the mail app, but also
@@ -19,6 +19,7 @@ export function EmailLink({
   ...props
 }: Omit<React.ComponentPropsWithoutRef<'a'>, 'href'>) {
   let t = useT()
+  let CONTACT_EMAIL = contactEmail(useLang())
   let [state, setState] = useState<'idle' | 'copied' | 'manual'>('idle')
   let timer = useRef<ReturnType<typeof setTimeout>>()
 

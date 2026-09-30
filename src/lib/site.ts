@@ -3,4 +3,12 @@ export const SITE_URL = (
 ).replace(/\/$/, '')
 
 export const SITE_NAME = 'Dave Chroninger'
-export const CONTACT_EMAIL = 'info@dchroninger.com'
+// Each language site has its own inbox.
+export const CONTACT_EMAILS = {
+  en: 'info@dchroninger.com',
+  ja: 'info.jp@dchroninger.com',
+} as const
+
+export function contactEmail(lang: keyof typeof CONTACT_EMAILS) {
+  return CONTACT_EMAILS[lang]
+}

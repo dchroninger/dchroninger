@@ -197,6 +197,14 @@ export default function Home({ params }: { params: { lang: string } }) {
                   {t.articles.englishOnly}
                 </span>
               )}
+              {lang === 'en' && latest?.jaVersion && (
+                <span
+                  lang="ja"
+                  className="relative z-20 rounded-full bg-surface-2 px-2.5 py-0.5 font-mono text-xs text-muted ring-1 ring-line"
+                >
+                  {t.articles.alsoJapanese}
+                </span>
+              )}
             </div>
             {latest ? (
               <>

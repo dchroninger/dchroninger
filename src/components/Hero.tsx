@@ -7,8 +7,8 @@ import { EmailLink } from '@/components/EmailLink'
 import { KanjiMorph } from '@/components/KanjiMorph'
 import { GitHubIcon, LinkedInIcon, MailIcon } from '@/components/SocialIcons'
 import { fmt } from '@/i18n/config'
-import { useT } from '@/i18n/LangProvider'
-import { CONTACT_EMAIL } from '@/lib/site'
+import { useLang, useT } from '@/i18n/LangProvider'
+import { contactEmail } from '@/lib/site'
 
 const EASE = [0.16, 1, 0.3, 1] as const
 
@@ -39,6 +39,7 @@ function fade(delay: number, reduce: boolean | null) {
 export function Hero() {
   let reduce = useReducedMotion()
   let t = useT()
+  let lang = useLang()
   let n = 0
   let LINES = t.hero.lines.map((text, i, all) => ({
     text,
@@ -103,7 +104,7 @@ export function Hero() {
               </a>
               <EmailLink
                 className="group -m-1 p-1"
-                aria-label={fmt(t.email.aria, { email: CONTACT_EMAIL })}
+                aria-label={fmt(t.email.aria, { email: contactEmail(lang) })}
               >
                 <MailIcon className="h-6 w-6 fill-muted transition group-hover:fill-accent" />
               </EmailLink>

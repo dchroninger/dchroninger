@@ -18,6 +18,7 @@ import { getDictionary } from '@/i18n'
 import { type Locale } from '@/i18n/config'
 import { pageMetadata } from '@/i18n/metadata'
 import { Rich } from '@/components/Rich'
+import { contactEmail } from '@/lib/site'
 
 function SocialLink({
   className,
@@ -60,7 +61,9 @@ export function generateMetadata({
 }
 
 export default function About({ params }: { params: { lang: string } }) {
-  let t = getDictionary(params.lang as Locale)
+  let lang = params.lang as Locale
+  let t = getDictionary(lang)
+  let email = contactEmail(lang)
   return (
     <Container className="mt-16 sm:mt-32">
       <div className="grid grid-cols-1 gap-y-16 lg:grid-cols-2 lg:grid-rows-[auto_1fr] lg:gap-y-12">
@@ -102,11 +105,11 @@ export default function About({ params }: { params: { lang: string } }) {
               {t.social.followLinkedin}
             </SocialLink>
             <SocialLink
-              href="mailto:info@dchroninger.com"
+              href={`mailto:${email}`}
               icon={MailIcon}
               className="mt-8 border-t border-line pt-8"
             >
-              info@dchroninger.com
+              {email}
             </SocialLink>
           </ul>
         </div>

@@ -5,7 +5,7 @@ import { Feed } from 'feed'
 import { getDictionary } from '@/i18n'
 import { isLocale, localePath } from '@/i18n/config'
 import { getAllArticles } from '@/lib/articles'
-import { CONTACT_EMAIL, SITE_NAME, SITE_URL } from '@/lib/site'
+import { contactEmail, SITE_NAME, SITE_URL } from '@/lib/site'
 
 export async function GET(
   req: Request,
@@ -15,7 +15,7 @@ export async function GET(
   let lang = params.lang
   let t = getDictionary(lang)
 
-  let author = { name: SITE_NAME, email: CONTACT_EMAIL }
+  let author = { name: SITE_NAME, email: contactEmail(lang) }
 
   let feed = new Feed({
     title: author.name,
