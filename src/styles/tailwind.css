@@ -563,3 +563,13 @@ html[data-vt='theme']::view-transition-new(root) {
     transition: none;
   }
 }
+
+/* Phones: the iPhone status-bar strip above the page is plain page colour, so fade
+   the ambient glow and grain in over the top instead of starting on a hard edge. */
+@media (max-width: 767px) {
+  .ambient,
+  .grain::before {
+    -webkit-mask-image: linear-gradient(to bottom, transparent, #000 5rem);
+    mask-image: linear-gradient(to bottom, transparent, #000 5rem);
+  }
+}
