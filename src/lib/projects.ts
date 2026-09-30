@@ -1,7 +1,13 @@
 import { type StaticImageData } from 'next/image'
 
 import { type Locale } from '@/i18n/config'
+import kanpekiReaderLogo from '@/images/logos/kanpeki-reader.png'
 import usagiLogo from '@/images/logos/usagi.png'
+import kanpekiSeries from '@/images/projects/kanpeki-reader/01-series.png'
+import kanpekiReader from '@/images/projects/kanpeki-reader/02-reader.png'
+import kanpekiTextMode from '@/images/projects/kanpeki-reader/03-textmode.png'
+import kanpekiDictionary from '@/images/projects/kanpeki-reader/04-dictionary.png'
+import kanpekiOcr from '@/images/projects/kanpeki-reader/05-ocr-in-context.png'
 import usagiPhoneHomeDark from '@/images/projects/usagi/phone-home-dark.png'
 import usagiPhoneHomeLight from '@/images/projects/usagi/phone-home-light.png'
 import usagiWidgets from '@/images/projects/usagi/phone-widgets.png'
@@ -134,6 +140,100 @@ export const projects: Project[] = [
           ja: 'Usagi TMSのウィジェットを置いたiPhoneのホーム画面',
         },
         caption: { en: 'Home-screen widgets.', ja: 'ホーム画面ウィジェット。' },
+      },
+    ],
+  },
+  {
+    id: 'kanpeki-reader',
+    name: 'Kanpeki Reader',
+    logo: kanpekiReaderLogo,
+    status: {
+      en: 'Open source · personal use',
+      ja: 'オープンソース・個人利用',
+    },
+    tagline: {
+      en: 'A manga reader that helps you read Japanese, on-device.',
+      ja: '日本語を読む手助けをする、端末内で完結するマンガリーダー。',
+    },
+    description: {
+      en: 'Read your own CBZ library on iPhone and iPad, synced through your iCloud. Drag a box around a speech bubble and Kanpeki reads it with an on-device OCR model, splits it into words, and shows readings, pitch accent, meanings and a translation, without anything leaving the phone.',
+      ja: '自分のCBZライブラリをiPhoneやiPadで、iCloud経由で同期しながら読めます。吹き出しを囲むと、端末内のOCRモデルが文字を読み取り、単語に分けて、読み・アクセント・意味・翻訳を表示します。データは端末の外に出ません。',
+    },
+    highlights: {
+      en: [
+        'On-device OCR: manga-ocr converted to Core ML, running on the Neural Engine.',
+        'A bundled JMdict dictionary with deinflection, so conjugated verbs still resolve to their dictionary form.',
+        'Pitch accent drawn for every word, plus furigana on demand.',
+        'Your library lives in your own iCloud Drive; reading position syncs through CloudKit’s private database.',
+        '“Host nothing, see nothing”: no servers, no catalog, no telemetry about what you read.',
+      ],
+      ja: [
+        '端末内OCR：manga-ocrをCore MLに変換し、Neural Engineで実行。',
+        '活用形を辞書形に戻す機能付きのJMdict辞書を内蔵。',
+        'すべての単語にアクセントを表示。ふりがなも切り替え可能。',
+        'ライブラリは自分のiCloud Driveに。読書位置はCloudKitのプライベートデータベースで同期。',
+        '「何も預からず、何も見ない」：サーバーなし、カタログなし、読んだものの記録もなし。',
+      ],
+    },
+    tags: ['Swift', 'SwiftUI', 'Core ML', 'CloudKit', 'iCloud Drive', 'SQLite'],
+    href: 'https://github.com/dchroninger/kanpeki-reader',
+    label: { en: 'View on GitHub', ja: 'GitHubで見る' },
+    cover: {
+      kind: 'phone',
+      light: kanpekiDictionary,
+      alt: {
+        en: 'Kanpeki Reader dictionary sheet: the bubble split into words, an English translation, and 橋 (はし, bridge) with its pitch accent',
+        ja: 'Kanpeki Readerの辞書シート。吹き出しを単語に分割し、英訳と「橋（はし）」のアクセントを表示',
+      },
+    },
+    gallery: [
+      {
+        kind: 'phone',
+        light: kanpekiOcr,
+        alt: {
+          en: 'A manga page with the dictionary sheet open under a speech bubble',
+          ja: '吹き出しの下に辞書シートを開いたマンガのページ',
+        },
+        caption: {
+          en: 'Box a bubble: OCR, words, translation, and a dictionary card.',
+          ja: '吹き出しを囲むと、OCR・単語・翻訳・辞書カードが表示されます。',
+        },
+      },
+      {
+        kind: 'phone',
+        light: kanpekiDictionary,
+        alt: {
+          en: 'Dictionary card for 橋 with reading, pitch accent and meaning',
+          ja: '「橋」の辞書カード。読み・アクセント・意味',
+        },
+        caption: {
+          en: 'Pitch accent for every word.',
+          ja: 'すべての単語にアクセント。',
+        },
+      },
+      {
+        kind: 'phone',
+        light: kanpekiSeries,
+        alt: {
+          en: 'A series with three volumes in the library',
+          ja: 'ライブラリ内の3巻のシリーズ',
+        },
+        caption: {
+          en: 'Your library, from your iCloud.',
+          ja: '自分のiCloudのライブラリ。',
+        },
+      },
+      {
+        kind: 'phone',
+        light: kanpekiReader,
+        alt: {
+          en: 'A manga page in the reader',
+          ja: 'リーダーで表示したマンガのページ',
+        },
+        caption: {
+          en: 'Sample pages: Hokusai Manga (1816), The Met, CC0.',
+          ja: 'サンプル：北斎漫画（1816年）、メトロポリタン美術館、CC0。',
+        },
       },
     ],
   },
