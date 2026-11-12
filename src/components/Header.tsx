@@ -470,9 +470,9 @@ export function Header() {
               </div>
               <div className="flex justify-end md:flex-1">
                 <div className="pointer-events-auto flex items-center gap-2 sm:gap-3">
-                  <FlagLanguageToggle />
                   <PaletteSwitcher />
                   <ThemeToggle />
+                  <FlagLanguageToggle />
                 </div>
               </div>
             </div>
